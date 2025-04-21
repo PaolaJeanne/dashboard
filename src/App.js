@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Sidebar from './components/Sidebar';
@@ -12,19 +12,23 @@ import Factures from './pages/Factures';
 import Favoris from './pages/Favoris';
 import Parametres from './pages/Parametres';
 import Aide from './pages/Aide';
+import Historique from './pages/Historique';
 
 const App = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
   return (
     <Router>
-      <div style={{ display: 'flex' }}>
-        <Sidebar />
-        <div style={{ flex: 1, padding: '20px' }}>
+      <div className="app-container">
+        <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+        <div className={`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/nouvelle-commande" element={<NouvelleCommande />} />
             <Route path="/mes-commandes" element={<MesCommandes />} />
             <Route path="/fichier" element={<Fichier />} />
             <Route path="/suivi-commande/:id" element={<SuiviCommande />} />
+            <Route path="/historique" element={<Historique />} />
             <Route path="/localisation" element={<Localisation />} />
             <Route path="/factures" element={<Factures />} />
             <Route path="/favoris" element={<Favoris />} />

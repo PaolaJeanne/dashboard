@@ -1,93 +1,136 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaFileUpload, FaHistory, FaPrint, FaFilePdf, FaFileImage, FaFileWord } from 'react-icons/fa';
+import { 
+  FaFileUpload, FaHistory, FaPrint, FaFilePdf, 
+  FaFileImage, FaFileWord, FaBars, FaTimes 
+} from 'react-icons/fa';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
-  // Sample statistics data
+  const [isMobile, setIsMobile] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Données des statistiques
   const stats = [
     { 
       title: "Total Commandes", 
       value: 15,
       icon: <FaPrint className="stat-icon" />,
-      color: "#4361ee"
+      color: "#4361ee",
+      shortTitle: "Total"
     },
     { 
       title: "Commandes en Cours", 
       value: 3,
       icon: <FaHistory className="stat-icon" />,
-      color: "#f8961e"
+      color: "#f8961e",
+      shortTitle: "En Cours"
     },
     { 
       title: "Commandes Validées", 
       value: 12,
       icon: <FaFilePdf className="stat-icon" />,
-      color: "#4cc9f0"
+      color: "#4cc9f0",
+      shortTitle: "Validées"
     }
   ];
 
-  // Sample historical entries
+  // Historique des activités
   const historyEntries = [
     { 
       date: '12/04/2025', 
+      shortDate: '12/04',
       file: 'rapport_stage.pdf', 
+      shortFile: 'rapport.pdf',
       status: 'Validé',
       icon: <FaFilePdf className="file-icon" />,
       details: "Impression couleur, 20 pages, reliure spirale"
     },
     { 
-      date: '10/04/2025', 
-      file: 'affiche.png', 
+      date: '10/04/2025',
+      shortDate: '10/04', 
+      file: 'affiche.png',
+      shortFile: 'affiche.png',
       status: 'En cours',
       icon: <FaFileImage className="file-icon" />,
       details: "Format A2, impression sur papier brillant"
     },
     { 
-      date: '02/04/2025', 
-      file: 'cv.docx', 
+      date: '02/04/2025',
+      shortDate: '02/04',
+      file: 'cv.docx',
+      shortFile: 'cv.docx',
       status: 'En attente',
       icon: <FaFileWord className="file-icon" />,
       details: "10 exemplaires sur papier premium 120g"
     },
   ];
 
-  // Quick actions
+  // Actions rapides
   const quickActions = [
     { title: "Nouvelle Impression", icon: <FaFileUpload />, link: "/nouvelle-commande" },
     { title: "Mes Fichiers", icon: <FaFilePdf />, link: "/fichier" },
     { title: "Historique", icon: <FaHistory />, link: "/historique" }
   ];
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div className="dashboard-container">
+    <div className={`dashboard-container ${isMobile ? 'mobile' : ''}`}>
+      {/* Bouton toggle pour mobile */}
+      {isMobile && (
+        <button className="sidebar-toggle" onClick={toggleSidebar}>
+          {sidebarOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      )}
+
       <header className="dashboard-header">
-        <h1>Tableau de Bord</h1>
-        <p className="welcome-message">Bon retour, Jean Dupont</p>
+        <h1>{isMobile ? 'Dashboard' : 'Tableau de Bord'}</h1>
+        {!isMobile && (
+          <p className="welcome-message">Bon retour, Jean Dupont</p>
+        )}
       </header>
 
-      {/* Quick Actions */}
-      <div className="quick-actions">
-        {quickActions.map((action, index) => (
-          <Link to={action.link} key={index} className="action-card">
+      {/* Actions rapides - version adaptative */}
+      <div className={`quick-actions ${isMobile ? 'mobile' : ''}`}>
+        {(isMobile ? quickActions.slice(0, 2) : quickActions).map((action, index) => (
+          <Link 
+            to={action.link} 
+            key={index} 
+            className="action-card"
+            onClick={() => isMobile && setSidebarOpen(false)}
+          >
             <div className="action-icon">{action.icon}</div>
-            <span>{action.title}</span>
+            <span>{isMobile ? action.title.split(' ')[0] : action.title}</span>
           </Link>
         ))}
       </div>
 
-      {/* Statistics Section */}
+      {/* Section Statistiques */}
       <section className="stats-section">
-        <h2>Vos Statistiques</h2>
-        <div className="stats-grid">
+        <h2>{isMobile ? 'Stats' : 'Vos Statistiques'}</h2>
+        <div className={`stats-grid ${isMobile ? 'mobile' : ''}`}>
           {stats.map((stat, index) => (
             <div 
               className="stat-card" 
               key={index}
-              style={{ borderBottom: `4px solid ${stat.color}` }}
+              style={{ borderBottomColor: stat.color }}
             >
               <div className="stat-header">
-                {stat.icon}
-                <h3>{stat.title}</h3>
+                <div style={{ color: stat.color }}>{stat.icon}</div>
+                <h3>{isMobile ? stat.shortTitle : stat.title}</h3>
               </div>
               <p className="stat-value">{stat.value}</p>
             </div>
@@ -95,28 +138,38 @@ const Dashboard = () => {
         </div>
       </section>
 
-      {/* Recent Activity */}
+      {/* Activité récente */}
       <section className="activity-section">
         <div className="section-header">
-          <h2>Activité Récente</h2>
-          <Link to="/historique" className="view-all">Voir tout</Link>
+          <h2>{isMobile ? 'Activité' : 'Activité Récente'}</h2>
+          <Link to="/historique" className="view-all">
+            {isMobile ? 'Tout' : 'Voir tout'}
+          </Link>
         </div>
         
         <div className="activity-list">
           {historyEntries.map((entry, index) => (
-            <div className="activity-card" key={index}>
+            <div className={`activity-card ${isMobile ? 'mobile' : ''}`} key={index}>
               <div className="activity-icon">{entry.icon}</div>
               <div className="activity-details">
                 <div className="activity-header">
-                  <span className="activity-date">{entry.date}</span>
+                  <span className="activity-date">
+                    {isMobile ? entry.shortDate : entry.date}
+                  </span>
                   <span className={`status-badge ${entry.status.replace(' ', '-').toLowerCase()}`}>
-                    {entry.status}
+                    {isMobile ? entry.status.split(' ')[0] : entry.status}
                   </span>
                 </div>
-                <h4 className="activity-title">{entry.file}</h4>
-                <p className="activity-description">{entry.details}</p>
+                <h4 className="activity-title">
+                  {isMobile ? entry.shortFile : entry.file}
+                </h4>
+                {!isMobile && (
+                  <p className="activity-description">{entry.details}</p>
+                )}
               </div>
-              <button className="action-btn">Détails</button>
+              <button className="action-btn">
+                {isMobile ? '...' : 'Détails'}
+              </button>
             </div>
           ))}
         </div>
