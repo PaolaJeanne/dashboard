@@ -1,0 +1,7 @@
+/* Exemple basique */
+h2 {
+    color: #2a9d8f;
+  }
+h2:hover {
+    color: #264653;
+  }  

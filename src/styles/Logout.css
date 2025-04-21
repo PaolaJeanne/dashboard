@@ -1,0 +1,25 @@
+/* Style pour le bouton de déconnexion */
+.logout-button {
+    background-color: #e74c3c;
+    border: none;
+    color: #fff;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logout-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .logout-button:focus {
+    outline: none;
+  }
+  
