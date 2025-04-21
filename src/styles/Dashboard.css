@@ -282,18 +282,62 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .actions-grid {
-    grid-template-columns: 1fr 1fr;
+    /* Actions rapides */
+    .actions-grid {
+      grid-template-columns: 1fr; /* Une seule colonne pour les petits écrans */
+    }
+  
+    /* Statistiques */
+    .stats-section {
+      flex-direction: column; /* Les cartes de statistiques s'empilent */
+      gap: 1rem;
+    }
+  
+    .stat-card {
+      width: 100%; /* Les cartes prennent toute la largeur */
+    }
+  
+    /* Tableau des commandes */
+    .commands-table {
+      display: block; /* Le tableau devient un bloc pour les petits écrans */
+      overflow-x: auto; /* Ajoute un défilement horizontal si nécessaire */
+      white-space: nowrap; /* Empêche le contenu de se casser */
+    }
+  
+    .commands-table th,
+    .commands-table td {
+      font-size: 0.9rem; /* Réduction de la taille de la police */
+      padding: 0.6rem; /* Réduction des paddings */
+    }
+  
+    .commands-table th {
+      text-align: left; /* Alignement à gauche pour une meilleure lisibilité */
+    }
+  
+    /* Commandes récentes */
+    .recent-commands {
+      padding: 1rem; /* Réduction des paddings */
+    }
+  
+    /* Boutons */
+    .detail-btn {
+      font-size: 0.8rem; /* Réduction de la taille des boutons */
+      padding: 0.3rem 0.6rem;
+    }
+  
+    /* Lien "Voir tout" */
+    .see-all-link {
+      font-size: 0.9rem; /* Réduction de la taille de la police */
+    }
+  
+    /* Header */
+    .dashboard-header {
+      flex-direction: column; /* Les éléments du header s'empilent */
+      gap: 1rem;
+      text-align: center;
+    }
+  
+    .user-avatar {
+      margin: 0 auto; /* Centrer l'avatar */
+    }
   }
-
-  .command-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .command-status {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
