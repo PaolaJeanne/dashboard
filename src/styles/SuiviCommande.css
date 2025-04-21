@@ -1,0 +1,23 @@
+.commande-status {
+    margin: 20px 0;
+  }
+  
+  .commande-status h3 {
+    font-size: 18px;
+    color: #3498db;
+  }
+  
+  .historique-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .historique-list li {
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  
+  .historique-list li strong {
+    color: #2980b9;
+  }
+  
