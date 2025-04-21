@@ -7,10 +7,10 @@
   .dashboard-header {
     background-color: #007bff;
     color: white;
-    padding: 10px; /* Réduit le padding */
+    padding: 8px; /* Réduit le padding */
     text-align: center;
     border-radius: 5px;
-    font-size: 1.5em; /* Diminution de la taille de la police */
+    font-size: 1em; /* Diminution de la taille de la police */
   }
   
   .stats-section {
