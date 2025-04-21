@@ -125,8 +125,8 @@
   }
   
   .chat-box {
-    height: 300px; /* Augmente la hauteur pour plus d'espace */
-    overflow-y: auto; /* Ajoute un défilement vertical */
+    height: 300px; /* Hauteur fixe pour la zone de chat */
+    overflow-y: auto; /* Permet le défilement vertical */
     border: 1px solid #ddd;
     padding: 10px;
     margin-bottom: 10px;
