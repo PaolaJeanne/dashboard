@@ -38,6 +38,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      <header className="dashboard-header">
+        <h2>Bienvenue, Jean Dupont</h2> {/* Remplacez par le nom d'utilisateur dynamique si nécessaire */}
+      </header>
+
       <div className="stats-section">
         <div className="stat-card">
           <h3>Total Commandes</h3>
@@ -54,7 +58,7 @@ const Dashboard = () => {
       </div>
 
       <div className="upload-section">
-        <h3>Télécharger un fichier</h3>
+        <h3>Créer une Nouvelle Commande</h3>
         <div className="upload-box">
           <label htmlFor="file-upload" className="upload-label">
             {fileName ? (
