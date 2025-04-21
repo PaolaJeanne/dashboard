@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import '../styles/Dashboard.css'; // Assurez-vous d'avoir le bon chemin vers votre fichier CSS
+import '../styles/Dashboard.css';
 
 const Dashboard = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
 
+  // Exemple de statistiques
+  const stats = {
+    totalCommands: 15,
+    pendingCommands: 3,
+    completedCommands: 12,
+  };
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     const allowedTypes = ['application/pdf', 'image/png', 'application/msword'];
-    
+
     if (file && allowedTypes.includes(file.type)) {
       setFileName(file.name);
     } else {
@@ -21,9 +28,8 @@ const Dashboard = () => {
       alert('Veuillez sélectionner un fichier avant d\'envoyer la commande.');
       return;
     }
-    
+
     setLoading(true);
-    // Simuler une opération asynchrone
     setTimeout(() => {
       setLoading(false);
       alert('Commande envoyée avec succès !');
@@ -32,59 +38,84 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <h2 className="welcome">Bienvenue Jean Dupont 👋</h2>
+      <header className="dashboard-header">
+        <h2>Mon Compte</h2>
+        <nav>
+          <ul>
+            <li>Tableau de bord</li>
+            <li>Historique</li>
+            <li>Paramètres</li>
+            <li>Déconnexion</li>
+          </ul>
+        </nav>
+      </header>
 
-      {/* Upload */}
-      <div className="upload-box">
-        <label htmlFor="file-upload" className="upload-label">
-          {fileName ? (
-            <p>Fichier sélectionné : <strong>{fileName}</strong></p>
-          ) : (
-            <p>Glissez-déposez votre fichier ici ou cliquez pour parcourir</p>
-          )}
-        </label>
-        <input type="file" id="file-upload" onChange={handleFileChange} />
-      </div>
-
-      {/* Paramètres */}
-      <div className="options-grid">
-        <div>
-          <label>Impression</label>
-          <select>
-            <option>Recto</option>
-            <option>Recto-verso</option>
-          </select>
+      <div className="stats-section">
+        <div className="stat-card">
+          <h3>Total Commandes</h3>
+          <p>{stats.totalCommands}</p>
         </div>
-        <div>
-          <label>Couleur</label>
-          <select>
-            <option>Noir & blanc</option>
-            <option>Couleur</option>
-          </select>
+        <div className="stat-card">
+          <h3>Commandes en Cours</h3>
+          <p>{stats.pendingCommands}</p>
         </div>
-        <div>
-          <label>Agrafage</label>
-          <select>
-            <option>Non</option>
-            <option>Oui</option>
-          </select>
-        </div>
-        <div>
-          <label>Format</label>
-          <select>
-            <option>A4</option>
-            <option>A3</option>
-          </select>
+        <div className="stat-card">
+          <h3>Commandes Validées</h3>
+          <p>{stats.completedCommands}</p>
         </div>
       </div>
 
-      <button className="send-button" onClick={handleSubmit} disabled={loading}>
-        {loading ? 'Envoi...' : '📤 Envoyer la commande'}
-      </button>
+      <div className="upload-section">
+        <h3>Télécharger un fichier</h3>
+        <div className="upload-box">
+          <label htmlFor="file-upload" className="upload-label">
+            {fileName ? (
+              <p>Fichier sélectionné : <strong>{fileName}</strong></p>
+            ) : (
+              <p>Glissez-déposez votre fichier ici ou cliquez pour parcourir</p>
+            )}
+          </label>
+          <input type="file" id="file-upload" accept=".pdf, .png, .doc" onChange={handleFileChange} />
+        </div>
 
-      {/* Historique */}
+        <div className="options-grid">
+          <div>
+            <label>Impression</label>
+            <select>
+              <option>Recto</option>
+              <option>Recto-verso</option>
+            </select>
+          </div>
+          <div>
+            <label>Couleur</label>
+            <select>
+              <option>Noir & blanc</option>
+              <option>Couleur</option>
+            </select>
+          </div>
+          <div>
+            <label>Agrafage</label>
+            <select>
+              <option>Non</option>
+              <option>Oui</option>
+            </select>
+          </div>
+          <div>
+            <label>Format</label>
+            <select>
+              <option>A4</option>
+              <option>A3</option>
+            </select>
+          </div>
+        </div>
+
+        <button className="send-button" onClick={handleSubmit} disabled={loading}>
+          {loading ? 'Envoi...' : '📤 Envoyer la commande'}
+        </button>
+      </div>
+
       <div className="history-section">
-        <h3>📑 Historique des commandes</h3>
+        <h3>Historique des commandes</h3>
         <table>
           <thead>
             <tr>
