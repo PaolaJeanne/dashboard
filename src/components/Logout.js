@@ -15,17 +15,7 @@ const Logout = () => {
 
   return (
     <button
-      onClick={handleLogout}
-      style={{
-        backgroundColor: '#e74c3c',
-        border: 'none',
-        color: '#fff',
-        padding: '10px 20px',
-        cursor: 'pointer',
-        borderRadius: '4px',
-        fontWeight: 'bold',
-      }}
-    >
+      onClick={handleLogout}>
       Déconnexion
     </button>
   );

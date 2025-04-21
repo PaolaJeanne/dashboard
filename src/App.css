@@ -7,7 +7,7 @@
 .main-content {
   flex: 1;
   padding: 20px;
-  margin-left: 240px; /* Largeur de la sidebar */
+  margin-left: 200px; /* Largeur de la sidebar */
   transition: margin-left 0.3s ease;
 }
 
