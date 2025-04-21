@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  FaFileUpload, FaHistory, FaPrint, FaFilePdf, 
-  FaFileImage, FaFileWord, FaBars, FaTimes 
+  FaFileUpload, FaHistory, FaPrint, 
+  FaFilePdf, FaFileImage,FaFileWord
 } from 'react-icons/fa';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -83,19 +82,8 @@ const Dashboard = () => {
     { title: "Historique", icon: <FaHistory />, link: "/historique" }
   ];
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
-
   return (
     <div className={`dashboard-container ${isMobile ? 'mobile' : ''}`}>
-      {/* Bouton toggle pour mobile */}
-      {isMobile && (
-        <button className="sidebar-toggle" onClick={toggleSidebar}>
-          {sidebarOpen ? <FaTimes /> : <FaBars />}
-        </button>
-      )}
-
       <header className="dashboard-header">
         <h1>{isMobile ? 'Dashboard' : 'Tableau de Bord'}</h1>
         {!isMobile && (
@@ -106,12 +94,7 @@ const Dashboard = () => {
       {/* Actions rapides - version adaptative */}
       <div className={`quick-actions ${isMobile ? 'mobile' : ''}`}>
         {(isMobile ? quickActions.slice(0, 2) : quickActions).map((action, index) => (
-          <Link 
-            to={action.link} 
-            key={index} 
-            className="action-card"
-            onClick={() => isMobile && setSidebarOpen(false)}
-          >
+          <Link to={action.link} key={index} className="action-card">
             <div className="action-icon">{action.icon}</div>
             <span>{isMobile ? action.title.split(' ')[0] : action.title}</span>
           </Link>
