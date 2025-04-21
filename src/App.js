@@ -4,6 +4,7 @@ import './App.css';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import NouvelleCommande from './pages/NouvelleCommande';
+import Fichier from './pages/Fichier';
 import Localisation from './pages/Localisation';
 import MesCommandes from './pages/MesCommandes';
 import SuiviCommande from './pages/SuiviCommande';
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/nouvelle-commande" element={<NouvelleCommande />} />
             <Route path="/mes-commandes" element={<MesCommandes />} />
+            <Route path="/fichier" element={<Fichier />} />
             <Route path="/suivi-commande/:id" element={<SuiviCommande />} />
             <Route path="/localisation" element={<Localisation />} />
             <Route path="/factures" element={<Factures />} />

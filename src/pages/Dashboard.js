@@ -1,157 +1,126 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FaFileUpload, FaHistory, FaPrint, FaFilePdf, FaFileImage, FaFileWord } from 'react-icons/fa';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
-  const [fileName, setFileName] = useState('');
-  const [loading, setLoading] = useState(false);
- 
-  const stats = {
-    totalCommands: 15,
-    pendingCommands: 3,
-    completedCommands: 12,
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    const allowedTypes = ['application/pdf', 'image/png', 'application/msword'];
-
-    if (file && allowedTypes.includes(file.type)) {
-      setFileName(file.name);
-    } else {
-      alert('Type de fichier non autorisé. Veuillez télécharger un PDF, PNG ou DOC.');
+  // Sample statistics data
+  const stats = [
+    { 
+      title: "Total Commandes", 
+      value: 15,
+      icon: <FaPrint className="stat-icon" />,
+      color: "#4361ee"
+    },
+    { 
+      title: "Commandes en Cours", 
+      value: 3,
+      icon: <FaHistory className="stat-icon" />,
+      color: "#f8961e"
+    },
+    { 
+      title: "Commandes Validées", 
+      value: 12,
+      icon: <FaFilePdf className="stat-icon" />,
+      color: "#4cc9f0"
     }
-  };
+  ];
 
-  const handleSubmit = () => {
-    if (!fileName) {
-      alert("Veuillez sélectionner un fichier avant d'envoyer la commande.");
-      return;
-    }
+  // Sample historical entries
+  const historyEntries = [
+    { 
+      date: '12/04/2025', 
+      file: 'rapport_stage.pdf', 
+      status: 'Validé',
+      icon: <FaFilePdf className="file-icon" />,
+      details: "Impression couleur, 20 pages, reliure spirale"
+    },
+    { 
+      date: '10/04/2025', 
+      file: 'affiche.png', 
+      status: 'En cours',
+      icon: <FaFileImage className="file-icon" />,
+      details: "Format A2, impression sur papier brillant"
+    },
+    { 
+      date: '02/04/2025', 
+      file: 'cv.docx', 
+      status: 'En attente',
+      icon: <FaFileWord className="file-icon" />,
+      details: "10 exemplaires sur papier premium 120g"
+    },
+  ];
 
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      alert('Commande envoyée avec succès !');
-    }, 2000);
-  };
-
-
+  // Quick actions
+  const quickActions = [
+    { title: "Nouvelle Impression", icon: <FaFileUpload />, link: "/nouvelle-commande" },
+    { title: "Mes Fichiers", icon: <FaFilePdf />, link: "/fichier" },
+    { title: "Historique", icon: <FaHistory />, link: "/historique" }
+  ];
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-container">
       <header className="dashboard-header">
-        <h2>Bienvenue, Jean Dupont</h2>
+        <h1>Tableau de Bord</h1>
+        <p className="welcome-message">Bon retour, Jean Dupont</p>
       </header>
 
-      {/* Section Statistiques */}
-      <div className="stats-section">
-        <div className="stat-card">
-          <h3>Total Commandes</h3>
-          <p>{stats.totalCommands}</p>
-        </div>
-        <div className="stat-card">
-          <h3>Commandes en Cours</h3>
-          <p>{stats.pendingCommands}</p>
-        </div>
-        <div className="stat-card">
-          <h3>Commandes Validées</h3>
-          <p>{stats.completedCommands}</p>
-        </div>
+      {/* Quick Actions */}
+      <div className="quick-actions">
+        {quickActions.map((action, index) => (
+          <Link to={action.link} key={index} className="action-card">
+            <div className="action-icon">{action.icon}</div>
+            <span>{action.title}</span>
+          </Link>
+        ))}
       </div>
 
-      {/* Section Upload */}
-      <div className="upload-section">
-        <h3>Créer une Nouvelle Commande</h3>
-        <div className="upload-box">
-          <label htmlFor="file-upload" className="upload-label">
-            {fileName ? (
-              <p>Fichier sélectionné : <strong>{fileName}</strong></p>
-            ) : (
-              <p>Glissez-déposez votre fichier ici ou cliquez pour parcourir</p>
-            )}
-          </label>
-          <input
-            type="file"
-            id="file-upload"
-            accept=".pdf, .png, .doc"
-            onChange={handleFileChange}
-          />
+      {/* Statistics Section */}
+      <section className="stats-section">
+        <h2>Vos Statistiques</h2>
+        <div className="stats-grid">
+          {stats.map((stat, index) => (
+            <div 
+              className="stat-card" 
+              key={index}
+              style={{ borderBottom: `4px solid ${stat.color}` }}
+            >
+              <div className="stat-header">
+                {stat.icon}
+                <h3>{stat.title}</h3>
+              </div>
+              <p className="stat-value">{stat.value}</p>
+            </div>
+          ))}
         </div>
+      </section>
 
-        <div className="options-grid">
-          <div>
-            <label>Impression</label>
-            <select>
-              <option>Recto</option>
-              <option>Recto-verso</option>
-            </select>
-          </div>
-          <div>
-            <label>Couleur</label>
-            <select>
-              <option>Noir & blanc</option>
-              <option>Couleur</option>
-            </select>
-          </div>
-          <div>
-            <label>Agrafage</label>
-            <select>
-              <option>Non</option>
-              <option>Oui</option>
-            </select>
-          </div>
-          <div>
-            <label>Format</label>
-            <select>
-              <option>A4</option>
-              <option>A3</option>
-            </select>
-          </div>
+      {/* Recent Activity */}
+      <section className="activity-section">
+        <div className="section-header">
+          <h2>Activité Récente</h2>
+          <Link to="/historique" className="view-all">Voir tout</Link>
         </div>
-
-        <button
-          className="send-button"
-          onClick={handleSubmit}
-          disabled={loading}
-        >
-          {loading ? 'Envoi...' : '📤 Envoyer la commande'}
-        </button>
-      </div>
-
-      {/* Section Historique */}
-      <div className="history-section">
-        <h3>Historique des commandes</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Fichier</th>
-              <th>Statut</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>12/04/2025</td>
-              <td>rapport_stage.pdf</td>
-              <td><span className="badge valid">Validé</span></td>
-              <td><button className="small-btn">Voir</button></td>
-            </tr>
-            <tr>
-              <td>10/04/2025</td>
-              <td>affiche.png</td>
-              <td><span className="badge pending">En cours</span></td>
-              <td><button className="small-btn">Télécharger</button></td>
-            </tr>
-            <tr>
-              <td>02/04/2025</td>
-              <td>cv.docx</td>
-              <td><span className="badge waiting">En attente</span></td>
-              <td><button className="small-btn">Modifier</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        
+        <div className="activity-list">
+          {historyEntries.map((entry, index) => (
+            <div className="activity-card" key={index}>
+              <div className="activity-icon">{entry.icon}</div>
+              <div className="activity-details">
+                <div className="activity-header">
+                  <span className="activity-date">{entry.date}</span>
+                  <span className={`status-badge ${entry.status.replace(' ', '-').toLowerCase()}`}>
+                    {entry.status}
+                  </span>
+                </div>
+                <h4 className="activity-title">{entry.file}</h4>
+                <p className="activity-description">{entry.details}</p>
+              </div>
+              <button className="action-btn">Détails</button>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };
