@@ -1,264 +1,299 @@
+/* Variables globales */
 :root {
-    --primary: #2563eb;
-    --primary-light: #3b82f6;
-    --secondary: #10b981;
-    --dark: #1e293b;
-    --light: #f8fafc;
-    --gray: #94a3b8;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-  }
-  
-  /* Reset et base */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #f1f5f9;
-  }
-  
-  .dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    display: grid;
-    gap: 1.5rem;
-  }
-  
-  /* Header */
-  .dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .user-welcome h1 {
-    font-size: 1.5rem;
-    color: var(--dark);
-  }
-  
-  .user-welcome p {
-    color: var(--gray);
-    font-size: 0.9rem;
-  }
-  
-  .user-avatar {
-    width: 50px;
-    height: 50px;
-    background: var(--light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    border: 2px solid var(--primary);
-  }
-  
-  /* Actions rapides */
-  .quick-actions {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .quick-actions h2 {
-    margin-bottom: 1rem;
-    color: var(--dark);
-    font-size: 1.2rem;
-  }
-  
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --secondary: #10b981;
+  --dark: #1e293b;
+  --light: #f8fafc;
+  --gray: #94a3b8;
+  --danger: #ef4444;
+}
+
+/* Reset et base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f1f5f9;
+}
+
+/* Container */
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-welcome h1 {
+  font-size: 1.8rem;
+  color: var(--dark);
+}
+
+.user-welcome p {
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  background: var(--light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  border: 2px solid var(--primary);
+}
+
+/* Top Section */
+.top-section {
+  display: flex;
+  flex-direction: column; /* Change la disposition en colonne */
+  gap: 2rem;
+}
+
+/* Quick Actions */
+.quick-actions {
+  background: var(--light);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quick-actions h2 {
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.action-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: var(--primary-light);
+  color: rgb(19, 18, 18);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover {
+  background: var(--primary);
+  transform: translateY(-5px); /* Légère élévation au survol */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+/* Stats Section */
+.stats-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.stat-card {
+  flex: 1;
+  background: var(--light);
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px); /* Légère élévation au survol */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+.stat-card h3 {
+  font-size: 1rem; /* Réduction de la taille du texte */
+  color: var(--dark);
+}
+
+.stat-value {
+  font-size: 1.5rem; /* Réduction de la taille des valeurs */
+  color: var(--primary);
+}
+
+.stat-comparison {
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+/* Recent Commands */
+.recent-commands {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.recent-commands:hover {
+  transform: translateY(-5px); /* Légère élévation au survol */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre plus prononcée */
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Style pour le tableau des commandes */
+.commands-table {
+  width: 100%;
+  border-collapse: collapse; /* Supprime les espaces entre les bordures */
+  margin-top: 1rem;
+  background: var(--light);
+  border: 1px solid var(--gray); /* Bordure externe */
+  border-radius: 8px;
+  overflow: hidden; /* Pour arrondir les bordures du tableau */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.commands-table th,
+.commands-table td {
+  padding: 0.8rem;
+  text-align: left;
+  border: 1px solid var(--gray); /* Bordures internes */
+}
+
+.commands-table th {
+  background: var(--primary);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.commands-table tr:nth-child(even) {
+  background: #f9fafb; /* Couleur alternée pour les lignes paires */
+}
+
+.commands-table tr:nth-child(odd) {
+  background: white; /* Couleur alternée pour les lignes impaires */
+}
+
+.commands-table tr:hover {
+  background: var(--primary-light);
+  color: white;
+  transition: background 0.3s, color 0.3s;
+}
+
+.commands-table td {
+  color: var(--dark);
+}
+
+.commands-table td:last-child {
+  text-align: center; /* Centrer les boutons dans la dernière colonne */
+}
+
+/* Bouton dans le tableau */
+.detail-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  color: white;
+  background: var(--primary);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.detail-btn:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px); /* Légère élévation au survol */
+}
+
+/* Statuts des commandes */
+.status-badge {
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.status-badge.livré {
+  background: var(--secondary);
+  color: white;
+}
+
+.status-badge.en-production {
+  background: var(--primary-light);
+  color: rgb(79, 201, 174);
+}
+
+.status-badge.en-attente {
+  background: var(--danger);
+  color: white;
+}
+
+/* Style pour le lien "Voir tout" */
+.see-all-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.see-all-link:hover {
+  color: var(--primary-light);
+  text-decoration: underline;
+}
+
+/* Footer */
+.context-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.context-footer a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .actions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
   }
-  
-  .action-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1.5rem 1rem;
-    background: var(--light);
-    border: 1px dashed var(--primary);
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: var(--dark); /* Ajout pour garantir que le texte est visible */
-  }
-  
-  .action-card:hover {
-    background: var(--primary-light);
-    color: white; /* Conserve le texte blanc sur le fond bleu clair */
-  }
-  
-  .action-icon {
-    font-size: 1.8rem;
-  }
-  
-  /* Commandes récentes */
-  .recent-commands {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .see-all-btn {
-    background: none;
-    border: none;
-    color: var(--primary);
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-  }
-  
-  .commands-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
+
   .command-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 8px;
-    background: var(--light);
-    transition: all 0.3s;
-  }
-  
-  .command-card:hover {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  .file-info {
-    display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
   }
-  
-  .file-icon {
-    font-size: 1.5rem;
-  }
-  
+
   .command-status {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
   }
-  
-  .status-badge {
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-  }
-  
-  .command-card.livré .status-badge {
-    background: var(--secondary);
-    color: white;
-  }
-  
-  .command-card.en-production .status-badge {
-    background: var(--warning);
-    color: white;
-  }
-  
-  .detail-btn {
-    background: none;
-    border: 1px solid var(--primary);
-    color: var(--primary);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    transition: all 0.3s;
-  }
-  
-  .detail-btn:hover {
-    background: var(--primary);
-    color: white;
-  }
-  
-  /* Statistiques */
-  .stats-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-  
-  .stat-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  }
-  
-  .stat-card h3 {
-    color: var(--gray);
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--dark);
-  }
-  
-  .stat-comparison {
-    color: var(--gray);
-    font-size: 0.8rem;
-  }
-  
-  /* Footer */
-  .context-footer {
-    text-align: center;
-    padding: 1rem;
-    color: var(--gray);
-    font-size: 0.9rem;
-  }
-  
-  .context-footer a {
-    color: var(--primary);
-    text-decoration: none;
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .actions-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-    
-    .command-card {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    
-    .command-status {
-      width: 100%;
-      justify-content: space-between;
-    }
-  }
+}
