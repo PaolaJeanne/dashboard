@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import '../styles/NouvelleCommande.css'; // Assurez-vous d'avoir le bon chemin vers votre fichier CSS
+import '../styles/NouvelleCommande.css';
 
 const NouvelleCommande = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -20,11 +22,24 @@ const NouvelleCommande = () => {
     setLoading(true);
     setMessage('');
 
-    // Simulation d’un appel réseau
     setTimeout(() => {
       setLoading(false);
       setMessage('✅ Fichier envoyé avec succès !');
     }, 2000);
+  };
+
+  const handleChatSubmit = () => {
+    if (!newMessage.trim()) return;
+
+    setMessages([...messages, { text: newMessage, sender: 'client' }]);
+    setNewMessage('');
+
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        { text: "Réponse de l'admin", sender: 'admin' },
+      ]);
+    }, 1000);
   };
 
   return (
@@ -84,6 +99,27 @@ const NouvelleCommande = () => {
       </button>
 
       {message && <p className="feedback">{message}</p>}
+
+      {/* Chat */}
+      <div className="chat-section">
+        <h3>Chat avec l'Admin</h3>
+        <div className="chat-box">
+          {messages.map((msg, index) => (
+            <div key={index} className={`chat-message ${msg.sender}`}>
+              <span>{msg.text}</span>
+            </div>
+          ))}
+        </div>
+        <div className="chat-input">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Envoyez un message..."
+          />
+          <button onClick={handleChatSubmit}>Envoyer</button>
+        </div>
+      </div>
     </div>
   );
 };
