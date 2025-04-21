@@ -4,6 +4,8 @@ import '../styles/Dashboard.css';
 const Dashboard = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
 
   // Statistiques exemple
   const stats = {
@@ -36,10 +38,25 @@ const Dashboard = () => {
     }, 2000);
   };
 
+  const handleChatSubmit = () => {
+    if (!newMessage) return;
+
+    setMessages([...messages, { text: newMessage, sender: 'client' }]);
+    setNewMessage('');
+
+    // Simuler une réponse de l'admin
+    setTimeout(() => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: 'Réponse de l\'admin', sender: 'admin' },
+      ]);
+    }, 1000);
+  };
+
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h2>Bienvenue, Jean Dupont</h2> {/* Remplacez par le nom d'utilisateur dynamique si nécessaire */}
+        <h2>Bienvenue, Jean Dupont</h2>
       </header>
 
       <div className="stats-section">
@@ -138,6 +155,26 @@ const Dashboard = () => {
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div className="chat-section">
+        <h3>Chat avec l'Admin</h3>
+        <div className="chat-box">
+          {messages.map((msg, index) => (
+            <div key={index} className={`chat-message ${msg.sender}`}>
+              <span>{msg.text}</span>
+            </div>
+          ))}
+        </div>
+        <div className="chat-input">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Envoyez un message..."
+          />
+          <button onClick={handleChatSubmit}>Envoyer</button>
+        </div>
       </div>
     </div>
   );
