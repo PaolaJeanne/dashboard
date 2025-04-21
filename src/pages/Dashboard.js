@@ -5,7 +5,7 @@ const Dashboard = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // Exemple de statistiques
+  // Statistiques exemple
   const stats = {
     totalCommands: 15,
     pendingCommands: 3,
@@ -38,18 +38,6 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <header className="dashboard-header">
-        <h2>Mon Compte</h2>
-        <nav>
-          <ul>
-            <li>Tableau de bord</li>
-            <li>Historique</li>
-            <li>Paramètres</li>
-            <li>Déconnexion</li>
-          </ul>
-        </nav>
-      </header>
-
       <div className="stats-section">
         <div className="stat-card">
           <h3>Total Commandes</h3>
