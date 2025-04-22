@@ -3,7 +3,6 @@ import { FaSearch, FaCheckCircle, FaSpinner, FaClock } from 'react-icons/fa';
 import '../styles/Historique.css';
 
 const Historique = () => {
-  // Données des commandes
   const orders = [
     {
       id: '#CMD-2025-001',
@@ -57,7 +56,6 @@ const Historique = () => {
     }
   ];
 
-  // Fonction pour obtenir l'icône de statut
   const getStatusIcon = (status) => {
     switch(status) {
       case 'Terminé': return <FaCheckCircle className="status-icon completed" />;
@@ -74,7 +72,6 @@ const Historique = () => {
         <p>Retrouvez l'ensemble de vos commandes passées</p>
       </header>
 
-      {/* Barre de recherche et filtres */}
       <div className="history-controls">
         <div className="search-bar">
           <FaSearch className="search-icon" />
@@ -84,7 +81,6 @@ const Historique = () => {
             className="search-input"
           />
         </div>
-        
         <div className="filters">
           <select className="filter-select">
             <option value="all">Tous les statuts</option>
@@ -92,7 +88,6 @@ const Historique = () => {
             <option value="in-progress">En production</option>
             <option value="pending">En attente</option>
           </select>
-          
           <select className="filter-select">
             <option value="recent">Plus récentes</option>
             <option value="oldest">Plus anciennes</option>
@@ -101,7 +96,6 @@ const Historique = () => {
         </div>
       </div>
 
-      {/* Liste des commandes */}
       <div className="orders-list">
         <div className="orders-header">
           <span className="header-item">Commande</span>
@@ -109,7 +103,6 @@ const Historique = () => {
           <span className="header-item">Détails</span>
           <span className="header-item">Statut</span>
           <span className="header-item">Montant</span>
-          <span className="header-item">Actions</span>
         </div>
 
         {orders.map((order, index) => (
@@ -118,35 +111,22 @@ const Historique = () => {
               <span className="order-id-text">{order.id}</span>
               <span className="order-date">{order.date}</span>
             </div>
-            
-            {/* Affichage uniquement du nom du fichier sans l'icône */}
             <div className="order-file">
               <span className="file-name">{order.file}</span>
             </div>
-            
             <div className="order-details">
               <span>{order.pages} page{order.pages > 1 ? 's' : ''}</span>
               <span>{order.copies} copie{order.copies > 1 ? 's' : ''}</span>
             </div>
-            
             <div className="order-status">
               {getStatusIcon(order.status)}
               <span>{order.status}</span>
             </div>
-            
-            <div className="order-amount">
-              {order.amount}
-            </div>
-            
-            <div className="order-actions">
-              <button className="action-btn view-btn">Détails</button>
-              {/* Pas de bouton de téléchargement */}
-            </div>
+            <div className="order-amount">{order.amount}</div>
           </div>
         ))}
       </div>
 
-      {/* Pagination */}
       <div className="pagination">
         <button className="page-btn disabled">&laquo;</button>
         <button className="page-btn active">1</button>
