@@ -1,42 +1,70 @@
 /* Facture.css */
 
+/* Conteneur principal */
 .facture-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #3498db; /* Bordure plus visible */
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Ombre plus marquée et plus grande */
+  color: #2c3e50;
 }
 
+/* Titre principal */
 .facture-container h1 {
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  color: #3498db;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Détails de la facture */
+.facture-details {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  border: 1px solid #ddd; /* Bordure grise classique */
+  padding: 20px; /* Ajoute de l'espace interne */
+  border-radius: 8px; /* Coins arrondis */
+  background-color: #f9f9f9; /* Fond légèrement gris */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
 }
 
 .facture-details p {
-  font-size: 1rem;
-  margin: 0.4rem 0;
+  font-size: 16px;
+  margin: 10px 0;
 }
 
+.facture-details strong {
+  color: #000; /* Texte en noir pour les titres */
+}
+
+/* Actions */
 .facture-actions {
-  margin-top: 2rem;
+  text-align: center;
 }
 
 .download-button {
-  padding: 10px 20px;
-  background-color: #2563eb;
-  color: white;
+  background-color: #3498db;
+  color: #fff;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .download-button:hover {
-  background-color: #1d4ed8;
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.download-button:active {
+  transform: translateY(0);
 }
 
 /* Responsive design */
