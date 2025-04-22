@@ -1,47 +1,47 @@
 import React from 'react';
-import '../styles/Facture.css'; // Assurez-vous d'avoir le bon chemin vers votre fichier CSS
-
+import { useParams } from 'react-router-dom';
+import '../styles/Facture.css';
 
 const Factures = () => {
-  const factures = [
-    { id: 1, montant: '45,00 €', date: '2025-04-20', fichier: 'facture1.pdf' },
-    { id: 2, montant: '120,50 €', date: '2025-04-18', fichier: 'facture2.pdf' },
-    { id: 3, montant: '75,00 €', date: '2025-04-15', fichier: 'facture3.pdf' },
-  ];
+  const { commandeId } = useParams();
 
-  const handleDownload = (fichier) => {
-    // Simulation du téléchargement du fichier PDF
-    alert(`Téléchargement de ${fichier}...`);
+  // Simule une récupération de données (tu peux remplacer plus tard avec un appel API)
+  const facture = {
+    id: commandeId,
+    date: '12/04/2025',
+    client: 'Jean Dupont',
+    file: 'affiche_conférence.png',
+    type: 'Image',
+    pages: 1,
+    copies: 50,
+    montant: '7500 fcfa',
+    status: 'En production'
+  };
+
+  const handleDownload = () => {
+    // Simulation d’un téléchargement
+    alert('Téléchargement de la facture...');
   };
 
   return (
-    <div className="dashboard">
-      <h2 className="welcome">Mes factures 📜</h2>
+    <div className="facture-container">
+      <h1>Facture de la commande {facture.id}</h1>
+      <div className="facture-details">
+        <p><strong>Date :</strong> {facture.date}</p>
+        <p><strong>Client :</strong> {facture.client}</p>
+        <p><strong>Fichier :</strong> {facture.file}</p>
+        <p><strong>Type :</strong> {facture.type}</p>
+        <p><strong>Nombre de pages :</strong> {facture.pages}</p>
+        <p><strong>Nombre de copies :</strong> {facture.copies}</p>
+        <p><strong>Statut :</strong> {facture.status}</p>
+        <p><strong>Montant total :</strong> {facture.montant}</p>
+      </div>
 
-      <table className="factures-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Montant</th>
-            <th>Date</th>
-            <th>Fichier</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {factures.map((facture) => (
-            <tr key={facture.id}>
-              <td>{facture.id}</td>
-              <td>{facture.montant}</td>
-              <td>{facture.date}</td>
-              <td>{facture.fichier}</td>
-              <td>
-                <button onClick={() => handleDownload(facture.fichier)}>Télécharger</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="facture-actions">
+        <button onClick={handleDownload} className="download-button">
+          Télécharger la facture
+        </button>
+      </div>
     </div>
   );
 };

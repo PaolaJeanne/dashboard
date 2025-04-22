@@ -1,8 +1,11 @@
-import React from 'react';
+import React from 'react'; 
 import { FaSearch, FaCheckCircle, FaSpinner, FaClock } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 import '../styles/MesCommandes.css';
 
 const MesCommandes = () => {
+  const navigate = useNavigate();
+
   const orders = [
     {
       id: '#CMD-2025-002',
@@ -67,6 +70,7 @@ const MesCommandes = () => {
           <span className="header-item">Détails</span>
           <span className="header-item">Statut</span>
           <span className="header-item">Montant</span>
+          <span className="header-item">Actions</span>
         </div>
 
         {orders.map((order, index) => (
@@ -86,7 +90,17 @@ const MesCommandes = () => {
               {getStatusIcon(order.status)}
               <span>{order.status}</span>
             </div>
-            <div className="order-amount">{order.amount}</div>
+            <div className="order-amount">
+              {order.amount}
+            </div>
+            <div className="order-actions">
+              <button
+                className="view-button"
+                onClick={() => navigate(`/facture/${order.id}`)}
+              >
+                Voir
+              </button>
+            </div>
           </div>
         ))}
       </div>

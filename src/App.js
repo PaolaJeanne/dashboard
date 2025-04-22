@@ -13,6 +13,9 @@ import Favoris from './pages/Favoris';
 import Parametres from './pages/Parametres';
 import Aide from './pages/Aide';
 import Historique from './pages/Historique';
+import MesFactures from './pages/MesFactures';
+import './App.css';
+
 
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,7 +33,8 @@ const App = () => {
             <Route path="/suivi-commande/:id" element={<SuiviCommande />} />
             <Route path="/historique" element={<Historique />} />
             <Route path="/localisation" element={<Localisation />} />
-            <Route path="/factures" element={<Factures />} />
+            <Route path="/facture/:commandeId" element={<Factures />} />
+            <Route path="/factures" element={<MesFactures />} />
             <Route path="/favoris" element={<Favoris />} />
             <Route path="/parametres" element={<Parametres />} />
             <Route path="/aide" element={<Aide />} />

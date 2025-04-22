@@ -1,5 +1,4 @@
-/* MesCommandes.css */
-
+/* ============ BASE STYLES ============ */
 .my-orders-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -8,7 +7,7 @@
   color: #2d3748;
 }
 
-/* Header */
+/* ============ HEADER ============ */
 .my-orders-header {
   margin-bottom: 2.5rem;
   text-align: center;
@@ -28,25 +27,19 @@
   margin: 0 auto;
 }
 
-/* Controls */
+/* ============ CONTROLS ============ */
 .my-orders-controls {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin-bottom: 2rem;
   align-items: center;
 }
 
-@media (max-width: 768px) {
-  .my-orders-controls {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-}
-
 .search-bar {
   position: relative;
-  max-width: 500px;
+  flex: 1;
+  min-width: 300px;
 }
 
 .search-icon {
@@ -60,83 +53,101 @@
 
 .search-input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  padding: 0.8rem 1rem 0.8rem 2.5rem;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s ease;
   background-color: #f8fafc;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-  background-color: white;
+  height: 44px;
 }
 
 .filters {
   display: flex;
   gap: 1rem;
+  flex: 1;
+  min-width: 300px;
 }
 
 .filter-select {
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
   font-size: 0.95rem;
   background-color: #f8fafc;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 200px;
+  width: 100%;
+  height: 44px;
 }
 
+.search-input:focus,
 .filter-select:focus {
   outline: none;
   border-color: #4299e1;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
   background-color: white;
 }
 
-/* Orders List */
+/* ============ ORDERS LIST ============ */
 .orders-list {
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  border: 1px solid #edf2f7;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
 }
 
 .orders-header {
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
-  padding: 1rem 1.5rem;
-  background-color: #f7fafc;
-  font-weight: 600;
-  color: #4a5568;
+  grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 60px; /* Colonnes ajustées */
+  padding: 0.5rem 1rem; /* Réduction du padding */
+  gap: 0.5rem; /* Réduction de l'espacement entre les colonnes */
+  background-color: rgba(247, 250, 252, 0.9);
   border-bottom: 1px solid #e2e8f0;
-  font-size: 0.9rem;
+  font-weight: 400;
+  color: #2d3748;
+  font-size: 0.9rem; /* Réduction de la taille de police */
+  text-transform: uppercase;
+  letter-spacing: 0.03em; /* Réduction de l'espacement des lettres */
+  line-height: 1.2; /* Réduction de l'interligne */
 }
 
 .header-item {
-  padding: 0.5rem;
+  padding: 0.2rem; /* Réduction du padding interne */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Order Card */
 .order-card {
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 80px; /* Colonnes réduites */
   padding: 1.25rem 1.5rem;
   align-items: center;
   border-bottom: 1px solid #edf2f7;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .order-card:hover {
-  background-color: #f8fafc;
+  background-color: #f9fafc;
 }
 
 .order-card:last-child {
   border-bottom: none;
+}
+
+.order-id,
+.order-file,
+.order-details,
+.order-status,
+.order-amount,
+.order-action {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.95rem;
+  color: #4a5568;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .order-id {
@@ -152,20 +163,17 @@
 
 .order-date {
   font-size: 0.85rem;
-  color: #718096;
+  color: #a0aec0;
 }
 
 .order-file {
-  font-size: 0.95rem;
-  color: #4a5568;
+  font-weight: 500;
 }
 
 .order-details {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  font-size: 0.95rem;
-  color: #4a5568;
 }
 
 .order-status {
@@ -205,7 +213,30 @@
   color: #2d3748;
 }
 
-/* Status Badges */
+.order-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-button {
+  padding: 0.5rem 1rem;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-button:hover {
+  background-color: #3182ce;
+  transform: translateY(-1px);
+}
+
+/* ============ STATUS BADGES ============ */
 .order-card.en-production {
   border-left: 3px solid #dd6b20;
 }
@@ -214,22 +245,51 @@
   border-left: 3px solid #a0aec0;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .orders-header,
-  .order-card {
-    grid-template-columns: 1.5fr 1fr 1fr;
+/* ============ RESPONSIVE ============ */
+@media (min-width: 992px) {
+  .my-orders-controls {
+    flex-wrap: nowrap;
   }
-
-  .orders-header .header-item:nth-child(4),
-  .orders-header .header-item:nth-child(5),
-  .order-status,
-  .order-amount {
-    grid-column: span 1;
+  .search-bar {
+    min-width: 400px;
+  }
+  .filters {
+    min-width: auto;
+    justify-content: flex-end;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) and (min-width: 768px) {
+  .orders-header,
+  .order-card {
+    grid-template-columns: 1fr 0.8fr 0.8fr 80px; /* Colonnes réduites */
+  }
+  
+  /* Masquez les colonnes non nécessaires */
+  .orders-header .header-item:nth-child(2),
+  .orders-header .header-item:nth-child(5),
+  .order-file,
+  .order-amount {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .my-orders-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .my-orders-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-bar,
+  .filters {
+    width: 100%;
+    min-width: 0;
+  }
+
   .orders-header {
     display: none;
   }
@@ -238,12 +298,11 @@
     grid-template-columns: 1fr;
     padding: 1.5rem;
     gap: 1rem;
-    position: relative;
   }
 
   .order-card > div {
     display: grid;
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 100px 1fr; /* Ajustement pour mobile */
     align-items: center;
   }
 
@@ -254,21 +313,20 @@
     font-size: 0.85rem;
   }
 
-  .order-status {
-    grid-column: span 1;
+  .order-action {
+    justify-content: flex-start;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #e2e8f0;
   }
 }
 
 @media (max-width: 480px) {
-  .my-orders-container {
-    padding: 1.5rem 1rem;
-  }
-
-  .filter-select {
-    min-width: 100%;
-  }
-
   .order-card > div {
     grid-template-columns: 100px 1fr;
+  }
+
+  .view-button {
+    width: 100%;
   }
 }

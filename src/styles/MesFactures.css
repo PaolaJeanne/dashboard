@@ -1,0 +1,89 @@
+.factures-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .factures-header {
+    text-align: center;
+  }
+  
+  .factures-controls {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    max-width: 300px;
+    width: 100%;
+  }
+  
+  .search-icon {
+    margin-right: 10px;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .factures-list {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+  }
+  
+  .factures-header,
+  .facture-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+    padding: 10px 0;
+  }
+  
+  .factures-header {
+    background-color: #f7f7f7;
+    font-weight: bold;
+  }
+  
+  .facture-card {
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+  }
+  
+  .facture-id, .commande-id, .facture-date, .facture-montant, .facture-statut {
+    padding: 5px;
+  }
+  
+  .facture-actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .view-button, .download-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .view-button {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .download-button {
+    background-color: #2196F3;
+    color: white;
+  }
+  
+  .view-button:hover, .download-button:hover {
+    opacity: 0.8;
+  }
+  

@@ -1,34 +1,71 @@
-.factures-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+/* Facture.css */
+
+.facture-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.facture-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.facture-details p {
+  font-size: 1rem;
+  margin: 0.4rem 0;
+}
+
+.facture-actions {
+  margin-top: 2rem;
+}
+
+.download-button {
+  padding: 10px 20px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.download-button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .facture-container {
+    padding: 1.5rem;
+    margin: 1rem;
   }
-  
-  .factures-table th, .factures-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+
+  .facture-container h1 {
+    font-size: 1.6rem;
   }
-  
-  .factures-table th {
-    background-color: #f4f4f4;
+
+  .facture-details p {
+    font-size: 0.95rem;
   }
-  
-  button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #3498db;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  .facture-container {
+    padding: 1rem;
+    margin: 0.8rem;
   }
-  
-  button:hover {
-    background-color: #2980b9;
+
+  .facture-container h1 {
+    font-size: 1.4rem;
   }
-  
-  button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
+
+  .facture-details p {
+    font-size: 0.9rem;
   }
-  
+}

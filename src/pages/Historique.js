@@ -5,7 +5,7 @@ import '../styles/Historique.css';
 const Historique = () => {
   const orders = [
     {
-      id: '#CMD-2025-001',
+      id: 'CMD-2025-001',
       date: '15/04/2025',
       file: 'rapport_final.pdf',
       type: 'PDF',
@@ -15,7 +15,7 @@ const Historique = () => {
       amount: '1850 fcfa'
     },
     {
-      id: '#CMD-2025-002',
+      id: 'CMD-2025-002',
       date: '12/04/2025',
       file: 'affiche_conférence.png',
       type: 'Image',
@@ -25,7 +25,7 @@ const Historique = () => {
       amount: '7500 fcfa'
     },
     {
-      id: '#CMD-2025-003',
+      id: 'CMD-2025-003',
       date: '10/04/2025',
       file: 'cv_template.docx',
       type: 'Document',
@@ -35,7 +35,7 @@ const Historique = () => {
       amount: '1200 fcfa'
     },
     {
-      id: '#CMD-2025-004',
+      id: 'CMD-2025-004',
       date: '05/04/2025',
       file: 'mémoire.pdf',
       type: 'PDF',
@@ -45,7 +45,7 @@ const Historique = () => {
       amount: '8950 fcfa'
     },
     {
-      id: '#CMD-2025-005',
+      id: 'CMD-2025-005',
       date: '01/04/2025',
       file: 'flyer_promo.jpg',
       type: 'Image',
