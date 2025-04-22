@@ -1,332 +1,211 @@
-/* ============ BASE STYLES ============ */
-.my-orders-container {
+/* Conteneur principal */
+.print-easy-container {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.orders-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-  color: #2d3748;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
 }
 
-/* ============ HEADER ============ */
-.my-orders-header {
-  margin-bottom: 2.5rem;
-  text-align: center;
+/* Header */
+.orders-header {
+  margin-bottom: 20px;
 }
 
-.my-orders-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
-  color: #2b6cb0;
-  font-weight: 600;
+.orders-header h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-.my-orders-header p {
-  font-size: 1.1rem;
-  color: #718096;
-  max-width: 600px;
-  margin: 0 auto;
+.orders-header p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
 }
 
-/* ============ CONTROLS ============ */
-.my-orders-controls {
+/* Barre de recherche et filtre */
+.search-filter {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+  justify-content: space-between;
   align-items: center;
+  gap: 12px; /* Ajoute un espacement plus large entre les éléments */
+  margin-bottom: 20px;
+  background-color: #f5f5f5; /* Ajoute un fond léger */
+  padding: 10px 15px; /* Ajoute un padding interne */
+  border-radius: 8px; /* Arrondit les coins */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
 }
 
-.search-bar {
+.search-box {
   position: relative;
-  flex: 1;
-  min-width: 300px;
+  flex-grow: 1; /* Permet à la barre de recherche de s'adapter à l'espace disponible */
+  max-width: 400px; /* Limite la largeur maximale */
+  min-width: 200px; /* Définit une largeur minimale */
 }
 
 .search-icon {
   position: absolute;
-  left: 1rem;
+  left: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: #a0aec0;
-  font-size: 1rem;
+  color: #666;
+  font-size: 16px;
 }
 
-.search-input {
+.search-box input {
   width: 100%;
-  padding: 0.8rem 1rem 0.8rem 2.5rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  background-color: #f8fafc;
-  height: 44px;
+  padding: 10px 10px 10px 35px; /* Ajoute un padding pour laisser de l'espace à l'icône */
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ajoute une ombre interne */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Ajoute une transition pour les interactions */
 }
 
-.filters {
-  display: flex;
-  gap: 1rem;
-  flex: 1;
-  min-width: 300px;
+.search-box input:focus {
+  border-color: #3498db; /* Change la couleur de la bordure au focus */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Ajoute une ombre bleue au focus */
+  outline: none; /* Supprime le contour par défaut */
 }
 
-.filter-select {
-  padding: 0.8rem 1rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 0.95rem;
-  background-color: #f8fafc;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 100%;
-  height: 44px;
+.status-filter {
+  padding: 10px 15px; /* Ajoute un padding interne plus équilibré */
+  font-size: 14px; /* Taille de la police */
+  font-weight: 500; /* Ajoute un peu de poids à la police */
+  border: 1px solid #ddd; /* Bordure légère */
+  border-radius: 8px; /* Coins arrondis pour un design moderne */
+  background-color: #fff; /* Fond blanc */
+  color: #333; /* Couleur du texte */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une ombre subtile */
+  transition: all 0.3s ease; /* Transition fluide pour les interactions */
+  appearance: none; /* Supprime le style natif du navigateur */
+  cursor: pointer; /* Change le curseur pour indiquer que c'est interactif */
+  position: relative; /* Nécessaire pour la flèche personnalisée */
 }
 
-.search-input:focus,
-.filter-select:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
-  background-color: white;
+.status-filter:hover {
+  border-color: #3498db; /* Change la couleur de la bordure au survol */
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2); /* Ajoute une ombre plus marquée au survol */
 }
 
-/* ============ ORDERS LIST ============ */
-.orders-list {
-  background-color: #ffffff;
-  border-radius: 12px;
+.status-filter:focus {
+  border-color: #3498db; /* Change la couleur de la bordure au focus */
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Ajoute une ombre bleue au focus */
+  outline: none; /* Supprime le contour par défaut */
+}
+
+/* Ajout d'une flèche personnalisée pour le select */
+.status-filter::after {
+  content: '▼'; /* Ajoute une flèche */
+  position: absolute;
+  right: 15px; /* Positionne la flèche à droite */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Empêche l'interaction avec la flèche */
+  color: #666; /* Couleur de la flèche */
+  font-size: 12px;
+}
+
+/* Pour les navigateurs qui nécessitent un conteneur pour masquer la flèche native */
+.status-filter-container {
+  position: relative;
+  display: inline-block;
+  width: 100%; /* S'assure que le conteneur prend toute la largeur */
+}
+
+.status-filter-container select {
+  width: 100%; /* S'assure que le select prend toute la largeur */
+  padding-right: 30px; /* Laisse de l'espace pour la flèche personnalisée */
+}
+
+/* Table des commandes */
+.orders-table {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  border: 1px solid #e2e8f0;
 }
 
-.orders-header {
+.table-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 60px; /* Colonnes ajustées */
-  padding: 0.5rem 1rem; /* Réduction du padding */
-  gap: 0.5rem; /* Réduction de l'espacement entre les colonnes */
-  background-color: rgba(247, 250, 252, 0.9);
-  border-bottom: 1px solid #e2e8f0;
-  font-weight: 400;
-  color: #2d3748;
-  font-size: 0.9rem; /* Réduction de la taille de police */
-  text-transform: uppercase;
-  letter-spacing: 0.03em; /* Réduction de l'espacement des lettres */
-  line-height: 1.2; /* Réduction de l'interligne */
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
+  background-color: #f5f5f5;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
 }
 
-.header-item {
-  padding: 0.2rem; /* Réduction du padding interne */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.order-card {
+.table-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.8fr 0.8fr 0.8fr 80px; /* Colonnes réduites */
-  padding: 1.25rem 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
   align-items: center;
-  border-bottom: 1px solid #edf2f7;
-  transition: background-color 0.2s ease;
 }
 
-.order-card:hover {
-  background-color: #f9fafc;
-}
-
-.order-card:last-child {
+.table-row:last-child {
   border-bottom: none;
 }
 
-.order-id,
-.order-file,
-.order-details,
-.order-status,
-.order-amount,
-.order-action {
-  padding: 0.3rem 0.5rem;
-  font-size: 0.95rem;
-  color: #4a5568;
-  white-space: nowrap;
+/* Colonnes */
+.col-command,
+.col-file,
+.col-details,
+.col-status,
+.col-amount,
+.col-actions {
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.order-id {
-  display: flex;
-  flex-direction: column;
-}
-
-.order-id-text {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  color: #2d3748;
-}
-
-.order-date {
-  font-size: 0.85rem;
-  color: #a0aec0;
-}
-
-.order-file {
-  font-weight: 500;
-}
-
-.order-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.order-status {
+/* Statut */
+.col-status {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
+  gap: 5px;
 }
 
-.status-icon {
-  font-size: 1.1rem;
-}
-
-.status-icon.completed {
-  color: #38a169;
-}
-
-.status-icon.in-progress {
-  color: #dd6b20;
-}
-
-.status-icon.pending {
-  color: #718096;
-}
-
-.status-icon.spin {
+.spin-icon {
   animation: spin 1s linear infinite;
+  color: #e67e22;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.pending-icon {
+  color: #7f8c8d;
 }
 
-.order-amount {
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.order-action {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.view-button {
-  padding: 0.5rem 1rem;
-  background-color: #4299e1;
+/* Bouton d'action */
+.view-btn {
+  background-color: #3498db;
   color: white;
   border: none;
+  padding: 5px 10px;
+  font-size: 12px;
   border-radius: 4px;
-  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
 }
 
-.view-button:hover {
-  background-color: #3182ce;
-  transform: translateY(-1px);
+.view-btn:hover {
+  background-color: #2980b9;
 }
 
-/* ============ STATUS BADGES ============ */
-.order-card.en-production {
-  border-left: 3px solid #dd6b20;
-}
-
-.order-card.en-attente {
-  border-left: 3px solid #a0aec0;
-}
-
-/* ============ RESPONSIVE ============ */
-@media (min-width: 992px) {
-  .my-orders-controls {
-    flex-wrap: nowrap;
+/* Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  .search-bar {
-    min-width: 400px;
-  }
-  .filters {
-    min-width: auto;
-    justify-content: flex-end;
-  }
-}
-
-@media (max-width: 991px) and (min-width: 768px) {
-  .orders-header,
-  .order-card {
-    grid-template-columns: 1fr 0.8fr 0.8fr 80px; /* Colonnes réduites */
-  }
-  
-  /* Masquez les colonnes non nécessaires */
-  .orders-header .header-item:nth-child(2),
-  .orders-header .header-item:nth-child(5),
-  .order-file,
-  .order-amount {
-    display: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .my-orders-container {
-    padding: 1.5rem 1rem;
-  }
-
-  .my-orders-controls {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .search-bar,
-  .filters {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .orders-header {
-    display: none;
-  }
-
-  .order-card {
-    grid-template-columns: 1fr;
-    padding: 1.5rem;
-    gap: 1rem;
-  }
-
-  .order-card > div {
-    display: grid;
-    grid-template-columns: 100px 1fr; /* Ajustement pour mobile */
-    align-items: center;
-  }
-
-  .order-card > div::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #718096;
-    font-size: 0.85rem;
-  }
-
-  .order-action {
-    justify-content: flex-start;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px dashed #e2e8f0;
-  }
-}
-
-@media (max-width: 480px) {
-  .order-card > div {
-    grid-template-columns: 100px 1fr;
-  }
-
-  .view-button {
-    width: 100%;
+  to {
+    transform: rotate(360deg);
   }
 }

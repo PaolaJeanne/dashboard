@@ -1,5 +1,5 @@
-import React from 'react'; 
-import { FaSearch, FaCheckCircle, FaSpinner, FaClock } from 'react-icons/fa';
+import React from 'react';
+import { FaSearch, FaSpinner, FaClock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import '../styles/MesCommandes.css';
 
@@ -8,20 +8,16 @@ const MesCommandes = () => {
 
   const orders = [
     {
-      id: '#CMD-2025-002',
-      date: '12/04/2025',
+      id: 'CMD-2025-002',
       file: 'affiche_conférence.png',
-      type: 'Image',
       pages: 1,
       copies: 50,
       status: 'En production',
       amount: '7500 fcfa'
     },
     {
-      id: '#CMD-2025-003',
-      date: '10/04/2025',
+      id: 'CMD-2025-003',
       file: 'cv_template.docx',
-      type: 'Document',
       pages: 3,
       copies: 10,
       status: 'En attente',
@@ -31,78 +27,59 @@ const MesCommandes = () => {
 
   const getStatusIcon = (status) => {
     switch(status) {
-      case 'Terminé': return <FaCheckCircle className="status-icon completed" />;
-      case 'En production': return <FaSpinner className="status-icon in-progress spin" />;
-      case 'En attente': return <FaClock className="status-icon pending" />;
+      case 'En production': return <FaSpinner className="spin" style={{color: '#e67e22', marginRight: '5px'}} />;
+      case 'En attente': return <FaClock style={{color: '#7f8c8d', marginRight: '5px'}} />;
       default: return null;
     }
   };
 
   return (
-    <div className="my-orders-container">
-      <header className="my-orders-header">
-        <h1>Mes Commandes en Cours</h1>
+    <div className="print-easy-container">
+      <div className="orders-section">
+        <h2>Mes Commandes en Cours</h2>
         <p>Voici les commandes que vous avez passées récemment.</p>
-      </header>
-
-      <div className="my-orders-controls">
-        <div className="search-bar">
-          <FaSearch className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Rechercher une commande..." 
-            className="search-input"
-          />
-        </div>
-        <div className="filters">
-          <select className="filter-select">
-            <option value="all">Tous les statuts</option>
-            <option value="in-progress">En production</option>
-            <option value="pending">En attente</option>
+        
+        <div className="search-filter">
+          <div className="search-box">
+            <FaSearch className="search-icon" />
+            <input type="text" placeholder="Rechercher une commande..." />
+          </div>
+          <select>
+            <option>Tous les statuts</option>
+            <option>En production</option>
+            <option>En attente</option>
           </select>
         </div>
-      </div>
 
-      <div className="orders-list">
-        <div className="orders-header">
-          <span className="header-item">Commande</span>
-          <span className="header-item">Fichier</span>
-          <span className="header-item">Détails</span>
-          <span className="header-item">Statut</span>
-          <span className="header-item">Montant</span>
-          <span className="header-item">Actions</span>
-        </div>
-
-        {orders.map((order, index) => (
-          <div className={`order-card ${order.status.toLowerCase().replace(' ', '-')}`} key={index}>
-            <div className="order-id">
-              <span className="order-id-text">{order.id}</span>
-              <span className="order-date">{order.date}</span>
-            </div>
-            <div className="order-file">
-              <span className="file-name">{order.file}</span>
-            </div>
-            <div className="order-details">
-              <span>{order.pages} page{order.pages > 1 ? 's' : ''}</span>
-              <span>{order.copies} copie{order.copies > 1 ? 's' : ''}</span>
-            </div>
-            <div className="order-status">
-              {getStatusIcon(order.status)}
-              <span>{order.status}</span>
-            </div>
-            <div className="order-amount">
-              {order.amount}
-            </div>
-            <div className="order-actions">
-              <button
-                className="view-button"
-                onClick={() => navigate(`/facture/${order.id}`)}
-              >
-                Voir
-              </button>
-            </div>
+        <div className="orders-table">
+          <div className="table-header">
+            <div className="col-command">Commande</div>
+            <div className="col-file">Fichier</div>
+            <div className="col-details">Détails</div>
+            <div className="col-status">Statut</div>
+            <div className="col-amount">Montant</div>
+            <div className="col-actions">Actions</div>
           </div>
-        ))}
+
+          {orders.map((order, index) => (
+            <div className="table-row" key={index}>
+              <div className="col-command">{order.id}</div>
+              <div className="col-file">{order.file}</div>
+              <div className="col-details">
+                <div>{order.pages} page{order.pages > 1 ? 's' : ''}</div>
+                <div>{order.copies} copie{order.copies > 1 ? 's' : ''}</div>
+              </div>
+              <div className="col-status">
+                {getStatusIcon(order.status)}
+                {order.status}
+              </div>
+              <div className="col-amount">{order.amount}</div>
+              <div className="col-actions">
+                <button onClick={() => navigate(`/facture/${order.id}`)}>Voir</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
