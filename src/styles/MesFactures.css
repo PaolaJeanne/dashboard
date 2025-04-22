@@ -1,89 +1,246 @@
+/* Conteneur principal */
 .factures-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .factures-header {
-    text-align: center;
-  }
-  
-  .factures-controls {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-    max-width: 300px;
-    width: 100%;
-  }
-  
-  .search-icon {
-    margin-right: 10px;
-  }
-  
-  .search-input {
-    width: 100%;
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .factures-list {
-    margin-top: 20px;
-    border-top: 1px solid #ddd;
-  }
-  
-  .factures-header,
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  color: #2c3e50;
+}
+
+/* En-tête */
+.factures-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.factures-header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 10px;
+}
+
+.factures-header p {
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+/* Contrôles (Recherche et Filtre) */
+.factures-controls {
+  margin-bottom: 20px;
+}
+
+.search-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+  flex: 1;
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+  font-size: 16px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 35px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+  font-size: 16px;
+}
+
+.status-filter {
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  appearance: none;
+  cursor: pointer;
+}
+
+/* Liste des factures */
+.factures-list {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.factures-list-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: #f5f5f5;
+  font-weight: bold;
+  padding: 10px;
+  font-size: 15px;
+  color: #2c3e50;
+}
+
+.facture-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.facture-card:last-child {
+  border-bottom: none;
+}
+
+.facture-card div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Statut */
+.facture-statut {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  max-width: 100px; /* Limite la largeur maximale */
+  overflow: hidden; /* Empêche le débordement du contenu */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte dépasse */
+  white-space: nowrap; /* Empêche le retour à la ligne */
+}
+
+.statut-success {
+  background-color: #2ecc71;
+}
+
+.statut-warning {
+  background-color: #f1c40f;
+}
+
+.statut-danger {
+  background-color: #e74c3c;
+}
+
+/* Actions */
+.facture-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.view-button,
+.download-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.view-button {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.view-button:hover {
+  background-color: #2980b9;
+}
+
+.download-button {
+  background-color: #2ecc71;
+  color: #fff;
+}
+
+.download-button:hover {
+  background-color: #27ae60;
+}
+
+/* Aucun résultat */
+.no-results {
+  text-align: center;
+  padding: 20px;
+  font-size: 16px;
+  color: #7f8c8d;
+}
+
+.reset-filters {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.reset-filters:hover {
+  background-color: #2980b9;
+}
+
+/* Pied de page */
+.factures-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .factures-list-header,
   .facture-card {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-gap: 15px;
-    padding: 10px 0;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  
-  .factures-header {
-    background-color: #f7f7f7;
-    font-weight: bold;
-  }
-  
-  .facture-card {
-    border-bottom: 1px solid #ddd;
-    align-items: center;
-  }
-  
-  .facture-id, .commande-id, .facture-date, .facture-montant, .facture-statut {
-    padding: 5px;
-  }
-  
+
+  .facture-statut,
   .facture-actions {
-    display: flex;
-    justify-content: space-around;
+    display: none;
   }
-  
-  .view-button, .download-button {
-    padding: 8px 12px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
+}
+
+@media (max-width: 480px) {
+  .factures-list-header,
+  .facture-card {
+    grid-template-columns: 1fr 1fr;
   }
-  
-  .view-button {
-    background-color: #4CAF50;
-    color: white;
+
+  .facture-date,
+  .facture-montant {
+    display: none;
   }
-  
-  .download-button {
-    background-color: #2196F3;
-    color: white;
-  }
-  
-  .view-button:hover, .download-button:hover {
-    opacity: 0.8;
-  }
-  
+}
