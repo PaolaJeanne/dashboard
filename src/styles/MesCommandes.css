@@ -1,60 +1,106 @@
-/* Conteneur principal */
-.print-easy-container {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f9f9f9;
+/* ==================== */
+/* VARIABLES & RESETS   */
+/* ==================== */
+:root {
+  --primary-color: #3498db;
+  --primary-hover: #2980b9;
+  --text-dark: #2c3e50;
+  --text-medium: #7f8c8d;
+  --text-light: #f9f9f9;
+  --bg-light: #f9f9f9;
+  --bg-white: #fff;
+  --border-color: #e0e0e0;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==================== */
+/* BASE STYLES          */
+/* ==================== */
+.print-easy-container {
+  font-family: 'Segoe UI', Arial, sans-serif; /* Meilleure police moderne */
+  line-height: 1.6;
+  padding: 20px;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+/* ==================== */
+/* LAYOUT COMPONENTS    */
+/* ==================== */
 .orders-section {
   max-width: 1200px;
   margin: 0 auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 25px;
+  overflow: hidden; /* Empêche les débordements */
 }
 
 /* Header */
 .orders-header {
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
 }
 
 .orders-header h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #333;
+  font-size: 2rem; /* Utilisation de rem pour une meilleure échelle */
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0;
+  line-height: 1.2;
 }
 
 .orders-header p {
-  font-size: 14px;
-  color: #666;
+  font-size: 1rem;
+  color: var(--text-medium);
   margin: 0;
+  max-width: 600px; /* Limite la largeur pour une meilleure lisibilité */
 }
 
-/* Barre de recherche et filtre */
+/* Search & Filter Container */
 .search-filter {
   display: flex;
-  flex-wrap: wrap; /* Permet de passer à la ligne si nécessaire */
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 12px; /* Ajoute un espacement entre les éléments */
-  margin-bottom: 20px;
+  gap: 15px;
+  margin-bottom: 25px;
   background-color: #f5f5f5;
-  padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Search Bar */
+.search-bar {
+  flex: 1 1 300px; /* Meilleure gestion de la flexibilité */
+  min-width: 200px;
 }
 
 .search-box {
   position: relative;
-  flex-grow: 1;
-  max-width: 400px;
-  min-width: 200px;
+  width: 100%;
 }
 
 .search-icon {
   position: absolute;
-  left: 10px;
+  left: 12px;
   top: 50%;
   transform: translateY(-50%);
   color: #666;
@@ -63,108 +109,144 @@
 
 .search-box input {
   width: 100%;
-  padding: 10px 10px 10px 35px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: #fff;
+  padding: 12px 12px 12px 40px;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-white);
+  transition: var(--transition);
 }
 
-.status-filter {
-  padding: 10px 15px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  color: #333;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  appearance: none;
-  cursor: pointer;
-  position: relative; /* Nécessaire pour la flèche personnalisée */
+.search-box input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  outline: none;
 }
 
-.status-filter:hover {
-  border-color: #3498db; /* Change la couleur de la bordure au survol */
-  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2); /* Ajoute une ombre plus marquée au survol */
+/* Filter Bar */
+.filter-bar {
+  flex: 0 1 200px;
+  min-width: 150px;
 }
 
-.status-filter:focus {
-  border-color: #3498db; /* Change la couleur de la bordure au focus */
-  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Ajoute une ombre bleue au focus */
-  outline: none; /* Supprime le contour par défaut */
+.status-filter-container {
+  position: relative;
+  width: 100%;
 }
 
-/* Ajout d'une flèche personnalisée pour le select */
-.status-filter::after {
-  content: '▼'; /* Ajoute une flèche */
+.status-filter-container::after {
+  content: '▼';
   position: absolute;
-  right: 15px; /* Positionne la flèche à droite */
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; /* Empêche l'interaction avec la flèche */
-  color: #666; /* Couleur de la flèche */
+  pointer-events: none;
+  color: #666;
   font-size: 12px;
 }
 
-/* Pour les navigateurs qui nécessitent un conteneur pour masquer la flèche native */
-.status-filter-container {
-  position: relative;
-  display: inline-block;
-  width: 100%; /* S'assure que le conteneur prend toute la largeur */
+.status-filter {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  box-shadow: var(--box-shadow);
+  appearance: none;
+  cursor: pointer;
+  transition: var(--transition);
+  padding-right: 30px;
 }
 
-.status-filter-container select {
-  width: 100%; /* S'assure que le select prend toute la largeur */
-  padding-right: 30px; /* Laisse de l'espace pour la flèche personnalisée */
+.status-filter:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
 }
 
-/* Table des commandes */
+.status-filter:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+/* ==================== */
+/* TABLE STYLES         */
+/* ==================== */
 .orders-table {
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
   overflow: hidden;
+  border-collapse: separate; /* Pour les bordures arrondies */
 }
 
 .table-header,
 .table-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 80px;
-  padding: 10px;
+  grid-template-columns: repeat(5, 1fr) 80px;
+  padding: 12px 15px;
   align-items: center;
 }
 
 .table-header {
   background-color: #f5f5f5;
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  text-align: left;
 }
 
 .table-row {
   border-bottom: 1px solid #eee;
+  transition: var(--transition);
+}
+
+.table-row:not(.table-header):hover {
+  background-color: rgba(52, 152, 219, 0.05);
 }
 
 .table-row:last-child {
   border-bottom: none;
 }
 
-/* Colonnes */
+/* Table Columns */
 .col-command,
 .col-file,
 .col-details,
 .col-status,
 .col-amount,
 .col-actions {
+  padding: 8px 5px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Statut */
+/* Status Column */
 .col-status {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background-color: #fff3e0;
+  color: #e67e22;
+}
+
+.status-completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
 
 .spin-icon {
@@ -172,73 +254,101 @@
   color: #e67e22;
 }
 
-.pending-icon {
-  color: #7f8c8d;
-}
-
-/* Bouton d'action */
+/* Action Button */
 .view-btn {
-  background-color: #3498db;
+  background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 5px 10px;
-  font-size: 12px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
 .view-btn:hover {
-  background-color: #2980b9;
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
-/* Animation */
+.view-btn:active {
+  transform: translateY(0);
+}
+
+/* ==================== */
+/* ANIMATIONS           */
+/* ==================== */
 @keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
+/* ==================== */
+/* RESPONSIVE DESIGN    */
+/* ==================== */
 @media (max-width: 768px) {
   .search-filter {
-    flex-direction: column; /* Les éléments passent en colonne */
+    flex-direction: column;
     gap: 15px;
   }
 
-  .search-box {
-    max-width: 100%; /* La barre de recherche prend toute la largeur */
-  }
-
-  .status-filter {
-    width: 100%; /* Le filtre prend toute la largeur */
+  .search-bar,
+  .filter-bar {
+    width: 100%;
   }
 
   .table-header,
   .table-row {
-    grid-template-columns: 1fr 1fr 1fr; /* Réduit le nombre de colonnes */
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .col-status,
   .col-amount,
   .col-actions {
-    display: none; /* Cache certaines colonnes sur les petits écrans */
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
   .orders-section {
-    padding: 10px; /* Réduit le padding pour les petits écrans */
+    padding: 15px;
+  }
+
+  .orders-header h2 {
+    font-size: 1.5rem;
   }
 
   .table-header,
   .table-row {
-    grid-template-columns: 1fr 1fr; /* Affiche uniquement les colonnes essentielles */
+    grid-template-columns: repeat(2, 1fr);
+    padding: 10px;
   }
 
   .col-file {
-    display: none; /* Cache la colonne fichier sur les très petits écrans */
+    display: none;
   }
+
+  .view-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* ==================== */
+/* UTILITY CLASSES      */
+/* ==================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

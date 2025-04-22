@@ -36,19 +36,25 @@ const MesCommandes = () => {
   return (
     <div className="print-easy-container">
       <div className="orders-section">
-        <h2>Mes Commandes en Cours</h2>
-        <p>Voici les commandes que vous avez passées récemment.</p>
+        <div className="orders-header">
+          <h2>📋 Mes Commandes en Cours</h2>
+          <p>Consultez les détails de vos commandes récentes et suivez leur statut en temps réel.</p>
+        </div>
         
         <div className="search-filter">
-          <div className="search-box">
-            <FaSearch className="search-icon" />
-            <input type="text" placeholder="Rechercher une commande..." />
+          <div className="search-bar">
+            <div className="search-box">
+              <FaSearch className="search-icon" />
+              <input type="text" placeholder="Rechercher une commande..." />
+            </div>
           </div>
-          <select>
-            <option>Tous les statuts</option>
-            <option>En production</option>
-            <option>En attente</option>
-          </select>
+          <div className="filter-bar">
+            <select className="status-filter">
+              <option>Tous les statuts</option>
+              <option>En production</option>
+              <option>En attente</option>
+            </select>
+          </div>
         </div>
 
         <div className="orders-table">
