@@ -56,10 +56,8 @@ const MesFactures = () => {
   // Formate le montant pour l'affichage
   const formatMontant = (montant) => {
     return new Intl.NumberFormat('fr-FR', { 
-      style: 'currency', 
-      currency: 'XOF',
       minimumFractionDigits: 0
-    }).format(montant).replace('CFA', 'fcfa');
+    }).format(montant) + ' FCFA';
   };
 
   // Gestion du téléchargement
