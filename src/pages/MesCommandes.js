@@ -1,71 +1,52 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';  // Importation de Link
-import '../styles/MesCommandes.css'; // Assurez-vous d'avoir le bon chemin vers votre fichier CSS
-
+import React from 'react';
+import { Link } from 'react-router-dom'; // Importer Link pour la navigation
+import '../styles/MesCommandes.css';
 
 const MesCommandes = () => {
-  const [commandes, setCommandes] = useState([
-    { id: 1, status: 'En attente', fileName: 'Document1.pdf', date: '2025-04-20' },
-    { id: 2, status: 'Terminé', fileName: 'Document2.pdf', date: '2025-04-18' },
-    { id: 3, status: 'Annulé', fileName: 'Document3.pdf', date: '2025-04-15' },
-  ]);
+  const commandes = [
+    { id: 1, numero: 'CMD001', statut: 'En cours', date: '2025-04-22' },
+    { id: 2, numero: 'CMD002', statut: 'Livrée', date: '2025-04-20' },
+    { id: 3, numero: 'CMD003', statut: 'Annulée', date: '2025-04-18' },
+    // Ajouter plus de commandes ici
+  ];
 
-  const renderStatus = (status) => {
-    switch (status) {
-      case 'En attente':
-        return <span className="status pending">En attente</span>;
-      case 'Terminé':
-        return <span className="status completed">Terminé</span>;
-      case 'Annulé':
-        return <span className="status cancelled">Annulé</span>;
-      default:
-        return <span className="status">Statut inconnu</span>;
-    }
-  };
-
-  const handleCancel = (id) => {
-    setCommandes(commandes.map(commande => 
-      commande.id === id ? { ...commande, status: 'Annulé' } : commande
-    ));
-  };
-
-  const handleComplete = (id) => {
-    setCommandes(commandes.map(commande => 
-      commande.id === id ? { ...commande, status: 'Terminé' } : commande
-    ));
+  const handleAnnuler = (id) => {
+    alert(`Commande ${id} annulée`);
+    // Logique pour annuler la commande ici (requête API par exemple)
   };
 
   return (
-    <div className="dashboard">
-      <h2 className="welcome">Mes commandes 📑</h2>
-
+    <div className="mes-commandes-container">
+      <h1>Mes Commandes</h1>
       <table className="commandes-table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Fichier</th>
+            <th>Numéro</th>
+            <th>Statut</th>
             <th>Date</th>
-            <th>Status</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {commandes.map((commande) => (
             <tr key={commande.id}>
-              <td>
-                <Link to={`/suivi-commande/${commande.id}`}>
-                  {commande.id}
-                </Link>
-              </td>
-              <td>{commande.fileName}</td>
+              <td>{commande.numero}</td>
+              <td>{commande.statut}</td>
               <td>{commande.date}</td>
-              <td>{renderStatus(commande.status)}</td>
               <td>
-                {commande.status !== 'Terminé' && (
-                  <button onClick={() => handleComplete(commande.id)}>Terminer</button>
-                )}
-                {commande.status !== 'Annulé' && (
-                  <button onClick={() => handleCancel(commande.id)}>Annuler</button>
+                {/* Redirection vers la page de suivi avec l'ID de la commande */}
+                <Link to={`/suivi-commande/${commande.id}`} className="btn-voir">
+                  Voir
+                </Link>
+
+                {/* Affichage du bouton Annuler si la commande n'est pas livrée ou annulée */}
+                {commande.statut !== 'Livrée' && commande.statut !== 'Annulée' && (
+                  <button 
+                    className="btn-annuler" 
+                    onClick={() => handleAnnuler(commande.id)}
+                  >
+                    Annuler
+                  </button>
                 )}
               </td>
             </tr>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaSearch, FaFilePdf, FaFileImage, FaFileWord, FaPrint, FaCheckCircle, FaSpinner, FaClock } from 'react-icons/fa';
+import { FaSearch, FaCheckCircle, FaSpinner, FaClock } from 'react-icons/fa';
 import '../styles/Historique.css';
 
 const Historique = () => {
@@ -56,16 +56,6 @@ const Historique = () => {
       amount: '15000 fcfa'
     }
   ];
-
-  // Fonction pour obtenir l'icône du type de fichier
-  const getFileIcon = (type) => {
-    switch(type) {
-      case 'PDF': return <FaFilePdf className="file-icon pdf" />;
-      case 'Image': return <FaFileImage className="file-icon image" />;
-      case 'Document': return <FaFileWord className="file-icon doc" />;
-      default: return <FaPrint className="file-icon" />;
-    }
-  };
 
   // Fonction pour obtenir l'icône de statut
   const getStatusIcon = (status) => {
@@ -129,8 +119,8 @@ const Historique = () => {
               <span className="order-date">{order.date}</span>
             </div>
             
+            {/* Affichage uniquement du nom du fichier sans l'icône */}
             <div className="order-file">
-              {getFileIcon(order.type)}
               <span className="file-name">{order.file}</span>
             </div>
             
@@ -150,9 +140,7 @@ const Historique = () => {
             
             <div className="order-actions">
               <button className="action-btn view-btn">Détails</button>
-              {order.status === 'Terminé' && (
-                <button className="action-btn download-btn">Télécharger</button>
-              )}
+              {/* Pas de bouton de téléchargement */}
             </div>
           </div>
         ))}

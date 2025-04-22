@@ -1,51 +1,69 @@
+.mes-commandes-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
 .commandes-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .commandes-table th, .commandes-table td {
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  
-  .commandes-table th {
-    background-color: #f4f4f4;
-  }
-  
-  .status {
-    font-weight: bold;
-  }
-  
-  .status.pending {
-    color: #f39c12; /* Jaune attente */
-  }
-  
-  .status.completed {
-    color: #2ecc71; /* Vert terminé */
-  }
-  
-  .status.cancelled {
-    color: #e74c3c; /* Rouge annulé */
-  }
-  
-  button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    border: none;
-    background-color: #3498db;
-    color: white;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  
-  button:hover {
-    background-color: #2980b9;
-  }
-  
-  button:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.commandes-table th, .commandes-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.commandes-table th {
+  background-color: #f4f4f4;
+}
+
+.commandes-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.commandes-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn-voir, .btn-annuler, .btn-retour {
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-right: 8px;
+  text-align: center;
+}
+
+.btn-voir {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.btn-voir:hover {
+  background-color: #45a049;
+}
+
+.btn-annuler {
+  background-color: #f44336;
+  color: white;
+}
+
+.btn-annuler:hover {
+  background-color: #e53935;
+}
+
+.btn-retour {
+  background-color: #ffa500;
+  color: white;
+}
+
+.btn-retour:hover {
+  background-color: #e68900;
+}

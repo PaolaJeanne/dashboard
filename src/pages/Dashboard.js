@@ -67,7 +67,7 @@ const Dashboard = () => {
         </tbody>
       </table>
 
-      <Link to="/mes-commandes" className="see-more-link">Voir plus </Link>
+      <Link to="/historique" className="see-more-link">Voir plus </Link>
     </div>
   );
 };
