@@ -5,6 +5,7 @@ const NouvelleCommande = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [instructions, setInstructions] = useState('');
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
@@ -15,7 +16,7 @@ const NouvelleCommande = () => {
 
   const handleSubmit = () => {
     if (!fileName) {
-      setMessage("Veuillez sélectionner un fichier avant de soumettre.");
+      setMessage("❗ Veuillez sélectionner un fichier.");
       return;
     }
 
@@ -24,98 +25,88 @@ const NouvelleCommande = () => {
 
     setTimeout(() => {
       setLoading(false);
-      setMessage('✅ Fichier envoyé avec succès !');
+      setMessage('✅ Commande envoyée avec succès !');
+      // reset form (optionnel)
     }, 2000);
   };
 
   const handleChatSubmit = () => {
     if (!newMessage.trim()) return;
 
-    setMessages([...messages, { text: newMessage, sender: 'client' }]);
+    setMessages([...messages, { sender: 'client', text: newMessage }]);
     setNewMessage('');
 
+    // simulate admin response
     setTimeout(() => {
-      setMessages((prev) => [
-        ...prev,
-        { text: "Réponse de l'admin", sender: 'admin' },
-      ]);
+      setMessages(prev => [...prev, { sender: 'admin', text: 'Merci pour votre message. Nous le traitons.' }]);
     }, 1000);
   };
 
   return (
-    <div className="dashboard">
-      <h2 className="welcome">Nouvelle commande 🖨️</h2>
+    <div className="commande-page">
+      <h2>Nouvelle commande 🖨️</h2>
 
       {/* Upload */}
-      <div className="upload-box">
-        <label htmlFor="file-upload" className="upload-label">
-          {fileName ? (
-            <p>Fichier sélectionné : <strong>{fileName}</strong></p>
-          ) : (
-            <p>Glissez-déposez votre fichier ici ou cliquez pour parcourir</p>
-          )}
+      <div className="upload-section">
+        <label htmlFor="file-upload">
+          {fileName ? `Fichier sélectionné : ${fileName}` : "Cliquez ou glissez un fichier ici"}
         </label>
         <input type="file" id="file-upload" onChange={handleFileChange} />
       </div>
 
-      {/* Paramètres */}
+      {/* Options */}
       <div className="options-grid">
         <div>
           <label>Impression</label>
-          <select>
-            <option>Recto</option>
-            <option>Recto-verso</option>
-          </select>
+          <select><option>Recto</option><option>Recto-verso</option></select>
         </div>
         <div>
           <label>Couleur</label>
-          <select>
-            <option>Noir & blanc</option>
-            <option>Couleur</option>
-          </select>
+          <select><option>Noir & blanc</option><option>Couleur</option></select>
         </div>
         <div>
           <label>Agrafage</label>
-          <select>
-            <option>Non</option>
-            <option>Oui</option>
-          </select>
+          <select><option>Non</option><option>Oui</option></select>
         </div>
         <div>
           <label>Format</label>
-          <select>
-            <option>A4</option>
-            <option>A3</option>
-          </select>
+          <select><option>A4</option><option>A3</option></select>
         </div>
       </div>
 
-      <button
-        className="send-button"
-        onClick={handleSubmit}
-        disabled={loading}
-      >
-        {loading ? '⏳ Envoi en cours...' : '📤 Lancer l\'impression'}
+      {/* Instructions */}
+      <div className="instructions">
+        <label>Instructions pour l'imprimeur</label>
+        <textarea
+          rows="3"
+          placeholder="Ex : Merci d'imprimer sans marges..."
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
+        />
+      </div>
+
+      <button className="send-btn" onClick={handleSubmit} disabled={loading}>
+        {loading ? "⏳ Envoi en cours..." : "📤 Envoyer la commande"}
       </button>
 
-      {message && <p className="feedback">{message}</p>}
+      {message && <p className="message">{message}</p>}
 
       {/* Chat */}
       <div className="chat-section">
-        <h3>Chat avec l'Admin</h3>
+        <h3>Chat avec l'imprimeur 💬</h3>
         <div className="chat-box">
-          {messages.map((msg, index) => (
-            <div key={index} className={`chat-message ${msg.sender}`}>
-              <span>{msg.text}</span>
+          {messages.map((msg, i) => (
+            <div key={i} className={`chat-message ${msg.sender}`}>
+              {msg.text}
             </div>
           ))}
         </div>
         <div className="chat-input">
           <input
             type="text"
+            placeholder="Écrivez un message..."
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Envoyez un message..."
           />
           <button onClick={handleChatSubmit}>Envoyer</button>
         </div>

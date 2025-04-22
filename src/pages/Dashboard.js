@@ -1,127 +1,73 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-  const [user] = useState({
-    name: "Jean Dupont",
-    isGuest: false,
-    lastLocation: "18 Rue de l'Imprimerie, Lyon"
-  });
+  const stats = [
+    { label: "Total commandes", value: 15 },
+    { label: "En cours", value: 3 },
+    { label: "Validées", value: 12 },
+  ];
 
-  const [recentCommands] = useState([
-    { id: 101, file: "Rapport_2023.pdf", status: "livré", date: "15/10/2023" },
-    { id: 102, file: "Flyer_Promo.pdf", status: "en production", date: "18/10/2023" },
-    { id: 103, file: "Nouvelle_Commande.pdf", status: "en attente", date: "21/04/2025" }
-  ]);
+  const actions = [
+    { label: "Nouvelle commande", link: "/nouvelle-commande" },
+    { label: "Mes commandes", link: "/mes-commandes" },
+    { label: "Fichiers", link: "/fichier" },
+  ];
 
-  const quickActions = [
-    { icon: "🖨️", label: "Nouvelle impression", action: () => navigate('/nouvelle-commande') },
-    { icon: "📦", label: "Suivi livraison", action: () => navigate('/mes-commandes?filter=shipping') },
-    { icon: "📝", label: "Modifier mon profil", action: () => navigate('/parametres') },
-    { icon: "🗺️", label: "Changer adresse", action: () => navigate('/profil?tab=location') }
+  const historique = [
+    { date: '18/04/2025', fichier: 'rapport_stage.pdf', statut: 'Validé' },
+    { date: '15/04/2025', fichier: 'affiche.png', statut: 'En cours' },
+    { date: '10/04/2025', fichier: 'cv.docx', statut: 'En attente' },
   ];
 
   return (
-    <div className="dashboard-container">
-      {/* Header */}
-      <header className="dashboard-header">
-        <div className="user-welcome">
-          <h1>Bonjour, {user.name}</h1>
-          <p>{user.isGuest ? "Mode invité - " : ""}Dernière livraison : {user.lastLocation}</p>
-        </div>
-        <div className="user-avatar">👤</div>
-      </header>
+    <div className="dashboard">
+      <h2 className="dashboard-title">Bienvenue, Jean Dupont</h2>
 
-      {/* Quick Actions and Stats */}
-      <section className="top-section">
-        <div className="quick-actions">
-          <h2>Actions rapides</h2>
-          <div className="actions-grid">
-            {quickActions.map((action, index) => (
-              <button 
-                key={index} 
-                className="action-card"
-                onClick={action.action}
-              >
-                <span className="action-icon">{action.icon}</span>
-                <span>{action.label}</span>
-              </button>
-            ))}
+      <div className="stats-grid">
+        {stats.map((stat, i) => (
+          <div className="stat-card" key={i}>
+            <p className="stat-value">{stat.value}</p>
+            <p className="stat-label">{stat.label}</p>
           </div>
-        </div>
+        ))}
+      </div>
 
-        <div className="stats-section">
-          <div className="stat-card">
-            <h3>Total des commandes</h3>
-            <p className="stat-value">25</p>
-            <p className="stat-comparison">Depuis votre inscription</p>
-          </div>
-          <div className="stat-card">
-            <h3>Commandes en cours</h3>
-            <p className="stat-value">3</p>
-            <p className="stat-comparison">Dont 1 en production</p>
-          </div>
-          <div className="stat-card">
-            <h3>Économies réalisées</h3>
-            <p className="stat-value">1200fcfa</p>
-            <p className="stat-comparison">Grâce à vos abonnements</p>
-          </div>
-        </div>
-      </section>
+      <h3 className="dashboard-subtitle">Actions rapides</h3>
+      <div className="actions-grid">
+        {actions.map((action, i) => (
+          <Link to={action.link} key={i} className="action-card">
+            {action.label}
+          </Link>
+        ))}
+      </div>
 
-      {/* Recent Commands */}
-      <section className="recent-commands">
-        <div className="section-header">
-          <h2>Commandes récentes</h2>
-          <a 
-            href="/mes-commandes" 
-            className="see-all-link"
-          >
-            Voir tout →
-          </a>
-        </div>
-        
-        <table className="commands-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Fichier</th>
-              <th>Statut</th>
-              <th>Date</th>
-              <th>Actions</th>
+      <h3 className="dashboard-subtitle">Historique récent</h3>
+      <table className="history-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Fichier</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          {historique.map((entry, i) => (
+            <tr key={i}>
+              <td>{entry.date}</td>
+              <td>{entry.fichier}</td>
+              <td>
+                <span className={`badge ${entry.statut.toLowerCase().replace(' ', '')}`}>
+                  {entry.statut}
+                </span>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {recentCommands.map(cmd => (
-              <tr key={cmd.id}>
-                <td>{cmd.id}</td>
-                <td>{cmd.file}</td>
-                <td>
-                  <span className={`status-badge ${cmd.status.replace(' ', '-').toLowerCase()}`}>
-                    {cmd.status}
-                  </span>
-                </td>
-                <td>{cmd.date}</td>
-                <td>
-                  <button 
-                    className="detail-btn"
-                    onClick={() => navigate(`/mes-commandes?command=${cmd.id}`)}
-                  >
-                    Détails
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </section>
+          ))}
+        </tbody>
+      </table>
 
-      {/* Footer */}
-      <footer className="context-footer">
-        <p>Besoin d'aide ? Contactez notre support : <a href="mailto:support@imprimerie.com">support@imprimerie.com</a></p>
-      </footer>
+      <Link to="/mes-commandes" className="see-more-link">Voir plus </Link>
     </div>
   );
 };
