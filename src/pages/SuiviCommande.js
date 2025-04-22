@@ -1,9 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 import '../styles/SuiviCommande.css'; // Ajoute un fichier CSS pour le style
 
 const SuiviCommande = () => {
   const { id } = useParams(); // Récupérer l'ID de la commande depuis l'URL
+  const navigate = useNavigate(); // Pour naviguer vers d'autres pages
 
   // Exemple de données de commande, cela pourrait être récupéré via une API
   const commande = {
@@ -27,11 +28,7 @@ const SuiviCommande = () => {
     contactTransporteur: '123-456-7890', // Numéro de téléphone du transporteur
   };
 
-  const handleRetour = () => {
-    alert('Demande de retour envoyée.');
-    // Logique pour demander un retour via une API, par exemple
-  };
-
+ 
   return (
     <div className="suivi-commande-container">
       <h1>Suivi de la commande {commande.numero}</h1>
@@ -77,12 +74,10 @@ const SuiviCommande = () => {
         <p>Numéro de téléphone : {commande.contactTransporteur}</p>
       </div>
 
-      {/* Bouton pour demander un retour si la commande est en statut "Livrée" ou "En cours" */}
-      {commande.statut === 'Livrée' && (
-        <button className="btn-retour" onClick={handleRetour}>
-          Demander un retour
-        </button>
-      )}
+      {/* Bouton pour voir la facture */}
+  <button className="btn-facture" onClick={() => navigate(`/facture/${commande.id}`)}>
+    Voir la facture
+  </button>
     </div>
   );
 };

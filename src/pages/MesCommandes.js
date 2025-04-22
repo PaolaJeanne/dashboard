@@ -81,7 +81,7 @@ const MesCommandes = () => {
               </div>
               <div className="col-amount">{order.amount}</div>
               <div className="col-actions">
-                <button onClick={() => navigate(`/facture/${order.id}`)}>Voir</button>
+                <button onClick={() => navigate(`/suivi-commande/${order.id}`)}>Voir</button>
               </div>
             </div>
           ))}
