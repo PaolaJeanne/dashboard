@@ -137,8 +137,8 @@
 }
 
 /* Bouton retour */
-.btn-retour {
-  background-color: #e74c3c;
+.btn-facture {
+  background-color: #3498db;
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -151,7 +151,7 @@
   margin: 2rem auto 0;
 }
 
-.btn-retour:hover {
+.btn-facture:hover {
   background-color: #c0392b;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);

@@ -9,7 +9,7 @@ const SuiviCommande = () => {
   // Exemple de données de commande, cela pourrait être récupéré via une API
   const commande = {
     id: id,
-    numero: `CMD${id}`,
+    numero: `${id}`,
     statut: 'En cours de livraison',
     dateCommande: '2025-04-20',
     dateLivraisonEstimee: '2025-04-23',
