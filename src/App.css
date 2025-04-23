@@ -7,8 +7,8 @@
 /* Contenu principal à droite de la sidebar */
 .main-content {
   flex: 1;
-  margin-left: 350px; /* aligné à la sidebar */
-  padding: 40px 30px; /* marges intérieures homogènes haut/bas + gauche/droite */
+  margin-left: 280px; /* Réduit par rapport aux 350px initiaux */
+  padding: 20px 20px; /* Marges intérieures plus compactes */
   box-sizing: border-box;
 }
 
@@ -16,23 +16,23 @@
 @media (max-width: 992px) {
   .main-content {
     margin-left: 0;
-    padding: 30px 20px;
+    padding: 15px 15px; /* Réduction du padding */
   }
 
   .main-content.sidebar-open {
-    margin-left: 240px;
-    width: calc(100% - 240px);
+    margin-left: 220px; /* Sidebar plus étroite en mode ouvert */
+    width: calc(100% - 220px);
   }
 }
 
 /* Responsive : mobile */
 @media (max-width: 576px) {
   .main-content.sidebar-open {
-    margin-left: 220px;
-    width: calc(100% - 220px);
+    margin-left: 200px; /* Encore plus étroit en mobile */
+    width: calc(100% - 200px);
   }
 
   .main-content {
-    padding: 25px 15px;
+    padding: 10px; /* Padding réduit au minimum */
   }
 }
