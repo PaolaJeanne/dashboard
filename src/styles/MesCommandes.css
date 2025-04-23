@@ -301,15 +301,16 @@
     width: 100%;
   }
 
+  /* Réduction des colonnes pour les écrans moyens */
   .table-header,
   .table-row {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1fr; /* Réduit à 3 colonnes */
   }
 
   .col-status,
   .col-amount,
   .col-actions {
-    display: none;
+    display: none; /* Cache les colonnes secondaires */
   }
 }
 
@@ -322,19 +323,40 @@
     font-size: 1.5rem;
   }
 
+  /* Réduction supplémentaire pour les petits écrans */
   .table-header,
   .table-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr; /* Réduit à 2 colonnes */
     padding: 10px;
   }
 
-  .col-file {
-    display: none;
+  .col-file,
+  .col-status,
+  .col-amount,
+  .col-actions {
+    display: none; /* Cache les colonnes non essentielles */
   }
 
   .view-btn {
     padding: 6px 10px;
     font-size: 0.8rem;
+  }
+}
+
+/* ==================== */
+/* TABLE SCROLLING      */
+/* ==================== */
+@media (max-width: 480px) {
+  .orders-table {
+    display: block; /* Active le défilement horizontal */
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .table-header,
+  .table-row {
+    display: inline-block; /* Affiche les lignes en bloc pour le défilement */
+    width: 100%; /* S'assure que chaque ligne occupe toute la largeur */
   }
 }
 
