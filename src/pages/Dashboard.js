@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
@@ -65,7 +64,6 @@ const Dashboard = () => {
       <div className="dashboard-section">
         <div className="section-header">
           <h3 className="section-title">Vos commandes en cours</h3>
-          <Link to="/mes-commandes" className="see-all-link">Voir toutes les commandes</Link>
         </div>
         
         <div className="orders-list">
@@ -79,9 +77,6 @@ const Dashboard = () => {
               </div>
               <div className="order-details">
                 <p>{order.details}</p>
-                {order.status === 'Terminé' && (
-                  <button className="action-button">Prendre RDV pour retrait</button>
-                )}
               </div>
             </div>
           ))}
@@ -106,7 +101,6 @@ const Dashboard = () => {
               </li>
             ))}
           </ul>
-          <Link to="/fichiers" className="see-more-link">Gérer mes fichiers</Link>
         </div>
 
         {/* Colonne infos imprimerie */}
@@ -115,7 +109,6 @@ const Dashboard = () => {
           <div className="info-card">
             <h4>Prochains retraits</h4>
             <p className="next-pickup">CMD-4251 - Flyers - <strong>Prêt depuis le 18/04</strong></p>
-            <button className="primary-button">Prendre rendez-vous</button>
           </div>
           
           <div className="info-card">

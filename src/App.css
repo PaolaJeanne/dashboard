@@ -1,34 +1,38 @@
-/* App.css */
+/* Conteneur principal */
 .app-container {
   display: flex;
   min-height: 100vh;
 }
 
+/* Contenu principal à droite de la sidebar */
 .main-content {
   flex: 1;
-  padding: 20px;
-  margin-left: 200px; /* Largeur de la sidebar */
-  transition: margin-left 0.3s ease;
+  margin-left: 350px; /* aligné à la sidebar */
+  padding: 40px 30px; /* marges intérieures homogènes haut/bas + gauche/droite */
+  box-sizing: border-box;
 }
 
-/* Pour le mode mobile */
+/* Responsive : tablette */
 @media (max-width: 992px) {
   .main-content {
     margin-left: 0;
-    width: 100%;
+    padding: 30px 20px;
   }
-  
+
   .main-content.sidebar-open {
     margin-left: 240px;
     width: calc(100% - 240px);
-    overflow: hidden;
   }
 }
 
-/* Pour les très petits écrans */
+/* Responsive : mobile */
 @media (max-width: 576px) {
   .main-content.sidebar-open {
     margin-left: 220px;
     width: calc(100% - 220px);
+  }
+
+  .main-content {
+    padding: 25px 15px;
   }
 }
