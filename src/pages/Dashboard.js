@@ -60,32 +60,32 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Section commandes */}
-      <div className="dashboard-section">
-        <div className="section-header">
-          <h3 className="section-title">Vos commandes en cours</h3>
-        </div>
-        
-        <div className="orders-list">
-          {recentOrders.map((order, i) => (
-            <div className={`order-card status-${order.status.replace(' ', '-').toLowerCase()}`} key={i}>
-              <div className="order-main">
-                <span className="order-id">{order.id}</span>
-                <span className="order-date">{order.date}</span>
-                <span className="order-type">{order.type}</span>
-                <span className="order-status">{order.status}</span>
+      {/* Sections alignées en une seule ligne */}
+      <div className="dashboard-row">
+        {/* Section commandes */}
+        <div className="dashboard-section commandes" style={{ flex: 1 }}>
+          <div className="section-header">
+            <h3 className="section-title">Vos commandes en cours</h3>
+          </div>
+          <div className="orders-list">
+            {recentOrders.map((order, i) => (
+              <div className={`order-card status-${order.status.replace(' ', '-').toLowerCase()}`} key={i}>
+                <div className="order-main">
+                  <span className="order-id">{order.id}</span>
+                  <span className="order-date">{order.date}</span>
+                  <span className="order-type">{order.type}</span>
+                  <span className="order-status">{order.status}</span>
+                </div>
+                <div className="order-details">
+                  <p>{order.details}</p>
+                </div>
               </div>
-              <div className="order-details">
-                <p>{order.details}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className="columns-container">
-        {/* Colonne fichiers */}
-        <div className="dashboard-column files-column">
+        {/* Section fichiers */}
+        <div className="dashboard-section fichiers" style={{ flex: 1 }}>
           <h3 className="section-title">Vos fichiers récents</h3>
           <ul className="files-list">
             {fileStatus.map((file, i) => (
@@ -103,14 +103,13 @@ const Dashboard = () => {
           </ul>
         </div>
 
-        {/* Colonne infos imprimerie */}
-        <div className="dashboard-column info-column">
+        {/* Section infos imprimerie */}
+        <div className="dashboard-section infos" style={{ flex: 1 }}>
           <h3 className="section-title">Informations de votre imprimerie</h3>
           <div className="info-card">
             <h4>Prochains retraits</h4>
             <p className="next-pickup">CMD-4251 - Flyers - <strong>Prêt depuis le 18/04</strong></p>
           </div>
-          
           <div className="info-card">
             <h4>Délais moyens</h4>
             <ul className="delays-list">
@@ -119,7 +118,6 @@ const Dashboard = () => {
               <li>Brochures: <strong>5-7 jours</strong></li>
             </ul>
           </div>
-          
           <div className="info-card alert">
             <h4>Maintenance prévue</h4>
             <p>Le système sera indisponible le 25/04 de 20h à 22h pour maintenance.</p>
