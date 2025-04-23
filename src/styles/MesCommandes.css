@@ -79,10 +79,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
+  gap: 10px; /* Réduit l'espacement entre les éléments */
+  margin-bottom: 15px; /* Réduit l'espace en dessous de la barre */
   background-color: #f5f5f5;
-  padding: 15px;
+  padding: 10px; /* Réduit le padding interne */
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
 }
@@ -349,14 +349,27 @@
 @media (max-width: 480px) {
   .orders-table {
     display: block; /* Active le défilement horizontal */
-    overflow-x: auto;
-    white-space: nowrap;
+    overflow-x: auto; /* Permet le défilement horizontal */
+    white-space: nowrap; /* Empêche les colonnes de se casser sur plusieurs lignes */
+    border: 1px solid var(--border-color); /* Ajoute une bordure visible */
   }
 
   .table-header,
   .table-row {
-    display: inline-block; /* Affiche les lignes en bloc pour le défilement */
+    display: table; /* Change l'affichage en table pour conserver toutes les colonnes */
     width: 100%; /* S'assure que chaque ligne occupe toute la largeur */
+    table-layout: auto; /* Permet aux colonnes de s'adapter au contenu */
+  }
+
+  .col-command,
+  .col-file,
+  .col-details,
+  .col-status,
+  .col-amount,
+  .col-actions {
+    display: table-cell; /* Affiche toutes les colonnes */
+    padding: 8px;
+    text-align: left;
   }
 }
 
