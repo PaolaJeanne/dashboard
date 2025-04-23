@@ -1,6 +1,62 @@
-h2 {
-    color: #264653;
-  }
-h2:hover {
-    color: #2a9d8f;
-  }  
+.aide-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 0 auto;
+  color: #2c3e50;
+}
+
+.aide-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.aide-description {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.aide-options {
+  display: grid;
+  gap: 20px;
+}
+
+.aide-option {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-left: 4px solid #3498db;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.aide-option:hover {
+  background-color: #f0f8ff;
+}
+
+.aide-option h4 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #34495e;
+}
+
+.aide-option p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.aide-link {
+  font-size: 14px;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.aide-link:hover {
+  text-decoration: underline;
+}

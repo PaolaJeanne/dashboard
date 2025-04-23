@@ -139,128 +139,116 @@ restons sur ce style si diminue juste les tailles de orders-list /* styles/Dashb
 /* Orders List */
 .orders-list {
   display: grid;
-  gap: 10px;
+  gap: 20px;
 }
 
 .order-card {
-  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes égales */
+  gap: 10px;
+  align-items: center;
+  padding: 12px 15px;
   border-radius: 8px;
   border-left: 3px solid #3498db;
   background-color: #f8fafc;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
 }
 
 .order-card:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
 }
 
-.order-card.status-terminé {
-  border-left-color: #2ecc71;
-}
-
-.order-card.status-en-production {
-  border-left-color: #f39c12;
-}
-
-.order-card.status-en-attente {
-  border-left-color: #95a5a6;
-}
-
-.order-main {
+/* Colonnes égales */
+.order-col {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+  flex-direction: column;
+  min-width: 0; /* Permet le truncate */
 }
 
 .order-id {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 13px;
   color: #2c3e50;
-  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.order-date, .order-status {
-  font-size: 10px;
+.order-date {
+  font-size: 12px;
   color: #7f8c8d;
+  margin-top: 3px;
+}
+
+.order-type {
+  font-size: 13px;
+  color: #2c3e50;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.order-details {
+  font-size: 12px;
+  color: #7f8c8d;
+  margin-top: 3px;
+}
+
+.order-status-container {
+  text-align: right;
 }
 
 .order-status {
+  display: inline-block;
   padding: 3px 8px;
   border-radius: 10px;
-  background-color: #ecf0f1;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
+/* Couleurs des statuts */
 .order-card.status-terminé {
   border-left-color: #2ecc71;
+}
+.order-card.status-terminé .order-status {
+  background-color: #e6f7ed;
+  color: #27ae60;
 }
 
 .order-card.status-en-production {
   border-left-color: #f39c12;
 }
+.order-card.status-en-production .order-status {
+  background-color: #fef3e6;
+  color: #e67e22;
+}
 
 .order-card.status-en-attente {
   border-left-color: #95a5a6;
 }
-
-.order-card.status-terminé .order-status {
-  background-color: #e6f7ed; /* Version plus claire */
-  color: #27ae60;
-}
-
-.order-card.status-en-production .order-status {
-  background-color: #fef3e6; /* Version plus claire */
-  color: #e67e22;
+.order-card.status-en-attente .order-status {
+  background-color: #f0f0f0;
+  color: #7f8c8d;
 }
 
 .order-details p {
-  margin: 8px 0; /* Réduit de 10px */
-  font-size: 11px; /* Réduit de 14px */
-  color: #34495e;
-  line-height: 1.4; /* Légèrement plus serré */
+  margin: 6px 0; /* Réduit de 8px */
+  font-size: 12px; /* Réduit de 13px */
+  line-height: 1.3; /* Légèrement plus serré */
 }
 
-
-/* Responsive ajusté */
+/* Responsive */
 @media (max-width: 768px) {
-  .orders-list {
-    gap: 10px;
-  }
-  
   .order-card {
-    padding: 12px;
-  }
-  
-  .order-main {
+    grid-template-columns: 1fr;
     gap: 8px;
   }
+  
+  .order-status-container {
+    text-align: left;
+  }
 }
-
-  .order-id {
-    font-size: 12px; /* Réduit de 13px */
-  }
-  
-  .order-date, .order-status {
-    font-size: 11px; /* Réduit de 12px */
-  }
-  
-  .order-status {
-    padding: 2px 6px; /* Réduit de 3px 8px */
-    font-size: 10px; /* Réduit de 11px */
-  }
-  
-  .order-details p {
-    margin: 6px 0; /* Réduit de 8px */
-    font-size: 12px; /* Réduit de 13px */
-    line-height: 1.3; /* Légèrement plus serré */
-  }
-
-
 /* Columns Layout */
 .columns-container {
   display: grid;
