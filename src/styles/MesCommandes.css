@@ -291,36 +291,96 @@
 /* RESPONSIVE DESIGN    */
 /* ==================== */
 @media (max-width: 768px) {
+  .orders-table {
+    display: block; /* Active le défilement horizontal */
+    overflow-x: auto; /* Permet le défilement horizontal */
+    white-space: nowrap; /* Empêche les colonnes de se casser */
+    border: 1px solid var(--border-color); /* Ajoute une bordure visible */
+  }
+
   .search-filter {
-    flex-direction: column;
-    gap: 15px;
+    flex-direction: column; /* Les barres passent en colonne */
+    gap: 10px; /* Réduit l'espacement entre les éléments */
+    margin-bottom: 10px; /* Réduit l'espace en dessous */
   }
 
   .search-bar,
   .filter-bar {
-    width: 100%;
+    width: 100%; /* Les barres prennent toute la largeur */
   }
 
   /* Réduction des colonnes pour les écrans moyens */
   .table-header,
   .table-row {
-    grid-template-columns: 1fr 1fr 1fr; /* Réduit à 3 colonnes */
+    display: table; /* Change l'affichage en table */
+    width: 100%; /* S'assure que chaque ligne occupe toute la largeur */
+    table-layout: auto; /* Permet aux colonnes de s'adapter au contenu */
   }
 
+  .col-command,
+  .col-file,
+  .col-details,
   .col-status,
   .col-amount,
   .col-actions {
-    display: none; /* Cache les colonnes secondaires */
+    display: table-cell; /* Affiche toutes les colonnes */
+    padding: 8px;
+    text-align: left;
+  }
+
+  .orders-section {
+    padding: 15px; /* Réduit le padding interne */
+  }
+
+  .orders-header h2 {
+    font-size: 1.8rem; /* Réduit la taille du titre */
+  }
+
+  .orders-header p {
+    font-size: 0.9rem; /* Réduit la taille de la description */
+    max-width: 100%; /* Supprime la limite de largeur */
+  }
+
+  .view-btn {
+    padding: 6px 10px; /* Réduit le padding */
+    font-size: 0.85rem; /* Réduit la taille de la police */
   }
 }
 
 @media (max-width: 480px) {
+  .orders-section {
+    padding: 10px; /* Réduit encore le padding */
+  }
+
+  .orders-header h2 {
+    font-size: 1.5rem; /* Réduit davantage la taille du titre */
+  }
+
+  .orders-header p {
+    font-size: 0.85rem; /* Réduit encore la taille de la description */
+  }
+
   .orders-section {
     padding: 15px;
   }
 
   .orders-header h2 {
     font-size: 1.5rem;
+  }
+
+  .search-filter {
+    padding: 8px; /* Réduit le padding interne */
+    gap: 8px; /* Réduit encore l'espacement */
+  }
+
+  .search-box input {
+    font-size: 0.85rem; /* Réduit la taille de la police */
+    padding: 10px 10px 10px 35px; /* Ajuste le padding */
+  }
+
+  .status-filter {
+    font-size: 0.85rem; /* Réduit la taille de la police */
+    padding: 10px; /* Réduit le padding */
   }
 
   /* Réduction supplémentaire pour les petits écrans */
@@ -338,25 +398,39 @@
   }
 
   .view-btn {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    padding: 5px 8px; /* Réduit encore le padding */
+    font-size: 0.75rem; /* Réduit encore la taille de la police */
+  }
+
+  .orders-table {
+    padding: 0; /* Supprime le padding pour maximiser l'espace */
+  }
+
+  .table-header,
+  .table-row {
+    font-size: 0.85rem; /* Réduit la taille de la police */
+  }
+
+  .view-btn {
+    padding: 5px 8px; /* Réduit la taille des boutons */
+    font-size: 0.75rem; /* Réduit la taille de la police */
   }
 }
 
 /* ==================== */
 /* TABLE SCROLLING      */
 /* ==================== */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .orders-table {
     display: block; /* Active le défilement horizontal */
     overflow-x: auto; /* Permet le défilement horizontal */
-    white-space: nowrap; /* Empêche les colonnes de se casser sur plusieurs lignes */
+    white-space: nowrap; /* Empêche les colonnes de se casser */
     border: 1px solid var(--border-color); /* Ajoute une bordure visible */
   }
 
   .table-header,
   .table-row {
-    display: table; /* Change l'affichage en table pour conserver toutes les colonnes */
+    display: table; /* Change l'affichage en table */
     width: 100%; /* S'assure que chaque ligne occupe toute la largeur */
     table-layout: auto; /* Permet aux colonnes de s'adapter au contenu */
   }
@@ -370,6 +444,22 @@
     display: table-cell; /* Affiche toutes les colonnes */
     padding: 8px;
     text-align: left;
+  }
+}
+
+@media (max-width: 480px) {
+  .orders-table {
+    padding: 0; /* Supprime le padding pour maximiser l'espace */
+  }
+
+  .table-header,
+  .table-row {
+    font-size: 0.85rem; /* Réduit la taille de la police */
+  }
+
+  .view-btn {
+    padding: 5px 8px; /* Réduit la taille des boutons */
+    font-size: 0.75rem; /* Réduit la taille de la police */
   }
 }
 
