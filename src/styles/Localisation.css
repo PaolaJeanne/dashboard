@@ -1,40 +1,96 @@
-/* Localisation.css */
-.dashboard {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
-  font-family: 'Segoe UI', sans-serif;
+.localisation-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.welcome {
-  margin-bottom: 1.5rem;
+.localisation-input-group {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-.location-form {
-  margin-bottom: 1rem;
-}
-
-.location-form input {
-  padding: 0.75rem;
-  width: calc(100% - 140px);
-  margin-right: 10px;
+.localisation-input {
+  flex: 1;
+  padding: 12px 15px;
   border: 1px solid #ccc;
-  border-radius: 6px;
+  border-radius: 10px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
 }
 
-.location-form button {
-  padding: 0.75rem 1rem;
-  border: none;
-  background-color: #007BFF;
+.localisation-input:focus {
+  border-color: #4CAF50;
+}
+
+.localisation-button {
+  background-color: #4CAF50;
   color: #fff;
-  border-radius: 6px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.map-container {
-  margin-top: 1rem;
-  height: 400px;
+.localisation-button:hover {
+  background-color: #45a049;
+}
+
+.localisation-map {
+  height: 300px;
+  width: 100%;
+  border: 2px solid #4CAF50;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
+
+.localisation-selected {
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #e8f5e9;
+  border: 1px solid #4CAF50;
+  border-radius: 10px;
+  color: #2e7d32;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.localisation-error {
+  margin-top: -10px;
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 600px) {
+  .localisation-container {
+    padding: 15px;
+  }
+
+  .localisation-button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .localisation-input {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
 }
