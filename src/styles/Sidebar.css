@@ -1,9 +1,8 @@
-/* src/styles/Sidebar.css */
-
+/* Sidebar avec palette bleu nuit & jaune */
 .sidebar {
   width: 240px;
-  background-color: #fff;
-  border-right: 1px solid #eee;
+  background-color: var(--night-blue);
+  border-right: 1px solid var(--border);
   padding: 20px;
   box-sizing: border-box;
   height: 100vh;
@@ -21,14 +20,10 @@
   font-weight: bold;
   display: flex;
   align-items: center;
-}
-
-.logo .black {
-  color: #000;
-}
-
-.logo .blue {
-  color: #3498db;
+  justify-content: center;
+  color: var(--gold-yellow);
+  padding: 10px;
+  border-bottom: 1px solid var(--light-blue);
 }
 
 .sidebar nav {
@@ -42,7 +37,7 @@
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  color: #333;
+  color: var(--light-gray);
   padding: 12px 10px;
   border-radius: 6px;
   font-size: 15px;
@@ -50,17 +45,21 @@
 }
 
 .sidebar-link:hover {
-  background-color: #f0f0f0;
+  background-color: var(--dark-blue);
+  color: var(--gold-yellow);
 }
 
 .sidebar-link.active {
-  background-color: #eaf6ff;
-  color: #3498db;
+  background-color: var(--light-blue);
+  color: var(--gold-yellow);
   font-weight: 500;
+  box-shadow: 0 1px 3px rgba(10, 26, 47, 0.12);
 }
 
-.sidebar-link span {
-  white-space: nowrap;
+.sidebar-link i {
+  color: var(--gold-yellow);
+  width: 20px;
+  text-align: center;
 }
 
 /* Mobile menu toggle */
@@ -70,8 +69,8 @@
   top: 15px;
   left: 15px;
   z-index: 101;
-  background: #fff;
-  border: 1px solid #eee;
+  background: var(--night-blue);
+  border: 1px solid var(--border);
   border-radius: 6px;
   padding: 8px 10px;
   cursor: pointer;
@@ -80,7 +79,7 @@
 
 .menu-toggle svg {
   font-size: 1.2rem;
-  color: #3498db;
+  color: var(--gold-yellow);
 }
 
 /* Overlay pour mobile */
@@ -91,7 +90,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(10, 26, 47, 0.5);
   z-index: 99;
 }
 

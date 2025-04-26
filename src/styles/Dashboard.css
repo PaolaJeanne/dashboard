@@ -39,11 +39,19 @@
 /* Header */
 .dashboard-header {
   background: linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
-  color: white;
+  color: white; /* Texte principal en blanc */
   border-radius: 12px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: var(--shadow-xl);
+}
+
+.client-info h1 {
+  color: white; /* Nom du client en blanc */
+}
+
+.client-meta {
+  color: white; /* Métadonnées en blanc */
 }
 
 .avatar {
@@ -59,8 +67,8 @@
 }
 
 .account-type {
-  background-color: rgba(255, 215, 0, 0.2);
-  color: var(--gold-yellow);
+  background-color: rgba(255, 215, 255, 0.15);
+  color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -68,14 +76,18 @@
 }
 
 .favorite-product {
-  background-color: rgba(255, 215, 0, 0.1);
-  color: var(--gold-yellow);
+  background-color: rgba(255, 215, 255, 0.1);
+  color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
   font-size: 0.85rem;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+favorite-product svg {
+  color: var(--gold-yellow); /* Conserve la couleur jaune pour l'icône */
 }
 
 /* Statistiques */
