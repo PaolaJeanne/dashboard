@@ -1,479 +1,114 @@
-/* ==================== */
-/* VARIABLES & RESETS   */
-/* ==================== */
-:root {
-  --primary-color: #3498db;
-  --primary-hover: #2980b9;
-  --text-dark: #2c3e50;
-  --text-medium: #7f8c8d;
-  --text-light: #f9f9f9;
-  --bg-light: #f9f9f9;
-  --bg-white: #fff;
-  --border-color: #e0e0e0;
-  --border-radius: 8px;
-  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-/* ==================== */
-/* BASE STYLES          */
-/* ==================== */
 .print-easy-container {
-  font-family: 'Segoe UI', Arial, sans-serif; /* Meilleure police moderne */
-  line-height: 1.6;
   padding: 20px;
-  background-color: var(--bg-light);
-  color: var(--text-dark);
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f8;
   min-height: 100vh;
 }
 
-/* ==================== */
-/* LAYOUT COMPONENTS    */
-/* ==================== */
 .orders-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: var(--bg-white);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  padding: 25px;
-  overflow: hidden; /* Empêche les débordements */
-}
-
-/* Header */
-.orders-header {
-  text-align: center;
-  margin-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
 .orders-header h2 {
-  font-size: 2rem; /* Utilisation de rem pour une meilleure échelle */
-  font-weight: 700;
-  color: var(--text-dark);
-  margin: 0;
-  line-height: 1.2;
+  margin-bottom: 8px;
+  font-size: 24px;
+  color: #2c3e50;
 }
 
 .orders-header p {
-  font-size: 1rem;
-  color: var(--text-medium);
-  margin: 0;
-  max-width: 600px; /* Limite la largeur pour une meilleure lisibilité */
+  color: #7f8c8d;
 }
 
-/* Search & Filter Container */
 .search-filter {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 10px; /* Réduit l'espacement entre les éléments */
-  margin-bottom: 15px; /* Réduit l'espace en dessous de la barre */
-  background-color: #f5f5f5;
-  padding: 10px; /* Réduit le padding interne */
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-}
-
-/* Search Bar */
-.search-bar {
-  flex: 1 1 300px; /* Meilleure gestion de la flexibilité */
-  min-width: 200px;
+  margin: 20px 0;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .search-box {
-  position: relative;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 6px 12px;
+  background: #fff;
 }
 
 .search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #666;
-  font-size: 16px;
+  margin-right: 8px;
+  color: #888;
 }
 
 .search-box input {
-  width: 100%;
-  padding: 12px 12px 12px 40px;
-  font-size: 0.95rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background-color: var(--bg-white);
-  transition: var(--transition);
-}
-
-.search-box input:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  border: none;
   outline: none;
-}
-
-/* Filter Bar */
-.filter-bar {
-  flex: 0 1 200px;
-  min-width: 150px;
-}
-
-.status-filter-container {
-  position: relative;
-  width: 100%;
-}
-
-.status-filter-container::after {
-  content: '▼';
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: #666;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .status-filter {
-  width: 100%;
-  padding: 12px 15px;
-  font-size: 0.95rem;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  background-color: var(--bg-white);
-  color: var(--text-dark);
-  box-shadow: var(--box-shadow);
-  appearance: none;
-  cursor: pointer;
-  transition: var(--transition);
-  padding-right: 30px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
 }
 
-.status-filter:hover {
-  border-color: var(--primary-color);
-  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
-}
-
-.status-filter:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-  outline: none;
-}
-
-/* ==================== */
-/* TABLE STYLES         */
-/* ==================== */
 .orders-table {
-  width: 100%;
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  border-collapse: separate; /* Pour les bordures arrondies */
+  margin-top: 20px;
+  border-top: 1px solid #eee;
 }
 
-.table-header,
-.table-row {
+.table-header, .table-row {
   display: grid;
-  grid-template-columns: repeat(5, 1fr) 80px;
-  padding: 12px 15px;
+  grid-template-columns: 1.5fr 1.5fr 2fr 1.5fr 1.5fr 1fr;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
   align-items: center;
 }
 
 .table-header {
-  background-color: #f5f5f5;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--text-dark);
-  text-align: left;
+  font-weight: bold;
+  color: #34495e;
 }
 
 .table-row {
-  border-bottom: 1px solid #eee;
-  transition: var(--transition);
+  background: #fff;
+  transition: background 0.3s;
 }
 
-.table-row:not(.table-header):hover {
-  background-color: rgba(52, 152, 219, 0.05);
+.table-row:hover {
+  background: #f1f1f1;
 }
 
-.table-row:last-child {
-  border-bottom: none;
-}
-
-/* Table Columns */
-.col-command,
-.col-file,
-.col-details,
-.col-status,
-.col-amount,
-.col-actions {
-  padding: 8px 5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* Status Column */
 .col-status {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
-.status-badge {
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  text-transform: capitalize;
-}
-
-.status-pending {
-  background-color: #fff3e0;
-  color: #e67e22;
-}
-
-.status-completed {
-  background-color: #e8f5e9;
-  color: #2e7d32;
-}
-
-.spin-icon {
-  animation: spin 1s linear infinite;
-  color: #e67e22;
-}
-
-/* Action Button */
-.view-btn {
-  background-color: var(--primary-color);
-  color: white;
+.col-actions button {
+  padding: 6px 12px;
   border: none;
-  padding: 8px 12px;
-  font-size: 0.85rem;
-  border-radius: 4px;
+  background-color: #2d89ef;
+  color: white;
+  border-radius: 6px;
   cursor: pointer;
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  font-size: 14px;
 }
 
-.view-btn:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
+.col-actions button:hover {
+  background-color: #1b6fc2;
 }
 
-.view-btn:active {
-  transform: translateY(0);
+.spin {
+  animation: spin 1s linear infinite;
 }
 
-/* ==================== */
-/* ANIMATIONS           */
-/* ==================== */
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* ==================== */
-/* RESPONSIVE DESIGN    */
-/* ==================== */
-@media (max-width: 768px) {
-  .orders-table {
-    display: block; /* Active le défilement horizontal */
-    overflow-x: auto; /* Permet le défilement horizontal */
-    white-space: nowrap; /* Empêche les colonnes de se casser */
-    border: 1px solid var(--border-color); /* Ajoute une bordure visible */
-  }
-
-  .search-filter {
-    flex-direction: column; /* Les barres passent en colonne */
-    gap: 10px; /* Réduit l'espacement entre les éléments */
-    margin-bottom: 10px; /* Réduit l'espace en dessous */
-  }
-
-  .search-bar,
-  .filter-bar {
-    width: 100%; /* Les barres prennent toute la largeur */
-  }
-
-  /* Réduction des colonnes pour les écrans moyens */
-  .table-header,
-  .table-row {
-    display: table; /* Change l'affichage en table */
-    width: 100%; /* S'assure que chaque ligne occupe toute la largeur */
-    table-layout: auto; /* Permet aux colonnes de s'adapter au contenu */
-  }
-
-  .col-command,
-  .col-file,
-  .col-details,
-  .col-status,
-  .col-amount,
-  .col-actions {
-    display: table-cell; /* Affiche toutes les colonnes */
-    padding: 8px;
-    text-align: left;
-  }
-
-  .orders-section {
-    padding: 15px; /* Réduit le padding interne */
-  }
-
-  .orders-header h2 {
-    font-size: 1.8rem; /* Réduit la taille du titre */
-  }
-
-  .orders-header p {
-    font-size: 0.9rem; /* Réduit la taille de la description */
-    max-width: 100%; /* Supprime la limite de largeur */
-  }
-
-  .view-btn {
-    padding: 6px 10px; /* Réduit le padding */
-    font-size: 0.85rem; /* Réduit la taille de la police */
-  }
-}
-
-@media (max-width: 480px) {
-  .orders-section {
-    padding: 10px; /* Réduit encore le padding */
-  }
-
-  .orders-header h2 {
-    font-size: 1.5rem; /* Réduit davantage la taille du titre */
-  }
-
-  .orders-header p {
-    font-size: 0.85rem; /* Réduit encore la taille de la description */
-  }
-
-  .orders-section {
-    padding: 15px;
-  }
-
-  .orders-header h2 {
-    font-size: 1.5rem;
-  }
-
-  .search-filter {
-    padding: 8px; /* Réduit le padding interne */
-    gap: 8px; /* Réduit encore l'espacement */
-  }
-
-  .search-box input {
-    font-size: 0.85rem; /* Réduit la taille de la police */
-    padding: 10px 10px 10px 35px; /* Ajuste le padding */
-  }
-
-  .status-filter {
-    font-size: 0.85rem; /* Réduit la taille de la police */
-    padding: 10px; /* Réduit le padding */
-  }
-
-  /* Réduction supplémentaire pour les petits écrans */
-  .table-header,
-  .table-row {
-    grid-template-columns: 1fr 1fr; /* Réduit à 2 colonnes */
-    padding: 10px;
-  }
-
-  .col-file,
-  .col-status,
-  .col-amount,
-  .col-actions {
-    display: none; /* Cache les colonnes non essentielles */
-  }
-
-  .view-btn {
-    padding: 5px 8px; /* Réduit encore le padding */
-    font-size: 0.75rem; /* Réduit encore la taille de la police */
-  }
-
-  .orders-table {
-    padding: 0; /* Supprime le padding pour maximiser l'espace */
-  }
-
-  .table-header,
-  .table-row {
-    font-size: 0.85rem; /* Réduit la taille de la police */
-  }
-
-  .view-btn {
-    padding: 5px 8px; /* Réduit la taille des boutons */
-    font-size: 0.75rem; /* Réduit la taille de la police */
-  }
-}
-
-/* ==================== */
-/* TABLE SCROLLING      */
-/* ==================== */
-@media (max-width: 768px) {
-  .orders-table {
-    display: block; /* Active le défilement horizontal */
-    overflow-x: auto; /* Permet le défilement horizontal */
-    white-space: nowrap; /* Empêche les colonnes de se casser */
-    border: 1px solid var(--border-color); /* Ajoute une bordure visible */
-  }
-
-  .table-header,
-  .table-row {
-    display: table; /* Change l'affichage en table */
-    width: 100%; /* S'assure que chaque ligne occupe toute la largeur */
-    table-layout: auto; /* Permet aux colonnes de s'adapter au contenu */
-  }
-
-  .col-command,
-  .col-file,
-  .col-details,
-  .col-status,
-  .col-amount,
-  .col-actions {
-    display: table-cell; /* Affiche toutes les colonnes */
-    padding: 8px;
-    text-align: left;
-  }
-}
-
-@media (max-width: 480px) {
-  .orders-table {
-    padding: 0; /* Supprime le padding pour maximiser l'espace */
-  }
-
-  .table-header,
-  .table-row {
-    font-size: 0.85rem; /* Réduit la taille de la police */
-  }
-
-  .view-btn {
-    padding: 5px 8px; /* Réduit la taille des boutons */
-    font-size: 0.75rem; /* Réduit la taille de la police */
-  }
-}
-
-/* ==================== */
-/* UTILITY CLASSES      */
-/* ==================== */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
 }

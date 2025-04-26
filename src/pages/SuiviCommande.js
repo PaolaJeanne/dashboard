@@ -1,12 +1,11 @@
 import React from 'react';
-import { useParams , useNavigate } from 'react-router-dom';
-import '../styles/SuiviCommande.css'; // Ajoute un fichier CSS pour le style
+import { useParams, useNavigate } from 'react-router-dom';
+import '../styles/SuiviCommande.css';
 
 const SuiviCommande = () => {
-  const { id } = useParams(); // Récupérer l'ID de la commande depuis l'URL
-  const navigate = useNavigate(); // Pour naviguer vers d'autres pages
+  const { id } = useParams();
+  const navigate = useNavigate();
 
-  // Exemple de données de commande, cela pourrait être récupéré via une API
   const commande = {
     id: id,
     numero: `${id}`,
@@ -16,68 +15,66 @@ const SuiviCommande = () => {
     transporteur: 'Transporteur XYZ',
     suivi: '1234567890',
     produits: [
-      { nom: 'Produit 1', quantite: 2, prix: 10.0 },
-      { nom: 'Produit 2', quantite: 1, prix: 25.0 },
+      { nom: 'Affiche A2', quantite: 2, prix: 10.0 },
+      { nom: 'Flyers A5', quantite: 500, prix: 25.0 },
     ],
     historiqueLivraison: [
       { date: '2025-04-21', etape: 'Commande en préparation' },
       { date: '2025-04-22', etape: 'Expédiée' },
       { date: '2025-04-23', etape: 'En route' },
     ],
-    adresseLivraison: '123 Rue Exemple, Ville, Pays',
-    contactTransporteur: '123-456-7890', // Numéro de téléphone du transporteur
+    adresseLivraison: '123 Rue Exemple, Dakar, Sénégal',
+    contactTransporteur: '77 123 45 67',
   };
 
- 
   return (
     <div className="suivi-commande-container">
-      <h1>Suivi de la commande {commande.numero}</h1>
+      <h1>📦 Suivi de la commande <span className="commande-id">{commande.numero}</span></h1>
 
-      <div className="commande-details">
-        <h2>Détails de la commande</h2>
-        <p><strong>Statut :</strong> {commande.statut}</p>
+      <section className="commande-details">
+        <h2>🗂️ Détails de la commande</h2>
+        <p><strong>Statut :</strong> <span className="statut">{commande.statut}</span></p>
         <p><strong>Date de commande :</strong> {commande.dateCommande}</p>
-        <p><strong>Date estimée de livraison :</strong> {commande.dateLivraisonEstimee}</p>
+        <p><strong>Livraison estimée :</strong> {commande.dateLivraisonEstimee}</p>
         <p><strong>Transporteur :</strong> {commande.transporteur}</p>
         <p><strong>Numéro de suivi :</strong> {commande.suivi}</p>
-      </div>
+      </section>
 
-      <div className="historique-livraison">
-        <h2>Historique de la livraison</h2>
+      <section className="historique-livraison">
+        <h2>📍 Historique de la livraison</h2>
         <ul>
           {commande.historiqueLivraison.map((etape, index) => (
-            <li key={index}>
-              <strong>{etape.date} :</strong> {etape.etape}
-            </li>
+            <li key={index}><strong>{etape.date} :</strong> {etape.etape}</li>
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div className="produits-details">
-        <h2>Produits</h2>
+      <section className="produits-details">
+        <h2>🧾 Produits commandés</h2>
         <ul>
           {commande.produits.map((produit, index) => (
             <li key={index}>
-              {produit.nom} (x{produit.quantite}) - ${produit.prix.toFixed(2)}
+              {produit.nom} (x{produit.quantite}) – {produit.prix.toFixed(2)} FCFA
             </li>
           ))}
         </ul>
-      </div>
+      </section>
 
-      <div className="adresse-livraison">
-        <h2>Adresse de livraison</h2>
+      <section className="adresse-livraison">
+        <h2>🏠 Adresse de livraison</h2>
         <p>{commande.adresseLivraison}</p>
-      </div>
+      </section>
 
-      <div className="contact-transporteur">
-        <h2>Contact Transporteur</h2>
-        <p>Numéro de téléphone : {commande.contactTransporteur}</p>
-      </div>
+      <section className="contact-transporteur">
+        <h2>☎️ Contact du transporteur</h2>
+        <p>{commande.contactTransporteur}</p>
+      </section>
 
-      {/* Bouton pour voir la facture */}
-  <button className="btn-facture" onClick={() => navigate(`/facture/${commande.id}`)}>
-    Voir la facture
-  </button>
+      <div className="action-buttons">
+        <button className="btn-facture" onClick={() => navigate(`/facture/${commande.id}`)}>
+          Voir la facture
+        </button>
+      </div>
     </div>
   );
 };

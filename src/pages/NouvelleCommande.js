@@ -1,13 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import '../styles/NouvelleCommande.css';
+import 'leaflet/dist/leaflet.css';
 
 const NouvelleCommande = () => {
   const [fileName, setFileName] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [instructions, setInstructions] = useState('');
+  const [copies, setCopies] = useState(1);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
+  const [locationInput, setLocationInput] = useState('');
+  const [userLocation, setUserLocation] = useState({ lat: 51.505, lng: -0.09 });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setUserLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -26,17 +40,13 @@ const NouvelleCommande = () => {
     setTimeout(() => {
       setLoading(false);
       setMessage('✅ Commande envoyée avec succès !');
-      // reset form (optionnel)
     }, 2000);
   };
 
   const handleChatSubmit = () => {
     if (!newMessage.trim()) return;
-
     setMessages([...messages, { sender: 'client', text: newMessage }]);
     setNewMessage('');
-
-    // simulate admin response
     setTimeout(() => {
       setMessages(prev => [...prev, { sender: 'admin', text: 'Merci pour votre message. Nous le traitons.' }]);
     }, 1000);
@@ -57,6 +67,10 @@ const NouvelleCommande = () => {
       {/* Options */}
       <div className="options-grid">
         <div>
+          <label>Nombre de copies</label>
+          <input type="number" min="1" value={copies} onChange={(e) => setCopies(e.target.value)} />
+        </div>
+        <div>
           <label>Impression</label>
           <select><option>Recto</option><option>Recto-verso</option></select>
         </div>
@@ -70,7 +84,49 @@ const NouvelleCommande = () => {
         </div>
         <div>
           <label>Format</label>
-          <select><option>A4</option><option>A3</option></select>
+          <select>
+            <option>A4</option>
+            <option>A3</option>
+            <option>A5</option>
+            <option>21x29,7</option>
+            <option>Personnalisé</option>
+          </select>
+        </div>
+        <div>
+          <label>Type de papier</label>
+          <select>
+            <option>Brillant</option>
+            <option>Mat</option>
+            <option>Recyclé</option>
+          </select>
+        </div>
+        <div>
+          <label>Grammage</label>
+          <select>
+            <option>80g</option>
+            <option>100g</option>
+            <option>135g</option>
+            <option>170g</option>
+            <option>300g</option>
+          </select>
+        </div>
+        <div>
+          <label>Pelliculage</label>
+          <select>
+            <option>Aucun</option>
+            <option>Brillant</option>
+            <option>Mat</option>
+            <option>Soft touch</option>
+          </select>
+        </div>
+        <div>
+          <label>Reliure</label>
+          <select>
+            <option>Aucune</option>
+            <option>Agrafes</option>
+            <option>Spirale</option>
+            <option>Dos carré collé</option>
+          </select>
         </div>
       </div>
 
@@ -83,6 +139,27 @@ const NouvelleCommande = () => {
           value={instructions}
           onChange={(e) => setInstructions(e.target.value)}
         />
+      </div>
+
+      {/* Localisation */}
+      <div className="localisation-section">
+        <label>Adresse de livraison</label>
+        <input
+          type="text"
+          placeholder="Ex: Rue 123, quartier XYZ"
+          value={locationInput}
+          onChange={(e) => setLocationInput(e.target.value)}
+        />
+        <MapContainer center={userLocation} zoom={13} style={{ width: "100%", height: "300px", marginTop: '10px' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <Marker position={userLocation}>
+            <Popup>
+              Votre position actuelle
+            </Popup>
+          </Marker>
+        </MapContainer>
       </div>
 
       <button className="send-btn" onClick={handleSubmit} disabled={loading}>
