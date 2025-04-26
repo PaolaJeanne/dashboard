@@ -1,7 +1,7 @@
 :root {
   /* Palette bleu nuit & jaune */
-  --night-blue: #0a1a2f;
-  --dark-blue: #1a2a4a;
+  --night-blue: #123456; /* Bleu nuit éclairci */
+  --dark-blue: #1e3a5f; /* Bleu foncé éclairci */
   --medium-blue: #2a3a6a;
   --light-blue: #3a4a8a;
   --gold-yellow: #ffd700;
@@ -9,17 +9,26 @@
   --cream: #fffaf0;
   --light-gray: #f0f2f5;
   --border: #2a3a5a;
+  --white: #ffffff;
 
   /* Couleurs d'alerte */
-  --success-green: #10b981;
-  --warning-orange: #f97316;
-  --error-red: #ef4444;
+  --success: #10b981;
+  --warning: #f97316;
+  --error: #ef4444;
+  --info: #3b82f6;
 
-  /* Couleurs d'ombre */
-  --shadow-sm: rgba(0, 0, 0, 0.1);
-  --shadow-md: rgba(0, 0, 0, 0.15);
-  --shadow-lg: rgba(0, 0, 0, 0.2);
-  --shadow-xl: rgba(0, 0, 0, 0.25);
+  /* Ombres */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.25);
+
+  /* Bordures */
+  --border-radius: 12px;
+  --border-width: 1px;
+
+  /* Transitions */
+  --transition: all 0.3s ease;
 }
 
 /* Base */
@@ -32,26 +41,26 @@
 
 /* Effets d'ombre */
 .shadow-sm {
-  box-shadow: 0 1px 3px var(--shadow-sm);
+  box-shadow: var(--shadow-sm);
 }
 
 .shadow-md {
-  box-shadow: 0 4px 6px var(--shadow-md);
+  box-shadow: var(--shadow-md);
 }
 
 .shadow-lg {
-  box-shadow: 0 10px 15px var(--shadow-lg);
+  box-shadow: var(--shadow-lg);
 }
 
 .shadow-xl {
-  box-shadow: 0 20px 25px var(--shadow-xl);
+  box-shadow: var(--shadow-xl);
 }
 
 /* Header */
 .dashboard-header {
   background: linear-gradient(135deg, var(--night-blue) 0%, var(--dark-blue) 100%);
   color: var(--white);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   box-shadow: var(--shadow-xl);
@@ -78,7 +87,7 @@
 }
 
 .account-type {
-  background-color: rgba(255, 215, 255, 0.15);
+  background-color: rgba(255, 215, 0, 0.15);
   color: var(--white);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -87,7 +96,7 @@
 }
 
 .favorite-product {
-  background-color: rgba(255, 215, 255, 0.1);
+  background-color: rgba(255, 215, 0, 0.1);
   color: var(--white);
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -97,7 +106,7 @@
   gap: 0.5rem;
 }
 
-favorite-product svg {
+.favorite-product svg {
   color: var(--gold-yellow);
 }
 
@@ -117,7 +126,7 @@ favorite-product svg {
   align-items: center;
   gap: 1rem;
   box-shadow: var(--shadow-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: var(--transition);
 }
 
 .stat-card:hover {
@@ -167,7 +176,7 @@ favorite-product svg {
   align-items: center;
   gap: 0.5rem;
   color: var(--medium-blue);
-  transition: all 0.3s ease;
+  transition: var(--transition);
 }
 
 .tab-btn.active {
@@ -212,11 +221,11 @@ favorite-product svg {
 .order-card {
   position: relative;
   background: var(--white);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   padding: 1.5rem;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  transition: all 0.3s ease;
+  border: var(--border-width) solid var(--border);
+  transition: var(--transition);
   cursor: pointer;
 }
 
@@ -244,7 +253,7 @@ favorite-product svg {
   box-shadow: var(--shadow-sm);
   background-color: var(--light-yellow);
   color: var(--gold-yellow);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: var(--transition);
 }
 
 .order-status:hover {
@@ -273,25 +282,6 @@ favorite-product svg {
   font-weight: 700;
   color: var(--night-blue);
   margin: 0;
-}
-
-.order-status {
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
-  border-radius: 20px;
-  text-transform: capitalize;
-  box-shadow: var(--shadow-sm);
-}
-
-.order-status.en-impression {
-  background-color: rgba(255, 215, 0, 0.2);
-  color: var(--gold-yellow);
-}
-
-.order-status.en-préparation {
-  background-color: rgba(255, 215, 0, 0.4);
-  color: var(--night-blue);
 }
 
 /* Métadonnées de la commande */
@@ -396,9 +386,9 @@ favorite-product svg {
   padding: 0.75rem;
   background-color: var(--white);
   border-radius: 8px;
-  border: 1px solid var(--border);
+  border: var(--border-width) solid var(--border);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease;
+  transition: var(--transition);
 }
 
 .file-item:hover {
@@ -443,7 +433,7 @@ favorite-product svg {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  transition: all 0.2s ease;
+  transition: var(--transition);
   box-shadow: var(--shadow-sm);
 }
 
@@ -498,11 +488,11 @@ favorite-product svg {
 
 .history-card {
   background: var(--white);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   padding: 1.5rem;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease;
+  border: var(--border-width) solid var(--border);
+  transition: var(--transition);
 }
 
 .history-card:hover {
@@ -518,7 +508,7 @@ favorite-product svg {
 }
 
 .star {
-  color: #e2e8f0;
+  color: var(--light-gray);
   font-size: 1.2rem;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -537,11 +527,11 @@ favorite-product svg {
 
 .file-card {
   background: var(--white);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   padding: 1.5rem;
   box-shadow: var(--shadow-md);
-  border: 1px solid var(--border);
-  transition: all 0.3s ease;
+  border: var(--border-width) solid var(--border);
+  transition: var(--transition);
 }
 
 .file-card:hover {
@@ -559,7 +549,7 @@ favorite-product svg {
 .file-icon {
   width: 48px;
   height: 48px;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   background-color: var(--night-blue);
   color: var(--gold-yellow);
   display: flex;
@@ -578,8 +568,8 @@ favorite-product svg {
 }
 
 .file-card.validé .file-status {
-  background-color: rgba(0, 200, 83, 0.1);
-  color: #00c853;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
 }
 
 .file-card.en-vérification .file-status {
@@ -603,7 +593,7 @@ favorite-product svg {
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
   box-shadow: var(--shadow-md);
 }
 
@@ -644,6 +634,14 @@ favorite-product svg {
     padding-bottom: 0.5rem;
   }
   
+  .orders-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .order-card.expanded {
+    grid-column: span 1;
+  }
+  
   .file-header {
     flex-wrap: wrap;
   }
@@ -661,4 +659,10 @@ favorite-product svg {
     width: 100%;
     justify-content: center;
   }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
