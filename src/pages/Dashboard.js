@@ -212,36 +212,43 @@ const DashboardClient = () => {
             
             <div className="orders-list">
               {currentOrders.map((order) => (
-                <div 
-                  className={`order-card ${order.status.toLowerCase().replace(' ', '-')} ${expandedOrder === order.id ? 'expanded' : ''}`}
+                <div
+                  className={`order-card ${order.status.toLowerCase().replace(' ', '-')} ${
+                    expandedOrder === order.id ? 'expanded' : ''
+                  }`}
                   key={order.id}
                   onClick={() => toggleOrderExpand(order.id)}
                 >
+                  {/* Résumé de la commande */}
                   <div className="order-summary">
+                    {/* En-tête de la commande */}
                     <div className="order-header">
-                      <div>
+                      <div className="order-info">
                         <span className="order-id">{order.id}</span>
                         <h3 className="order-product">{order.product}</h3>
                       </div>
                       <span className="order-status">{order.status}</span>
                     </div>
-                    
+
+                    {/* Métadonnées de la commande */}
                     <div className="order-meta">
                       <p className="order-date">
                         <FiCalendar /> Commandé le {order.date}
                       </p>
                       <div className="progress-container">
-                        <div 
-                          className="progress-bar" 
+                        <div
+                          className="progress-bar"
                           style={{ width: `${order.progress}%` }}
                         ></div>
                         <span className="progress-text">{order.progress}%</span>
                       </div>
                     </div>
                   </div>
-                  
+
+                  {/* Détails de la commande (affichés si étendus) */}
                   {expandedOrder === order.id && (
                     <div className="order-details">
+                      {/* Section des spécifications */}
                       <div className="details-section">
                         <h4>Détails techniques</h4>
                         <div className="specs-grid">
@@ -253,7 +260,8 @@ const DashboardClient = () => {
                           ))}
                         </div>
                       </div>
-                      
+
+                      {/* Section des fichiers associés */}
                       <div className="details-section">
                         <h4>Fichiers associés</h4>
                         <div className="files-list">
@@ -264,7 +272,9 @@ const DashboardClient = () => {
                               </div>
                               <div className="file-info">
                                 <p className="file-name">{file.name}</p>
-                                <p className="file-meta">{file.type} • {file.size}</p>
+                                <p className="file-meta">
+                                  {file.type} • {file.size}
+                                </p>
                               </div>
                               <button className="download-btn">
                                 <FiDownload size={16} />
@@ -273,24 +283,38 @@ const DashboardClient = () => {
                           ))}
                         </div>
                       </div>
-                      
+
+                      {/* Section des informations de livraison */}
                       <div className="details-section">
-                        <h4><FiTruck /> Livraison</h4>
+                        <h4>
+                          <FiTruck /> Livraison
+                        </h4>
                         <div className="delivery-info">
-                          <p><strong>Mode:</strong> {order.delivery.type}</p>
+                          <p>
+                            <strong>Mode:</strong> {order.delivery.type}
+                          </p>
                           {order.delivery.address && (
-                            <p><strong>Adresse:</strong> {order.delivery.address}</p>
+                            <p>
+                              <strong>Adresse:</strong> {order.delivery.address}
+                            </p>
                           )}
                           {order.delivery.location && (
-                            <p><strong>Point de retrait:</strong> {order.delivery.location}</p>
+                            <p>
+                              <strong>Point de retrait:</strong> {order.delivery.location}
+                            </p>
                           )}
-                          <p><strong>Date estimée:</strong> {order.delivery.estimatedDate}</p>
+                          <p>
+                            <strong>Date estimée:</strong> {order.delivery.estimatedDate}
+                          </p>
                           {order.delivery.hours && (
-                            <p><strong>Heures d'ouverture:</strong> {order.delivery.hours}</p>
+                            <p>
+                              <strong>Heures d'ouverture:</strong> {order.delivery.hours}
+                            </p>
                           )}
                         </div>
                       </div>
-                      
+
+                      {/* Section des alertes */}
                       {order.alerts && (
                         <div className="alert-message">
                           <FiAlertCircle size={20} />
