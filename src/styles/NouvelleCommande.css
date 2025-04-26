@@ -707,11 +707,14 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .nc-chat-suggestion button {
   padding: 0.5rem 1rem;
   background-color: #fff;
+  color:#787983; /* Couleur de texte modifiée pour les suggestions */
+  font-weight: 500;
   border: 1px solid var(--border-color);
   border-radius: 1rem;
   font-size: 0.9rem;
