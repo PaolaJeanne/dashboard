@@ -129,7 +129,7 @@ const DashboardClient = () => {
       <header className="dashboard-header">
         <div className="client-profile">
           <div className="avatar">
-            <FiUser size={28} />
+            <FiUser size={25} />
           </div>
           <div className="client-info">
             <h1>{clientInfo.name}</h1>

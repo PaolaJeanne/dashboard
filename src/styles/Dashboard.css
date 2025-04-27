@@ -1,4 +1,18 @@
-/* Dashboard.css - Styles for the printing dashboard */
+:root {
+  --text-primary: #ffffff; /* texte principal clair */
+  --text-secondary: #d1d5db; /* texte secondaire gris clair */
+  --card-bg: #1f2937; /* très foncé */
+  --card-bg-light: #27344d; /* légèrement plus clair */
+    --card-bg: #1f2937; /* gris foncé */
+    --card-bg-light: #27344d; /* fond un peu plus clair */
+    --primary: #3b82f6; /* bleu vif */
+    --primary-lighter: rgba(59, 130, 246, 0.1); /* fond bleu léger */
+    --text-light: #cbd5e1; /* gris clair */
+    --text-xlight: #94a3b8; /* encore plus clair */
+    --border-light: rgba(255,255,255,0.05); /* pour le hover */
+  }
+  
+  
 
 /* Base styles and resets */
 .printing-dashboard {
@@ -82,16 +96,16 @@ button {
   font-weight: 500;
 }
 
-/* Header styles */
+/* Header styles améliorés */
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 30px;
   padding: 25px;
-  background-color: var(--card-bg);
+  background-color: var(--secondary-bg); /* fond clair propre */
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .client-profile {
@@ -102,17 +116,19 @@ button {
 .avatar {
   width: 60px;
   height: 60px;
-  background-color: var(--primary-lighter);
+  background-color: var(--light-accent); /* léger bleu clair */
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--primary);
+  color: var(--accent-color); /* bleu principal */
   margin-right: 15px;
 }
 
 .client-info h1 {
   margin-bottom: 5px;
+  font-size: 1.5rem;
+  color: var(--text-primary);
 }
 
 .client-meta {
@@ -120,43 +136,46 @@ button {
   align-items: center;
   gap: 15px;
   font-size: 0.9rem;
+  color: var(--text-primary);
 }
 
 .account-type {
-  background-color: var(--primary-lighter);
-  color: var(--primary);
+  background-color: var(--light-accent);
+  color: var(--accent-color);
   padding: 4px 12px;
-  border-radius: 6px;
-  font-weight: 500;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .favorite-product {
   display: flex;
   align-items: center;
-  color: var(--text-light);
 }
 
 .favorite-product svg {
   margin-right: 5px;
-  color: var(--success);
+  color: var(--success); /* icône produit préféré en bleu clair vif */
 }
 
 .client-contact {
   text-align: right;
-  color: var(--text-light);
   font-size: 0.9rem;
+  color: var(--text-primary);
 }
+
 
 .client-contact p {
   margin: 5px 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: 8px;
+  color: #ffffff; /* ← ici en blanc pur */
 }
 
 .client-contact svg {
-  margin-right: 8px;
-  color: var(--primary);
+  color: var(--accent-color); /* icônes contacts bleues */
 }
 
 /* Stats Grid */
@@ -168,29 +187,31 @@ button {
 }
 
 .stat-card {
-  background-color: var(--card-bg);
+  background-color: var(--dark-blue);
   border-radius: 12px;
   padding: 20px;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  border: 1px solid var(--border);
 }
 
 .stat-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .stat-icon {
   width: 50px;
   height: 50px;
   border-radius: 12px;
-  background-color: var(--primary-lighter);
+  background-color: var(--night-blue);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 15px;
-  color: var(--primary);
+  color: var(--light-blue);
 }
 
 .stat-content {
@@ -200,58 +221,62 @@ button {
 
 .stat-value {
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   margin-bottom: 5px;
-  color: var(--primary);
+  color: var(--gold-yellow);
 }
 
 .stat-label {
-  font-size: 0.85rem;
-  color: var(--text-light);
+  font-size: 0.9rem;
+  color: var(--light-blue); /* plus vif que light-gray */
 }
+
 
 /* Tabs */
 .tabs-container {
   display: flex;
   margin-bottom: 20px;
-  background-color: var(--card-bg);
+  background-color: var(--dark-blue);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .tab-btn {
   flex: 1;
   padding: 16px;
   text-align: center;
-  color: var(--text-light);
-  font-weight: 500;
+  color: var(--light-blue); /* changement ici */
+  font-weight: 600;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 3px solid transparent;
-  transition: all 0.2s;
+  background-color: transparent;
+  transition: all 0.25s ease;
 }
 
 .tab-btn svg {
   margin-right: 8px;
-  color: var(--text-xlight);
+  color: var(--light-blue); /* changement ici */
 }
 
 .tab-btn.active {
-  color: var(--primary);
-  border-bottom-color: var(--primary);
-  background-color: var(--primary-lighter);
+  color: var(--gold-yellow);
+  background-color: var(--text-xlight);
+  border-bottom: 3px solid var(--gold-yellow);
 }
 
 .tab-btn.active svg {
-  color: var(--primary);
+  color: var(--gold-yellow);
 }
 
 .tab-btn:hover:not(.active) {
   background-color: var(--border-light);
 }
+
 
 /* Main content */
 .dashboard-main {
