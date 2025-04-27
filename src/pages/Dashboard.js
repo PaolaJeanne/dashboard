@@ -16,7 +16,7 @@ const DashboardClient = () => {
     type: "Client",
     email: "ernest@email.com",
     phone: "676 543 210",
-    address: "Rue Joss,Bonapriso",
+    address: "Rue Joss, Bonapriso",
     joinDate: "Membre depuis mars 2023",
     ordersCompleted: 5,
     favoriteProduct: "Cartes de visite"
@@ -209,7 +209,6 @@ const DashboardClient = () => {
               <FiClock /> Mes commandes en cours
               <span className="badge">{currentOrders.length}</span>
             </h2>
-            
             <div className="orders-list">
               {currentOrders.map((order) => (
                 <div
@@ -219,9 +218,7 @@ const DashboardClient = () => {
                   key={order.id}
                   onClick={() => toggleOrderExpand(order.id)}
                 >
-                  {/* Résumé de la commande */}
                   <div className="order-summary">
-                    {/* En-tête de la commande */}
                     <div className="order-header">
                       <div className="order-info">
                         <span className="order-id">{order.id}</span>
@@ -229,8 +226,6 @@ const DashboardClient = () => {
                       </div>
                       <span className="order-status">{order.status}</span>
                     </div>
-
-                    {/* Métadonnées de la commande */}
                     <div className="order-meta">
                       <p className="order-date">
                         <FiCalendar /> Commandé le {order.date}
@@ -244,11 +239,8 @@ const DashboardClient = () => {
                       </div>
                     </div>
                   </div>
-
-                  {/* Détails de la commande (affichés si étendus) */}
                   {expandedOrder === order.id && (
                     <div className="order-details">
-                      {/* Section des spécifications */}
                       <div className="details-section">
                         <h4>Détails techniques</h4>
                         <div className="specs-grid">
@@ -260,8 +252,6 @@ const DashboardClient = () => {
                           ))}
                         </div>
                       </div>
-
-                      {/* Section des fichiers associés */}
                       <div className="details-section">
                         <h4>Fichiers associés</h4>
                         <div className="files-list">
@@ -283,8 +273,6 @@ const DashboardClient = () => {
                           ))}
                         </div>
                       </div>
-
-                      {/* Section des informations de livraison */}
                       <div className="details-section">
                         <h4>
                           <FiTruck /> Livraison
@@ -313,8 +301,6 @@ const DashboardClient = () => {
                           )}
                         </div>
                       </div>
-
-                      {/* Section des alertes */}
                       {order.alerts && (
                         <div className="alert-message">
                           <FiAlertCircle size={20} />
@@ -335,7 +321,6 @@ const DashboardClient = () => {
               <FiCheckCircle /> Historique des commandes
               <span className="badge">{orderHistory.length}</span>
             </h2>
-            
             <div className="history-list">
               {orderHistory.map((order) => (
                 <div className="history-card" key={order.id}>
@@ -345,35 +330,24 @@ const DashboardClient = () => {
                       {order.status}
                     </span>
                   </div>
-                  
                   <div className="history-body">
                     <h3 className="order-product">{order.product}</h3>
                     <p className="order-date">
                       <FiCalendar /> Commandé le {order.date}
                     </p>
-                    
                     {order.deliveryDate && (
                       <p className="delivery-date">
                         <FiTruck /> Livrée le {order.deliveryDate}
                       </p>
                     )}
-                    
                     {order.rating && (
                       <div className="order-rating">
                         {[...Array(5)].map((_, i) => (
-                          <span key={i} className={`star ${i < order.rating ? 'filled' : ''}`}>
-                            ★
-                          </span>
+                          <span key={i} className={`star ${i < order.rating ? 'filled' : ''}`} />
                         ))}
-                        <span className="feedback">{order.feedback}</span>
                       </div>
                     )}
-                    
-                    {order.reason && (
-                      <p className="cancel-reason">
-                        <FiAlertCircle /> {order.reason}
-                      </p>
-                    )}
+                    {order.feedback && <p className="feedback">" {order.feedback} "</p>}
                   </div>
                 </div>
               ))}
@@ -382,51 +356,41 @@ const DashboardClient = () => {
         )}
 
         {activeTab === 'files' && (
-          <section className="files-section">
+          <section className="recent-files">
             <h2>
-              <FiUpload /> Mes fichiers récents
-              <span className="badge">{recentFiles.length}</span>
+              <FiUpload /> Fichiers récents
             </h2>
-            
-            <div className="files-grid">
+            <div className="files-list">
               {recentFiles.map((file, idx) => (
-                <div className={`file-card ${file.status.toLowerCase().replace(' ', '-')}`} key={idx}>
-                  <div className="file-header">
-                    <div className="file-icon">
-                      <FiPackage size={24} />
-                    </div>
-                    <div className="file-info">
-                      <h3 className="file-name">{file.name}</h3>
-                      <p className="file-meta">
-                        {file.type} • {file.size} • {file.uploaded}
-                      </p>
-                    </div>
-                    <span className="file-status">{file.status}</span>
-                  </div>
-                  
-                  <div className="file-details">
-                    {file.orderRef && (
-                      <p><strong>Commande associée:</strong> {file.orderRef}</p>
+                <div className="file-item" key={idx}>
+                  <div className="file-info">
+                    <p className="file-name">{file.name}</p>
+                    <p className="file-meta">
+                      {file.type} • {file.size}
+                    </p>
+                    <p className="file-uploaded">
+                      <FiClock /> {file.uploaded}
+                    </p>
+                    {file.status && (
+                      <span className={`status ${file.status.toLowerCase()}`}>
+                        {file.status}
+                      </span>
                     )}
-                    
                     {file.issues && (
-                      <div className="file-alert">
-                        <FiAlertCircle size={18} />
-                        <p>{file.issues}</p>
-                      </div>
+                      <p className="file-issues">
+                        <FiAlertCircle /> {file.issues}
+                      </p>
                     )}
-                    
-                    <div className="file-actions">
-                      <button className="action-btn download">
-                        <FiDownload /> Télécharger
-                      </button>
-                      {file.action && (
-                        <button className="action-btn warning">
-                          <FiAlertCircle /> {file.action}
-                        </button>
-                      )}
-                    </div>
+                    {file.action && (
+                      <p className="file-action">
+                        <FiAlertCircle /> {file.action}
+                      </p>
+                    )}
                   </div>
+                  <button className="download-btn">
+                    <FiDownload size={16} />
+                    Télécharger
+                  </button>
                 </div>
               ))}
             </div>
@@ -435,6 +399,6 @@ const DashboardClient = () => {
       </main>
     </div>
   );
-};
+}
 
 export default DashboardClient;
