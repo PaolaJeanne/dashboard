@@ -1,4 +1,4 @@
-/* Sidebar */
+/* Sidebar - Version Responsive */
 .sidebar {
   width: 240px;
   background-color: var(--night-blue);
@@ -34,7 +34,7 @@
   color: #3498db;
 }
 
-/* Réorganiser les liens de la sidebar */
+/* Navigation links */
 .sidebar nav {
   display: flex;
   flex-direction: column;
@@ -56,12 +56,119 @@
 .sidebar-link:hover {
   background-color: var(--dark-blue);
   color: var(--gold-yellow);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre au survol */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-link.active {
   background-color: #3498db;
   color: var(--gold-yellow);
   font-weight: 500;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Ombre active */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 101;
+  background: var(--dark-blue);
+  border: none;
+  color: var(--gold-yellow);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+    padding: 15px;
+  }
+  
+  .sidebar .logo {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-link {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* When sidebar is open, add overlay */
+  .sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+  }
+  
+  .sidebar.open + .sidebar-overlay {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .sidebar .logo {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding: 8px;
+  flex-direction: column;
+    text-align: center;
+  }
+  
+  .sidebar-link {
+    padding: 12px 15px;
+  }
+  
+  .menu-toggle {
+    top: 10px;
+    left: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+
+/* Animation for smooth transitions */
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+.sidebar.open {
+  animation: slideIn 0.3s ease-out;
 }
