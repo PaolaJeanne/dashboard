@@ -1,110 +1,83 @@
 :root {
-  --text-primary: #ffffff; /* texte principal clair */
-  --text-secondary: #d1d5db; /* texte secondaire gris clair */
-  --card-bg: #1f2937; /* très foncé */
-  --card-bg-light: #27344d; /* légèrement plus clair */
-    --card-bg: #1f2937; /* gris foncé */
-    --card-bg-light: #27344d; /* fond un peu plus clair */
-    --primary: #3b82f6; /* bleu vif */
-    --primary-lighter: rgba(59, 130, 246, 0.1); /* fond bleu léger */
-    --text-light: #cbd5e1; /* gris clair */
-    --text-xlight: #94a3b8; /* encore plus clair */
-    --border-light: rgba(255,255,255,0.05); /* pour le hover */
-  }
+  /* Palette principale */
+  --primary: #2c7be5;          /* Bleu primaire */
+  --primary-light: #d9e8ff;    /* Bleu très clair pour fonds et hover */
+  --primary-lighter: rgba(44, 123, 229, 0.1); /* Bleu transparent pour effets subtils */
+  --primary-dark: #1a56a0;     /* Bleu foncé pour texte important et hover */
   
+  /* Couleurs d'état */
+  --success: #00b274;          /* Vert pour validations et succès */
+  --success-light: #e7f9f3;    /* Fond vert clair */
+  --warning: #f5b14c;          /* Orange pour avertissements */
+  --warning-light: #fefcbf;    /* Fond jaune clair */
+  --danger: #e63757;           /* Rouge pour erreurs */
+  --danger-light: #ffefef;     /* Fond rouge clair */
+  --info: #3182ce;             /* Bleu info */
+  --info-light: #bee3f8;       /* Fond bleu info clair */
   
+  /* Couleurs neutres */
+  --gray-50: #f9fbfd;          /* Gris très clair pour fonds alternatifs */
+  --gray-100: #edf2f9;         /* Gris clair pour fonds de sections */
+  --gray-200: #e3ebf6;         /* Gris pour bordures */
+  --gray-300: #d1d5db;         /* Gris moyen pour texte secondaire */
+  --gray-400: #95aac9;         /* Gris moyen-foncé pour texte tertiaire */
+  --gray-500: #718096;         /* Gris pour texte auxiliaire */
+  --gray-600: #5e6e82;         /* Gris foncé pour sous-titres */
+  --gray-700: #4a5568;         /* Gris très foncé pour texte principal */
+  --gray-800: #2d3748;         /* Presque noir pour titres */
+  --gray-900: #12263f;         /* Noir texte */
+  
+  /* Couleurs d'interface */
+  --card-bg: #ffffff;          /* Fond de carte clair */
+  --card-bg-dark: #1f2937;     /* Fond de carte foncé (mode sombre) */
+  --card-bg-light-dark: #27344d; /* Fond de carte légèrement plus clair (mode sombre) */
+  --border: #e3ebf6;           /* Couleur de bordure standard */
+  --border-light: rgba(255,255,255,0.05); /* Bordure subtile */
+  
+  /* Texte */
+  --text-primary: #12263f;     /* Texte principal mode clair */
+  --text-secondary: #5e6e82;   /* Texte secondaire mode clair */
+  --text-light: #718096;       /* Texte tertiaire mode clair */
+  --text-xlight: #95aac9;      /* Texte très léger */
+  
+  /* Texte mode sombre */
+  --text-primary-dark: #ffffff;  /* Texte principal mode sombre */
+  --text-secondary-dark: #d1d5db; /* Texte secondaire mode sombre */
+  
+  /* Effets */
+  --shadow-sm: 0 0.125rem 0.25rem rgba(18, 38, 63, 0.075);
+  --shadow: 0 0.5rem 1rem rgba(18, 38, 63, 0.1);
+  --border-radius: 0.5rem;
+  --transition: all 0.2s ease-in-out;
+}
+
+/* Mode sombre */
+.dark-mode {
+  --card-bg: #1f2937;           /* Fond de carte foncé */
+  --card-bg-light: #27344d;     /* Fond de carte légèrement plus clair */
+  --text-primary: #ffffff;      /* Texte principal blanc */
+  --text-secondary: #d1d5db;    /* Texte secondaire gris clair */
+  --text-light: #cbd5e1;        /* Texte tertiaire encore plus clair */
+  --text-xlight: #94a3b8;       /* Texte très léger */
+  --border-light: rgba(255,255,255,0.05); /* Bordures très subtiles */
+  --primary-lighter: rgba(59, 130, 246, 0.1); /* Fond bleu légèrement transparent */
+}
+
 /* Base styles and resets */
 .printing-dashboard {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  color: #4a5568;
+  color: var(--text-primary);
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f8fafc;
+  background-color: var(--gray-50);
 }
 
-.night-blue {
-  --primary: #2c5282;
-  --primary-light: #4a6fa5;
-  --primary-lighter: #ebf4ff;
-  --accent: #ed8936;
-  --accent-light: #feebc8;
-  --success: #38a169;
-  --success-light: #c6f6d5;
-  --warning: #d69e2e;
-  --warning-light: #fefcbf;
-  --danger: #e53e3e;
-  --danger-light: #fed7d7;
-  --info: #3182ce;
-  --info-light: #bee3f8;
-  --light-bg: #f8fafc;
-  --card-bg: #ffffff;
-  --text: #4a5568;
-  --text-light: #718096;
-  --text-xlight: #a0aec0;
-  --border: #e2e8f0;
-  --border-light: #edf2f7;
-}
-
-h1, h2, h3, h4 {
-  margin: 0;
-  font-weight: 600;
-  color: #2d3748;
-}
-
-h1 {
-  font-size: 1.8rem;
-}
-
-h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  color: var(--primary);
-}
-
-h2 svg {
-  margin-right: 10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-h4 {
-  font-size: 1rem;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-button {
-  cursor: pointer;
-  border: none;
-  background: none;
-  transition: all 0.2s;
-}
-
-.badge {
-  background-color: var(--primary-lighter);
-  color: var(--primary);
-  border-radius: 20px;
-  padding: 2px 10px;
-  font-size: 1rem;
-  margin-left: 10px;
-  font-weight: 500;
-}
-
-/* Header styles améliorés */
+/* Appliquez les nouvelles couleurs aux autres classes */
 .dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 30px;
-  padding: 25px;
-  background-color: var(--secondary-bg); /* fond clair propre */
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: var(--gray-100);
+  color: var(--text-primary);
+  box-shadow: var(--shadow);
 }
 
 .client-profile {
@@ -677,6 +650,16 @@ button {
 .file-issues svg, .file-action svg {
   margin-right: 5px;
   flex-shrink: 0;
+}
+
+.badge {
+  margin-left: 15px; /* Ajoute un espace entre le texte et le badge */
+  padding: 4px 8px; /* Ajuste l'intérieur du badge pour un meilleur rendu */
+  background-color: var(--primary-light); /* Couleur de fond du badge */
+  color: var(--primary); /* Couleur du texte du badge */
+  border-radius: 12px; /* Arrondi les coins du badge */
+  font-size: 0.85rem; /* Taille du texte */
+  font-weight: 600; /* Met le texte en gras */
 }
 
 /* Responsive adjustments */
