@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Localisation from './Localisation';
 import { useDropzone } from 'react-dropzone';
 import '../styles/NouvelleCommande.css';
@@ -52,17 +52,11 @@ const NouvelleCommande = () => {
   const [ui, setUi] = useState({
     loading: false,
     message: null,
-    messageTimeout: null,
-    chat: [],
-    newMessage: '',
     location: null,
     pricingEstimate: null,
     formSubmitted: false,
     showBindingInfo: false
   });
-
-  const chatEndRef = useRef(null);
-  const messageTimeoutRef = useRef(null);
 
   // Fonction pour calculer une estimation de prix
   const calculatePriceEstimate = useCallback(() => {
@@ -109,7 +103,7 @@ const NouvelleCommande = () => {
       perPage: basePrice.toFixed(2),
       binding: bindingPrice.toFixed(2),
       total,
-      message: `Prix estimé: ${total}€ (basé sur ~10 pages)`
+      message: `Prix estimé: ${total}FCFA (basé sur ~10 pages)`
     };
   }, [form]);
 
@@ -123,64 +117,11 @@ const NouvelleCommande = () => {
     }
   }, [form, calculatePriceEstimate]);
 
-  // Scroll automatique du chat
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [ui.chat]);
-
-  // Nettoyage du timeout des messages
-  useEffect(() => {
-    return () => {
-      if (messageTimeoutRef.current) {
-        clearTimeout(messageTimeoutRef.current);
-      }
-    };
-  }, []);
-
-  // Génération de réponse automatique après un message utilisateur
-  useEffect(() => {
-    if (ui.chat.length > 0 && ui.chat[ui.chat.length - 1].sender === 'user') {
-      const timer = setTimeout(() => {
-        const lastMsg = ui.chat[ui.chat.length - 1].text.toLowerCase();
-        let response = 'Nous avons bien reçu votre message et y répondrons rapidement.';
-        
-        // Réponses intelligentes basées sur le contenu du message
-        if (lastMsg.includes('délai') || lastMsg.includes('temps')) {
-          response = 'Nous traitons généralement les commandes dans un délai de 24h ouvrées.';
-        } else if (lastMsg.includes('prix') || lastMsg.includes('coût') || lastMsg.includes('tarif')) {
-          response = 'Le prix dépend du nombre de pages et des options choisies. Vous pouvez voir une estimation dans le récapitulatif de commande.';
-        } else if (lastMsg.includes('livraison') || lastMsg.includes('adresse')) {
-          response = 'Veuillez renseigner votre adresse complète dans la section "Adresse de livraison". Nous vous confirmerons la disponibilité pour votre zone.';
-        } else if (lastMsg.includes('reliure') || lastMsg.includes('relier')) {
-          response = 'Nous proposons plusieurs types de reliures : agrafage, spirales plastique ou métallique, et reliure thermocollée. Chaque option a un prix différent.';
-        } else if (lastMsg.includes('copies') || lastMsg.includes('exemplaires')) {
-          response = 'Vous pouvez commander jusqu\'à 100 exemplaires par commande. Pour des volumes plus importants, veuillez nous contacter directement.';
-        }
-        
-        setUi(prev => ({
-          ...prev,
-          chat: [...prev.chat, {
-            sender: 'admin',
-            text: response,
-            time: new Date()
-          }]
-        }));
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [ui.chat]);
-
   // Fonction pour afficher un message temporaire
   const showMessage = (text, type = 'error', duration = 5000) => {
-    // Nettoyage du timeout précédent si existant
-    if (messageTimeoutRef.current) {
-      clearTimeout(messageTimeoutRef.current);
-    }
-    
     setUi(prev => ({ ...prev, message: { text, type } }));
-    
     if (duration) {
-      messageTimeoutRef.current = setTimeout(() => {
+      setTimeout(() => {
         setUi(prev => ({ ...prev, message: null }));
       }, duration);
     }
@@ -269,12 +210,7 @@ const NouvelleCommande = () => {
         ...prev,
         loading: false,
         formSubmitted: true,
-        message: { text: '✅ Commande envoyée avec succès !', type: 'success' },
-        chat: [...prev.chat, {
-          sender: 'system',
-          text: `Commande #${Math.floor(1000 + Math.random() * 9000)} reçue. Nous la traitons sous 24h.`,
-          time: new Date()
-        }]
+        message: { text: '✅ Commande envoyée avec succès !', type: 'success' }
       }));
     } catch (error) {
       setUi(prev => ({
@@ -283,24 +219,6 @@ const NouvelleCommande = () => {
         message: { text: '❌ Erreur lors de l\'envoi. Veuillez réessayer.', type: 'error' },
       }));
     }
-  };
-
-  // Gestion du chat
-  const handleChat = (e) => {
-    e.preventDefault();
-    if (!ui.newMessage.trim()) return;
-
-    const msg = {
-      sender: 'user',
-      text: ui.newMessage,
-      time: new Date()
-    };
-
-    setUi(prev => ({
-      ...prev,
-      chat: [...prev.chat, msg],
-      newMessage: ''
-    }));
   };
 
   // Remise à zéro du formulaire
@@ -629,83 +547,6 @@ const NouvelleCommande = () => {
             </div>
           )}
         </form>
-
-        {/* Chat intégré */}
-        <section className="nc-chat-section">
-          <h2>
-            <i className="fas fa-comments"></i> Assistance
-          </h2>
-          <div className="nc-chat">
-            {ui.chat.length === 0 ? (
-              <div className="nc-chat-empty">
-                <i className="fas fa-comment-dots"></i>
-                <p>Posez vos questions à notre équipe</p>
-                <div className="nc-chat-suggestion">
-                  <button 
-                    onClick={() => {
-                      setUi(prev => ({
-                        ...prev, 
-                        newMessage: "Quel est le délai de livraison ?"
-                      }));
-                    }}
-                  >
-                    Délai de livraison ?
-                  </button>
-                  <button 
-                    onClick={() => {
-                      setUi(prev => ({
-                        ...prev, 
-                        newMessage: "Comment sont calculés les prix ?"
-                      }));
-                    }}
-                  >
-                    Tarifs ?
-                  </button>
-                  <button 
-                    onClick={() => {
-                      setUi(prev => ({
-                        ...prev, 
-                        newMessage: "Quelles reliures proposez-vous ?"
-                      }));
-                    }}
-                  >
-                    Types de reliures ?
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <>
-                <div className="nc-chat-date">
-                  Aujourd'hui
-                </div>
-                <div className="nc-chat-welcome">
-                  <p>Bonjour ! Comment puis-je vous aider avec votre commande d'impression ?</p>
-                </div>
-                {ui.chat.map((msg, i) => (
-                  <div key={i} className={`nc-chat-msg ${msg.sender}`}>
-                    <div className="nc-msg-content">{msg.text}</div>
-                    <div className="nc-msg-time">
-                      {msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                    </div>
-                  </div>
-                ))}
-              </>
-            )}
-            <div ref={chatEndRef} />
-          </div>
-
-          <form onSubmit={handleChat} className="nc-chat-input">
-            <input
-              type="text"
-              placeholder="Écrivez votre message..."
-              value={ui.newMessage}
-              onChange={(e) => setUi(prev => ({ ...prev, newMessage: e.target.value }))}
-            />
-            <button type="submit" disabled={!ui.newMessage.trim()}>
-              <i className="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </section>
       </div>
     </div>
   );

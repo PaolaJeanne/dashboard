@@ -1,3 +1,4 @@
+import 'font-awesome/css/font-awesome.min.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
@@ -14,6 +15,7 @@ import Aide from './pages/Aide';
 import Historique from './pages/Historique';
 import MesFactures from './pages/MesFactures';
 import './App.css';
+import Chat from './components/Chat.js';
 
 
 const App = () => {
@@ -29,6 +31,7 @@ const App = () => {
             <Route path="/nouvelle-commande" element={<NouvelleCommande />} />
             <Route path="/mes-commandes" element={<MesCommandes />} />
             <Route path="/fichier" element={<Fichier />} />
+            <Route path="/chat" element={<Chat />} />
             <Route path="/suivi-commande/:id" element={<SuiviCommande />} />
             <Route path="/historique" element={<Historique />} />
             <Route path="/localisation" element={<Localisation />} />

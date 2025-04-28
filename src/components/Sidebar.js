@@ -15,6 +15,7 @@ const Sidebar = () => {
     { path: '/nouvelle-commande', icon: <FaPlus />, label: 'Nouvelle commande' },
     { path: '/mes-commandes', icon: <FaList />, label: 'Mes commandes' },
     { path: '/factures', icon: <FaFileInvoice />, label: 'Factures' },
+    { path: '/chat', icon: <FaFileInvoice />, label: 'Chat' },
     { path: '/historique', icon: <FaHistory  />, label: 'Historique' },
     { path: '/parametres', icon: <FaCog />, label: 'Paramètres' },
     { path: '/aide', icon: <FaQuestionCircle />, label: 'Aide' }
