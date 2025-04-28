@@ -1,28 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react'; // Hooks React
-import '../styles/Chat.css'; // Fichier CSS pour le style du chat
+import React, { useState, useEffect, useRef } from 'react';
+import '../styles/Chat.css';
 import 'font-awesome/css/font-awesome.min.css';
 
 const Chat = () => {
-  // Références pour le chat
   const chatEndRef = useRef(null);
-  //const messageTimeoutRef = useRef(null);
 
-  // État pour le chat
   const [ui, setUi] = useState({
     chat: [],
     newMessage: '',
-    message: null,
-    messageTimeout: null,
+    isTyping: false,
   });
 
-  // Génération de réponse automatique après un message utilisateur
+  // Scroller automatiquement vers le bas
+  useEffect(() => {
+    if (chatEndRef.current) {
+      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [ui.chat]);
+
+  // Génération de réponse automatique
   useEffect(() => {
     if (ui.chat.length > 0 && ui.chat[ui.chat.length - 1].sender === 'user') {
+      setUi(prev => ({ ...prev, isTyping: true }));
+
       const timer = setTimeout(() => {
         const lastMsg = ui.chat[ui.chat.length - 1].text.toLowerCase();
         let response = 'Nous avons bien reçu votre message et y répondrons rapidement.';
 
-        // Réponses intelligentes basées sur le contenu du message
         if (lastMsg.includes('délai') || lastMsg.includes('temps')) {
           response = 'Nous traitons généralement les commandes dans un délai de 24h ouvrées.';
         } else if (lastMsg.includes('prix') || lastMsg.includes('coût') || lastMsg.includes('tarif')) {
@@ -37,32 +41,38 @@ const Chat = () => {
 
         setUi(prev => ({
           ...prev,
-          chat: [...prev.chat, {
-            sender: 'admin',
-            text: response,
-            time: new Date()
-          }]
+          chat: [...prev.chat, { sender: 'admin', text: response, time: new Date() }],
+          isTyping: false,
         }));
-      }, 1000);
+      }, 1500);
+
       return () => clearTimeout(timer);
     }
   }, [ui.chat]);
 
-  // Gestion du chat
+  // Gestion de l'envoi de messages
   const handleChat = (e) => {
     e.preventDefault();
     if (!ui.newMessage.trim()) return;
 
     const msg = {
       sender: 'user',
-      text: ui.newMessage,
-      time: new Date()
+      text: ui.newMessage.trim(),
+      time: new Date(),
     };
 
     setUi(prev => ({
       ...prev,
       chat: [...prev.chat, msg],
-      newMessage: ''
+      newMessage: '',
+    }));
+  };
+
+  // Suggestions de questions
+  const handleSuggestion = (suggestion) => {
+    setUi(prev => ({
+      ...prev,
+      newMessage: suggestion,
     }));
   };
 
@@ -77,54 +87,39 @@ const Chat = () => {
             <i className="fas fa-comment-dots"></i>
             <p>Posez vos questions à notre équipe</p>
             <div className="nc-chat-suggestion">
-              <button 
-                onClick={() => {
-                  setUi(prev => ({
-                    ...prev, 
-                    newMessage: "Quel est le délai de livraison ?"
-                  }));
-                }}
-              >
+              <button onClick={() => handleSuggestion('Quel est le délai de livraison ?')}>
                 Délai de livraison ?
               </button>
-              <button 
-                onClick={() => {
-                  setUi(prev => ({
-                    ...prev, 
-                    newMessage: "Comment sont calculés les prix ?"
-                  }));
-                }}
-              >
+              <button onClick={() => handleSuggestion('Comment sont calculés les prix ?')}>
                 Tarifs ?
               </button>
-              <button 
-                onClick={() => {
-                  setUi(prev => ({
-                    ...prev, 
-                    newMessage: "Quelles reliures proposez-vous ?"
-                  }));
-                }}
-              >
+              <button onClick={() => handleSuggestion('Quelles reliures proposez-vous ?')}>
                 Types de reliures ?
               </button>
             </div>
           </div>
         ) : (
           <>
-            <div className="nc-chat-date">
-              Aujourd'hui
-            </div>
+            <div className="nc-chat-date">Aujourd'hui</div>
             <div className="nc-chat-welcome">
               <p>Bonjour ! Comment puis-je vous aider avec votre commande d'impression ?</p>
             </div>
             {ui.chat.map((msg, i) => (
               <div key={i} className={`nc-chat-msg ${msg.sender}`}>
+                <div className="nc-msg-avatar">
+                  <i className={`fas ${msg.sender === 'user' ? 'fa-user' : 'fa-robot'}`}></i>
+                </div>
                 <div className="nc-msg-content">{msg.text}</div>
                 <div className="nc-msg-time">
                   {msg.time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </div>
               </div>
             ))}
+            {ui.isTyping && (
+              <div className="nc-chat-typing">
+                <i className="fas fa-ellipsis-h"></i> L'équipe est en train de répondre...
+              </div>
+            )}
           </>
         )}
         <div ref={chatEndRef} />

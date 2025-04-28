@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { 
   FaHome, FaPlus, FaList,FaCog, FaQuestionCircle, FaTimes, FaBars,FaFileInvoice, 
-  FaHistory , 
+  FaHistory , FaComments
 } from 'react-icons/fa';
 import '../styles/Sidebar.css';
 
@@ -15,8 +15,7 @@ const Sidebar = () => {
     { path: '/nouvelle-commande', icon: <FaPlus />, label: 'Nouvelle commande' },
     { path: '/mes-commandes', icon: <FaList />, label: 'Mes commandes' },
     { path: '/factures', icon: <FaFileInvoice />, label: 'Factures' },
-    { path: '/chat', icon: <FaFileInvoice />, label: 'Chat' },
-    { path: '/historique', icon: <FaHistory  />, label: 'Historique' },
+    { path: '/chat', icon: <FaComments />, label: 'Chat' },    { path: '/historique', icon: <FaHistory  />, label: 'Historique' },
     { path: '/parametres', icon: <FaCog />, label: 'Paramètres' },
     { path: '/aide', icon: <FaQuestionCircle />, label: 'Aide' }
   ];
