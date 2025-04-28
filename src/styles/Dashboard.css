@@ -448,7 +448,6 @@
   font-size: 0.85rem; /* Taille du texte */
   font-weight: 600; /* Met le texte en gras */
 }
-
 /* Style des étoiles */
 .order-rating {
   display: flex;
@@ -463,7 +462,7 @@
 }
 
 .star.filled {
-  color: var(--yellow); /* Couleur des étoiles remplies */
+  color: var(--warning); /* Couleur des étoiles remplies */
 }
 
 /* Responsive adjustments */
