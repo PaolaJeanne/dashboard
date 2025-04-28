@@ -200,10 +200,10 @@
 }
 
 .stat-label {
-  font-size: 0.9rem;
-  color: var(--light-blue); /* plus vif que light-gray */
+  font-size: 0.9rem; /* Augmente légèrement la taille */
+  color: var(--gray-700); /* Gris plus foncé pour une meilleure visibilité */
+  margin-bottom: 5px;
 }
-
 
 /* Tabs */
 .tabs-container {
@@ -269,69 +269,75 @@
   border-radius: 12px;
   border: 1px solid var(--border);
   overflow: hidden;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Ombre légère */
 }
 
 .order-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* Ombre plus marquée au survol */
 }
 
+/* Ajustement du cadre de l'ordre */
 .order-summary {
-  padding: 18px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Ombre légère */
+  margin-bottom: 15px;
 }
 
+/* Alignement et espacement des informations de l'ordre */
 .order-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.order-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .order-id {
-  font-size: 0.9rem;
-  color: var(--gray-900);
-  display: block;
-  margin-bottom: 2px;
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .order-product {
-  margin: 0;
-  font-weight: 600;
-  color: var(--text);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
 }
 
+/* Statut de l'ordre */
 .order-status {
-  padding: 4px 12px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 500;
-}
-
-.order-card.en-impression .order-status {
   background-color: var(--info-light);
   color: var(--info);
 }
 
-.order-card.en-préparation .order-status {
-  background-color: var(--warning-light);
-  color: var(--warning);
-}
-
+/* Métadonnées de l'ordre */
 .order-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.85rem;
-  color: var(--text-light);
+  gap: 15px;
 }
 
 .order-date {
   display: flex;
   align-items: center;
-  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-light);
 }
 
 .order-date svg {
@@ -339,304 +345,85 @@
   color: var(--text-xlight);
 }
 
+/* Barre de progression */
 .progress-container {
-  width: 150px;
-  height: 6px;
-  background-color: var(--border);
-  border-radius: 3px;
   position: relative;
+  width: 150px;
+  height: 8px;
+  background-color: var(--border);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre intérieure subtile */
+  overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
   background-color: var(--primary);
-  border-radius: 3px;
   transition: width 0.3s ease;
 }
 
 .progress-text {
   position: absolute;
-  right: -30px;
-  top: -5px;
-  font-size: 0.8rem;
-  color: var(--primary);
-  font-weight: 600;
+  top: -20px; /* Position au-dessus de la barre */
+  right: 0;
+  font-size: 0.9rem; /* Augmente légèrement la taille */
+  color: var(--gray-900); /* Noir ou gris très foncé pour un bon contraste */
+  font-weight: 700; /* Texte en gras pour plus de visibilité */
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Ombre blanche subtile pour contraster */
+  z-index: 1; /* Assure que le texte est au-dessus de tout */
 }
 
-/* Expanded order details */
-.order-details {
-  background-color: var(--border-light);
-  padding: 20px;
-  border-top: 1px solid var(--border);
-}
-
+/* Section des détails */
 .details-section {
-  margin-bottom: 25px;
+  margin-bottom: 20px; /* Ajoute un espace entre les sections */
+  padding: 15px; /* Ajoute un espace intérieur pour mieux séparer le contenu */
+  background-color: var(--card-bg); /* Fond pour délimiter la section */
+  border-radius: 8px; /* Arrondit les coins */
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+  margin-left: 40px; /* Ajoute un espace à gauche pour le décalage */
+  margin-right: 30px; /* Ajoute un espace à droite pour le décalage */
 }
 
+/* Grille des spécifications */
 .specs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
-  margin-top: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Grille flexible */
+  gap: 15px; /* Ajoute un espace entre les éléments */
 }
 
+/* Élément de spécification */
 .spec-item {
-  display: flex;
-  flex-direction: column;
-  padding: 12px;
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  border: 1px solid var(--border);
-}
-
-.spec-label {
-  font-size: 0.8rem;
-  color: var(--text-light);
-  text-transform: capitalize;
-  margin-bottom: 4px;
-}
-
-.spec-value {
-  font-weight: 500;
-  color: var(--text);
-}
-
-.files-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.file-item {
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  transition: transform 0.2s;
-}
-
-.file-item:hover {
-  transform: translateX(2px);
-}
-
-.file-icon {
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-lighter);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 15px;
-  color: var(--primary);
-}
-
-.file-info {
-  flex: 1;
-}
-
-.file-name {
-  margin: 0 0 3px 0;
-  font-weight: 500;
-  color: var(--text);
-}
-
-.file-meta, .file-uploaded {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--text-light);
-  display: flex;
-  align-items: center;
-}
-
-.file-uploaded svg {
-  margin-right: 5px;
-  color: var(--text-xlight);
-}
-
-.download-btn {
-  padding: 8px 10px;
-  color: var(--primary);
+  padding: 10px;
+  background-color: var(--gray-100); /* Fond léger pour délimiter */
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-}
-
-.download-btn:hover {
-  background-color: var(--primary-lighter);
-}
-
-.delivery-info {
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  padding: 15px;
   border: 1px solid var(--border);
 }
 
-.delivery-info p {
-  margin: 8px 0;
+/* Texte des étiquettes */
+.spec-label {
   font-size: 0.9rem;
-  color: var(--text);
+  color: var(--gray-700); /* Gris plus foncé pour une meilleure visibilité */
+  margin-bottom: 5px;
+  display: block; /* Force un retour à la ligne */
+}
+
+/* Texte des valeurs */
+.spec-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Informations de livraison */
+.delivery-info p {
+  font-size: 0.9rem;
+  color: var(--gray-700); /* Texte plus foncé pour une meilleure visibilité */
+  margin-bottom: 8px; /* Ajoute un espace entre les lignes */
 }
 
 .delivery-info strong {
-  color: var(--text-light);
-  font-weight: 500;
-}
-
-.alert-message {
-  display: flex;
-  align-items: center;
-  padding: 12px 15px;
-  background-color: var(--danger-light);
-  color: var(--danger);
-  border-radius: 8px;
-  margin-top: 15px;
-}
-
-.alert-message svg {
-  margin-right: 10px;
-  flex-shrink: 0;
-}
-
-/* History section */
-.history-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 20px;
-}
-
-.history-card {
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-  transition: transform 0.2s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
-}
-
-.history-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.history-header {
-  padding: 12px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--border-light);
-  border-bottom: 1px solid var(--border);
-}
-
-.history-body {
-  padding: 18px;
-}
-
-.order-status.livrée {
-  background-color: var(--success-light);
-  color: var(--success);
-}
-
-.order-status.annulée {
-  background-color: var(--danger-light);
-  color: var(--danger);
-}
-
-.delivery-date {
-  display: flex;
-  align-items: center;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  margin: 8px 0;
-}
-
-.delivery-date svg {
-  margin-right: 5px;
-  color: var(--text-xlight);
-}
-
-.order-rating {
-  margin: 12px 0;
-}
-
-.star {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  background-color: var(--border);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  margin-right: 3px;
-}
-
-.star.filled {
-  background-color: var(--warning);
-}
-
-.feedback {
-  font-style: italic;
-  color: var(--text-light);
-  margin: 12px 0 0;
-  font-size: 0.9rem;
-  background-color: var(--border-light);
-  padding: 10px;
-  border-radius: 8px;
-}
-
-/* Files section */
-.recent-files {
-  width: 100%;
-}
-
-.recent-files .files-list {
-  gap: 15px;
-}
-
-.recent-files .file-item {
-  justify-content: space-between;
-  padding: 15px;
-}
-
-.recent-files .download-btn {
-  padding: 8px 14px;
-  background-color: var(--primary-lighter);
-  color: var(--primary);
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: all 0.2s;
-}
-
-.recent-files .download-btn:hover {
-  background-color: var(--primary-light);
-  color: white;
-}
-
-.recent-files .download-btn svg {
-  margin-right: 5px;
-}
-
-.status {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  margin-top: 8px;
-  font-weight: 500;
-}
-
-.status.validé {
-  background-color: var(--success-light);
-  color: var(--success);
-}
-
-.status.en {
-  background-color: var(--info-light);
-  color: var(--info);
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .file-issues, .file-action {
@@ -660,6 +447,23 @@
   border-radius: 12px; /* Arrondi les coins du badge */
   font-size: 0.85rem; /* Taille du texte */
   font-weight: 600; /* Met le texte en gras */
+}
+
+/* Style des étoiles */
+.order-rating {
+  display: flex;
+  gap: 5px; /* Ajoute un espace entre les étoiles */
+  margin-top: 10px;
+}
+
+.star {
+  font-size: 1.2rem;
+  color: var(--gray-400); /* Couleur des étoiles non remplies */
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: var(--yellow); /* Couleur des étoiles remplies */
 }
 
 /* Responsive adjustments */

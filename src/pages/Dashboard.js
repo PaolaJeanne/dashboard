@@ -228,7 +228,7 @@ const DashboardClient = () => {
                     </div>
                     <div className="order-meta">
                       <p className="order-date">
-                        <FiCalendar /> Commandé le {order.date}
+                        <FiCalendar size={20} /> Commandé le {order.date}
                       </p>
                       <div className="progress-container">
                         <div
@@ -343,7 +343,13 @@ const DashboardClient = () => {
                     {order.rating && (
                       <div className="order-rating">
                         {[...Array(5)].map((_, i) => (
-                          <span key={i} className={`star ${i < order.rating ? 'filled' : ''}`} />
+                          <span
+                            key={i}
+                            className={`star ${i < order.rating ? 'filled' : ''}`}
+                            title={`${order.rating} étoiles`}
+                          >
+                            ★
+                          </span>
                         ))}
                       </div>
                     )}
