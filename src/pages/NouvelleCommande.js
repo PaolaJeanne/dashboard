@@ -22,9 +22,6 @@ const PRINT_OPTIONS = [
   { name: 'format', label: 'Format', options: ['A4', 'A3', 'A5'] }
 ];
 
-// Présets de nombre de copies pour sélection rapide
-const COPY_PRESETS = [1, 2, 5, 10, 20, 50];
-
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 const ACCEPTED_FILE_TYPES = {
   'application/pdf': ['.pdf'],
@@ -38,7 +35,7 @@ const NouvelleCommande = () => {
   // État principal pour le formulaire
   const [form, setForm] = useState({
     file: null,
-    copies: 1,
+    copies: 0, // Initialisé à 0
     options: {
       printType: 'Recto',
       color: 'Noir & blanc',
@@ -150,14 +147,6 @@ const NouvelleCommande = () => {
         [name]: type === 'number' ? Math.max(1, Math.min(100, parseInt(value) || 1)) : value
       }));
     }
-  };
-
-  // Définition directe du nombre de copies
-  const setDirectCopies = (count) => {
-    setForm(prev => ({
-      ...prev,
-      copies: count
-    }));
   };
 
   // Configuration de react-dropzone pour l'upload de fichier
@@ -343,55 +332,18 @@ const NouvelleCommande = () => {
           <section className="nc-section">
             <h2><i className="fas fa-cog"></i> 2. Options d'impression</h2>
             
-            {/* Nombre de copies avec presets */}
+            {/* Nombre de copies avec un champ d'entrée simple */}
             <div className="nc-copies-section">
-              <label>Nombre de copies</label>
-              <div className="nc-copies-container">
-                <div className="nc-number-input">
-                  <button 
-                    type="button" 
-                    onClick={() => setForm(prev => ({
-                      ...prev, 
-                      copies: Math.max(1, prev.copies - 1)
-                    }))}
-                    disabled={form.copies <= 1}
-                  >
-                    <i className="fas fa-minus"></i>
-                  </button>
-                  <input
-                    id="copies"
-                    type="number"
-                    name="copies"
-                    min="1"
-                    max="100"
-                    value={form.copies}
-                    onChange={handleChange}
-                  />
-                  <button 
-                    type="button"
-                    onClick={() => setForm(prev => ({
-                      ...prev, 
-                      copies: Math.min(100, prev.copies + 1)
-                    }))}
-                    disabled={form.copies >= 100}
-                  >
-                    <i className="fas fa-plus"></i>
-                  </button>
-                </div>
-                
-                <div className="nc-copies-presets">
-                  {COPY_PRESETS.map((preset) => (
-                    <button
-                      key={preset}
-                      type="button"
-                      className={form.copies === preset ? 'active' : ''}
-                      onClick={() => setDirectCopies(preset)}
-                    >
-                      {preset}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <label htmlFor="copies">Nombre de copies</label>
+              <input
+                id="copies"
+                type="number"
+                name="copies"
+                min="0" // Permet une valeur minimale de 0
+                max="100"
+                value={form.copies}
+                onChange={handleChange}
+              />
             </div>
             
             <div className="nc-options-grid">
