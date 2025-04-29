@@ -327,6 +327,7 @@ const NouvelleCommande = () => {
                   name="copies"
                   min="0"
                   value={form.copies === 0 ? '' : form.copies} // Affiche un champ vide si la valeur est 0
+                  placeholder="0" // Placeholder ajouté
                   onChange={handleChange}
                 />
               </div>
