@@ -1,7 +1,7 @@
-import 'font-awesome/css/font-awesome.min.css';
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
+import Navbar from './components/Navbar'; // Import du composant Navbar
 import Dashboard from './pages/Dashboard';
 import NouvelleCommande from './pages/NouvelleCommande';
 import Fichier from './pages/Fichier';
@@ -17,14 +17,15 @@ import MesFactures from './pages/MesFactures';
 import './App.css';
 import Chat from './components/Chat.js';
 
-
 const App = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <Router>
       <div className="app-container">
+        <Navbar /> {/* Utilisation du composant Navbar */}
         <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+        {/* Contenu principal */}
         <div className={`main-content ${sidebarOpen ? 'sidebar-open' : ''}`}>
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />

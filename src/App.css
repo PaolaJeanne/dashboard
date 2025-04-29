@@ -1,88 +1,25 @@
-/* --- Conteneur principal (flex pour afficher sidebar et contenu) --- */
+/* ==================== */
+/* STRUCTURE DE BASE */
+/* ==================== */
 .app-container {
-  display: flex;
+  display: block;
+  position: relative;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* --- Sidebar --- */
-.sidebar {
-  width: 280px; /* Largeur de la sidebar */
-  background-color: #2C3E50; /* Couleur de fond de la sidebar */
-  color: #ecf0f1; /* Couleur du texte */
-  padding: 20px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  box-sizing: border-box;
-  transition: width 0.3s ease; /* Transition douce pour la largeur */
-}
-
-.sidebar-open {
-  width: 220px; /* Sidebar rétrécie lorsque ouverte */
-}
-
-/* --- Contenu principal (à droite de la sidebar) --- */
 .main-content {
-  flex: 1;
-  margin-left: 280px; /* Espace réservé pour la sidebar */
-  padding: 20px;
-  box-sizing: border-box;
-  transition: margin-left 0.3s ease; /* Transition douce pour l'espace gauche */
+  margin-left: 240px;
+  padding-top: 60px;
+  min-height: calc(100vh - 60px);
+  transition: margin-left 0.3s ease;
 }
 
-/* --- Responsive : Tablette (max-width: 992px) --- */
+/* ==================== */
+/* RESPONSIVE GLOBAL */
+/* ==================== */
 @media (max-width: 992px) {
   .main-content {
-    margin-left: 0; /* Supprime l'espace réservé à la sidebar */
-    padding: 15px; /* Réduit le padding */
+    margin-left: 0;
   }
-
-  .main-content.sidebar-open {
-    margin-left: 220px; /* Espace réservé pour une sidebar plus étroite */
-    width: calc(100% - 220px); /* Ajuste la largeur du contenu */
-  }
-}
-
-/* --- Responsive : Mobile (max-width: 576px) --- */
-@media (max-width: 576px) {
-  .main-content.sidebar-open {
-    margin-left: 200px; /* Espace réservé pour une sidebar encore plus étroite */
-    width: calc(100% - 200px); /* Ajuste la largeur du contenu */
-  }
-
-  .main-content {
-    padding: 10px; /* Réduit le padding pour mobile */
-  }
-
-  .sidebar {
-    width: 200px; /* Réduit la largeur de la sidebar sur mobile */
-  }
-}
-
-/* --- Autres styles spécifiques --- */
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: #34495e;
-  border-radius: 8px;
-  margin-bottom: 20px;
-}
-
-/* Exemple de style pour les boutons de navigation */
-.nav-btn {
-  background-color: #1abc9c;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.nav-btn:hover {
-  background-color: #16a085; /* Couleur au survol */
 }

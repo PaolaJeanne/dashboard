@@ -29,125 +29,20 @@
   
   /* Couleurs d'interface */
   --card-bg: #ffffff;          /* Fond de carte clair */
-  --card-bg-dark: #1f2937;     /* Fond de carte foncé (mode sombre) */
-  --card-bg-light-dark: #27344d; /* Fond de carte légèrement plus clair (mode sombre) */
   --border: #e3ebf6;           /* Couleur de bordure standard */
-  --border-light: rgba(255,255,255,0.05); /* Bordure subtile */
-  
-  /* Texte */
-  --text-primary: #12263f;     /* Texte principal mode clair */
-  --text-secondary: #5e6e82;   /* Texte secondaire mode clair */
-  --text-light: #718096;       /* Texte tertiaire mode clair */
-  --text-xlight: #95aac9;      /* Texte très léger */
-  
-  /* Texte mode sombre */
-  --text-primary-dark: #ffffff;  /* Texte principal mode sombre */
-  --text-secondary-dark: #d1d5db; /* Texte secondaire mode sombre */
-  
-  /* Effets */
-  --shadow-sm: 0 0.125rem 0.25rem rgba(18, 38, 63, 0.075);
   --shadow: 0 0.5rem 1rem rgba(18, 38, 63, 0.1);
   --border-radius: 0.5rem;
   --transition: all 0.2s ease-in-out;
 }
 
-/* Mode sombre */
-.dark-mode {
-  --card-bg: #1f2937;           /* Fond de carte foncé */
-  --card-bg-light: #27344d;     /* Fond de carte légèrement plus clair */
-  --text-primary: #ffffff;      /* Texte principal blanc */
-  --text-secondary: #d1d5db;    /* Texte secondaire gris clair */
-  --text-light: #cbd5e1;        /* Texte tertiaire encore plus clair */
-  --text-xlight: #94a3b8;       /* Texte très léger */
-  --border-light: rgba(255,255,255,0.05); /* Bordures très subtiles */
-  --primary-lighter: rgba(59, 130, 246, 0.1); /* Fond bleu légèrement transparent */
-}
-
-/* Base styles and resets */
+/* Base styles */
 .printing-dashboard {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
-  color: var(--text-primary);
+  color: var(--gray-900);
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--gray-50);
-}
-
-/* Appliquez les nouvelles couleurs aux autres classes */
-.dashboard-header {
-  background-color: var(--gray-100);
-  color: var(--text-primary);
-  box-shadow: var(--shadow);
-}
-
-.client-profile {
-  display: flex;
-  align-items: center;
-}
-
-.avatar {
-  width: 60px;
-  height: 60px;
-  background-color: #3b82f6; /* léger bleu clair */
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-color); /* bleu principal */
-  margin-right: 15px;
-}
-
-.client-info h1 {
-  margin-bottom: 5px;
-  font-size: 1.5rem;
-  color: #3b82f6;
-}
-
-.client-meta {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  font-size: 0.9rem;
-  color: #ffffff;
-}
-
-.account-type {
-  background-color: var(--light-accent);
-  color: var(--accent-color);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-.favorite-product {
-  display: flex;
-  align-items: center;
-}
-
-.favorite-product svg {
-  margin-right: 5px;
-  color: var(--success); /* icône produit préféré en bleu clair vif */
-}
-
-.client-contact {
-  text-align: right;
-  font-size: 0.9rem;
-  color: var(--text-primary);
-}
-
-
-.client-contact p {
-  margin: 5px 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 8px;
-  color: #ffffff; /* ← ici en blanc pur */
-}
-
-.client-contact svg {
-  color: var(--accent-color); /* icônes contacts bleues */
 }
 
 /* Stats Grid */
@@ -159,12 +54,12 @@
 }
 
 .stat-card {
-  background-color: var(--dark-blue);
+  background-color: var(--card-bg);
   border-radius: 12px;
   padding: 20px;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
   transition: transform 0.2s;
   border: 1px solid var(--border);
 }
@@ -178,12 +73,12 @@
   width: 50px;
   height: 50px;
   border-radius: 12px;
-  background-color: var(--night-blue);
+  background-color: var(--primary-light);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 15px;
-  color: var(--light-blue);
+  color: var(--primary);
 }
 
 .stat-content {
@@ -196,30 +91,29 @@
   font-weight: 700;
   line-height: 1;
   margin-bottom: 5px;
-  color: var(--gold-yellow);
+  color: var(--primary-dark);
 }
 
 .stat-label {
-  font-size: 0.9rem; /* Augmente légèrement la taille */
-  color: var(--gray-700); /* Gris plus foncé pour une meilleure visibilité */
-  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: var(--gray-700);
 }
 
 /* Tabs */
 .tabs-container {
   display: flex;
   margin-bottom: 20px;
-  background-color: var(--dark-blue);
+  background-color: var(--primary-light);
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .tab-btn {
   flex: 1;
   padding: 16px;
   text-align: center;
-  color: var(--light-blue); /* changement ici */
+  color: var(--primary-dark);
   font-weight: 600;
   font-size: 1rem;
   display: flex;
@@ -227,286 +121,178 @@
   justify-content: center;
   border-bottom: 3px solid transparent;
   background-color: transparent;
-  transition: all 0.25s ease;
+  transition: var(--transition);
 }
 
 .tab-btn svg {
   margin-right: 8px;
-  color: var(--light-blue); /* changement ici */
 }
 
 .tab-btn.active {
-  color: var(--gold-yellow);
-  background-color: var(--text-xlight);
-  border-bottom: 3px solid var(--gold-yellow);
-}
-
-.tab-btn.active svg {
-  color: var(--gold-yellow);
+  color: var(--primary);
+  background-color: var(--primary-lighter);
+  border-bottom: 3px solid var(--primary);
 }
 
 .tab-btn:hover:not(.active) {
-  background-color: var(--border-light);
+  background-color: var(--primary-lighter);
 }
-
 
 /* Main content */
 .dashboard-main {
   background-color: var(--card-bg);
   border-radius: 12px;
   padding: 25px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  box-shadow: var(--shadow);
 }
 
-/* Orders section */
+/* Liste des commandes */
 .orders-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 20px; /* Espacement entre les commandes */
+  margin-top: 20px;
 }
 
+/* Carte de commande */
 .order-card {
+  background-color: #ffffff;
+  border: 1px solid #e3ebf6;
   border-radius: 12px;
-  border: 1px solid var(--border);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
   overflow: hidden;
-  transition: all 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Ombre légère */
+  position: relative;
 }
 
 .order-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); /* Ombre plus marquée au survol */
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Ajustement du cadre de l'ordre */
-.order-summary {
-  padding: 20px;
-  border-radius: 12px;
-  background-color: var(--card-bg);
-  border: 1px solid var(--border);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Ombre légère */
-  margin-bottom: 15px;
-}
-
-/* Alignement et espacement des informations de l'ordre */
-.order-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.order-info {
-  display: flex;
-  flex-direction: column;
-}
-
+/* ID de la commande */
 .order-id {
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  font-weight: 600;
-  margin-bottom: 5px;
-}
-
-.order-product {
   font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: #2d3748;
+  text-align: center; /* Centré horizontalement */
+  padding: 10px 0; /* Espacement en haut et en bas */
+  border-bottom: 1px solid #e3ebf6; /* Ligne de séparation */
 }
 
-/* Statut de l'ordre */
+/* Date de commande */
+.order-date {
+  font-size: 0.9rem;
+  color: #4a5568;
+  margin-top: 10px; /* Espacement au-dessus de la date */
+  text-align: center; /* Centré horizontalement */
+}
+
+/* Statut de la commande */
 .order-status {
+  position: absolute;
+  bottom: 15px; /* Positionné en bas */
+  right: 15px; /* Positionné à droite */
   padding: 6px 12px;
-  border-radius: 8px;
+  border-radius: 20px;
   font-size: 0.85rem;
-  font-weight: 500;
-  background-color: var(--info-light);
-  color: var(--info);
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #3182ce; /* Bleu par défaut */
+  text-align: center;
 }
 
-/* Métadonnées de l'ordre */
+.order-status.en-attente {
+  background-color: #f6ad55; /* Orange pour "En attente" */
+}
+
+.order-status.en-impression {
+  background-color: #48bb78; /* Vert pour "En impression" */
+}
+
 .order-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .order-date {
   display: flex;
   align-items: center;
   font-size: 0.9rem;
-  color: var(--text-light);
+  color: #4a5568;
 }
 
 .order-date svg {
   margin-right: 5px;
-  color: var(--text-xlight);
+  color: #a0aec0;
 }
 
-/* Barre de progression */
-.progress-container {
-  position: relative;
-  width: 150px;
-  height: 8px;
-  background-color: var(--border);
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre intérieure subtile */
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  background-color: var(--primary);
-  transition: width 0.3s ease;
-}
-
-.progress-text {
+/* Bouton de téléchargement */
+.download-btn {
   position: absolute;
-  top: -20px; /* Position au-dessus de la barre */
-  right: 0;
-  font-size: 0.9rem; /* Augmente légèrement la taille */
-  color: var(--gray-900); /* Noir ou gris très foncé pour un bon contraste */
-  font-weight: 700; /* Texte en gras pour plus de visibilité */
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* Ombre blanche subtile pour contraster */
-  z-index: 1; /* Assure que le texte est au-dessus de tout */
+  bottom: 15px; /* Positionné en bas */
+  right: 15px; /* Positionné à droite */
+  background-color: #3182ce;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-/* Section des détails */
+.download-btn:hover {
+  background-color: #2c5282;
+}
+
+/* Détails de la commande */
+.order-details {
+  padding: 20px;
+  background-color: #f7fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
 .details-section {
-  margin-bottom: 20px; /* Ajoute un espace entre les sections */
-  padding: 15px; /* Ajoute un espace intérieur pour mieux séparer le contenu */
-  background-color: var(--card-bg); /* Fond pour délimiter la section */
-  border-radius: 8px; /* Arrondit les coins */
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1); /* Ombre subtile */
-  margin-left: 40px; /* Ajoute un espace à gauche pour le décalage */
-  margin-right: 30px; /* Ajoute un espace à droite pour le décalage */
+  margin-bottom: 15px;
 }
 
-/* Grille des spécifications */
+.details-section h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 10px;
+}
+
 .specs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Grille flexible */
-  gap: 15px; /* Ajoute un espace entre les éléments */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
 }
 
-/* Élément de spécification */
 .spec-item {
-  padding: 10px;
-  background-color: var(--gray-100); /* Fond léger pour délimiter */
-  border-radius: 6px;
-  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
 }
 
-/* Texte des étiquettes */
 .spec-label {
-  font-size: 0.9rem;
-  color: var(--gray-700); /* Gris plus foncé pour une meilleure visibilité */
-  margin-bottom: 5px;
-  display: block; /* Force un retour à la ligne */
-}
-
-/* Texte des valeurs */
-.spec-value {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-/* Informations de livraison */
-.delivery-info p {
-  font-size: 0.9rem;
-  color: var(--gray-700); /* Texte plus foncé pour une meilleure visibilité */
-  margin-bottom: 8px; /* Ajoute un espace entre les lignes */
-}
-
-.delivery-info strong {
-  color: var(--text-primary);
   font-weight: 600;
+  color: #4a5568;
 }
 
-.file-issues, .file-action {
-  display: flex;
-  align-items: center;
-  margin: 8px 0 0;
-  font-size: 0.8rem;
-  color: var(--danger);
+.spec-value {
+  color: #2d3748;
+  font-weight: 500;
 }
 
-.file-issues svg, .file-action svg {
-  margin-right: 5px;
-  flex-shrink: 0;
-}
-
-.badge {
-  margin-left: 15px; /* Ajoute un espace entre le texte et le badge */
-  padding: 4px 8px; /* Ajuste l'intérieur du badge pour un meilleur rendu */
-  background-color: var(--primary-light); /* Couleur de fond du badge */
-  color: var(--primary); /* Couleur du texte du badge */
-  border-radius: 12px; /* Arrondi les coins du badge */
-  font-size: 0.85rem; /* Taille du texte */
-  font-weight: 600; /* Met le texte en gras */
-}
-/* Style des étoiles */
-.order-rating {
-  display: flex;
-  gap: 5px; /* Ajoute un espace entre les étoiles */
-  margin-top: 10px;
-}
-
-.star {
-  font-size: 1.2rem;
-  color: var(--gray-400); /* Couleur des étoiles non remplies */
-  transition: color 0.2s ease;
-}
-
-.star.filled {
-  color: var(--warning); /* Couleur des étoiles remplies */
-}
-
-/* Responsive adjustments */
+/* Responsive pour petits écrans */
 @media (max-width: 768px) {
-  .dashboard-header {
-    flex-direction: column;
-  }
-  
-  .client-contact {
-    text-align: left;
-    margin-top: 15px;
-  }
-  
-  .client-contact p {
-    justify-content: flex-start;
-  }
-  
-  .history-list {
-    grid-template-columns: 1fr;
-  }
-  
-  .order-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .progress-container {
-    width: 100%;
-  }
-  
-  .specs-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 576px) {
-  .specs-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .client-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+  .orders-list {
+    grid-template-columns: 1fr; /* 1 colonne sur les petits écrans */
   }
 }

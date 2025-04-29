@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Chat.css';
-import 'font-awesome/css/font-awesome.min.css';
+import { FaComments, FaCommentDots, FaUser, FaRobot, FaPaperPlane, FaEllipsisH } from 'react-icons/fa';
 
 const Chat = () => {
   const chatEndRef = useRef(null);
@@ -79,12 +79,12 @@ const Chat = () => {
   return (
     <section className="nc-chat-section">
       <h2>
-        <i className="fas fa-comments"></i> Assistance
+        <FaComments /> Assistance
       </h2>
       <div className="nc-chat">
         {ui.chat.length === 0 ? (
           <div className="nc-chat-empty">
-            <i className="fas fa-comment-dots"></i>
+            <FaCommentDots />
             <p>Posez vos questions à notre équipe</p>
             <div className="nc-chat-suggestion">
               <button onClick={() => handleSuggestion('Quel est le délai de livraison ?')}>
@@ -107,7 +107,7 @@ const Chat = () => {
             {ui.chat.map((msg, i) => (
               <div key={i} className={`nc-chat-msg ${msg.sender}`}>
                 <div className="nc-msg-avatar">
-                  <i className={`fas ${msg.sender === 'user' ? 'fa-user' : 'fa-robot'}`}></i>
+                  {msg.sender === 'user' ? <FaUser /> : <FaRobot />}
                 </div>
                 <div className="nc-msg-content">{msg.text}</div>
                 <div className="nc-msg-time">
@@ -117,7 +117,7 @@ const Chat = () => {
             ))}
             {ui.isTyping && (
               <div className="nc-chat-typing">
-                <i className="fas fa-ellipsis-h"></i> L'équipe est en train de répondre...
+                <FaEllipsisH /> L'équipe est en train de répondre...
               </div>
             )}
           </>
@@ -133,7 +133,7 @@ const Chat = () => {
           onChange={(e) => setUi(prev => ({ ...prev, newMessage: e.target.value }))}
         />
         <button type="submit" disabled={!ui.newMessage.trim()}>
-          <i className="fas fa-paper-plane"></i>
+          <FaPaperPlane />
         </button>
       </form>
     </section>

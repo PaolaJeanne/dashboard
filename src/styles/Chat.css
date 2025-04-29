@@ -1,6 +1,7 @@
 /* Chat section */
 .nc-chat-section {
     margin: 0 auto;
+    margin-top: 35px;
     width: 80%;
     max-width: 1200px;
     background-color: #ffffff;
