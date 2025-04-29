@@ -127,26 +127,11 @@ const NouvelleCommande = () => {
   // Gestion des changements dans le formulaire
   const handleChange = (e) => {
     const { name, value, type } = e.target;
-    
-    if (name in form.options) {
-      setForm(prev => ({
-        ...prev,
-        options: { ...prev.options, [name]: value }
-      }));
-      
-      // Afficher des infos sur la reliure lorsqu'elle est sélectionnée
-      if (name === 'binding' && value !== 'Aucune') {
-        setUi(prev => ({ ...prev, showBindingInfo: true }));
-        setTimeout(() => {
-          setUi(prev => ({ ...prev, showBindingInfo: false }));
-        }, 5000);
-      }
-    } else {
-      setForm(prev => ({
-        ...prev,
-        [name]: type === 'number' ? Math.max(1, Math.min(100, parseInt(value) || 1)) : value
-      }));
-    }
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === 'number' ? (value === '' ? '' : Math.max(0, parseInt(value) || 0)) : value
+    }));
   };
 
   // Configuration de react-dropzone pour l'upload de fichier
@@ -332,21 +317,21 @@ const NouvelleCommande = () => {
           <section className="nc-section">
             <h2><i className="fas fa-cog"></i> 2. Options d'impression</h2>
             
-            {/* Nombre de copies avec un champ d'entrée simple */}
-            <div className="nc-copies-section">
-              <label htmlFor="copies">Nombre de copies</label>
-              <input
-                id="copies"
-                type="number"
-                name="copies"
-                min="0" // Permet une valeur minimale de 0
-                max="100"
-                value={form.copies}
-                onChange={handleChange}
-              />
-            </div>
-            
             <div className="nc-options-grid">
+              {/* Nombre de copies */}
+              <div className="nc-form-group">
+                <label htmlFor="copies">Nombre de copies</label>
+                <input
+                  id="copies"
+                  type="number"
+                  name="copies"
+                  min="0"
+                  value={form.copies === 0 ? '' : form.copies} // Affiche un champ vide si la valeur est 0
+                  onChange={handleChange}
+                />
+              </div>
+
+              {/* Autres options d'impression */}
               {PRINT_OPTIONS.filter(opt => opt.name !== 'binding').map((opt, i) => (
                 <div key={i} className="nc-form-group">
                   <label htmlFor={opt.name}>{opt.label}</label>
