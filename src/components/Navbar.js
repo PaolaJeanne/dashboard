@@ -7,19 +7,25 @@ const Navbar = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false); // État pour le menu utilisateur
   const [notifications] = useState([
-    'Nouvelle commande reçue',
-    'Votre facture est prête',
-    'Mise à jour des paramètres',
+    { id: 1, message: 'Nouvelle commande reçue', details: 'Commande #1234 est prête.' },
+    { id: 2, message: 'Votre facture est prête', details: 'Facture #5678 est disponible.' },
+    { id: 3, message: 'Mise à jour des paramètres', details: 'Vos paramètres ont été mis à jour.' },
   ]);
 
   const navigate = useNavigate();
 
   const toggleNotificationMenu = () => {
     setIsNotificationOpen((prev) => !prev);
+    setIsUserMenuOpen(false); // Ferme le menu utilisateur si ouvert
   };
 
   const toggleUserMenu = () => {
     setIsUserMenuOpen((prev) => !prev);
+    setIsNotificationOpen(false); // Ferme le menu des notifications si ouvert
+  };
+
+  const handleNotificationClick = (notification) => {
+    navigate('/chat', { state: { notification } }); // Passe les détails de la notification à la page Chat
   };
 
   const handleLogout = () => {
@@ -44,8 +50,16 @@ const Navbar = () => {
         {isNotificationOpen && (
           <div className="notification-menu">
             <ul>
-              {notifications.map((notification, index) => (
-                <li key={index}>{notification}</li>
+              {notifications.map((notification) => (
+                <li
+                  key={notification.id}
+                  onClick={() => handleNotificationClick(notification)} // Passe la notification à la page Chat
+                  className="notification-item"
+                >
+                  {notification.message.length > 30
+                    ? `${notification.message.substring(0, 30)}...`
+                    : notification.message}
+                </li>
               ))}
             </ul>
           </div>
